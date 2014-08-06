@@ -283,9 +283,12 @@ run compilation window in it's own window
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 #+end_src
 ** Org Mode
-Orgmode can be really slow with activated linnum mode
+   Org-mode can be really slow with activated linnum mode.
+   Org-mode also does not show all headings with save-place
+
 #+begin_src emacs-lisp
-(defun nolinum ()
-  (global-linum-mode 0))
-(add-hook 'org-mode-hook 'nolinum)
+  (defun max/org-mode-hook ()
+    (global-linum-mode 0)
+    (setq save-place nil))
+  (add-hook 'org-mode-hook 'max/org-mode-hook)
 #+end_src
