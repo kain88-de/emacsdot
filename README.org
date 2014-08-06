@@ -1,0 +1,4 @@
+* My Personal emacs configuration
+
+  This is my personal emacs config which is mainly inspired the [[http://pages.sachachua.com/.emacs.d/Sacha.html][config]] of [[http://sachachua.com/blog/][Sacha
+  Chua.]]
