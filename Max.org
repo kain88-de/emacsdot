@@ -200,7 +200,7 @@ bind it to <F12> to show it again if I need it
 
 - show whitespaces by default
   #+begin_src emacs-lisp
-    (global-wh-mode)
+    (global-whitespace-mode)
     (setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
   #+end_src
 
@@ -242,11 +242,11 @@ run compilation window in it's own window
     (when (not (get-buffer-window "*compilation*"))
       (save-selected-window
         (save-excursion
-      (let* ((w (split-window-vertically))
-             (h (window-height w)))
-        (select-window w)
-        (switch-to-buffer "*compilation*")
-        (shrink-window (- h 20)))))))
+          (let* ((w (split-window-vertically))
+                 (h (window-height w)))
+            (select-window w)
+            (switch-to-buffer "*compilation*")
+            (shrink-window (- h 20)))))))
   (add-hook 'compilation-mode-hook 'max/close-compilation-buffer)
 #+end_src
 *** language modes
