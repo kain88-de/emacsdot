@@ -15,33 +15,15 @@ Melpa has way more packages then the normal elpa repo
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
 #+end_src
 *** Install missing packages
-List of packages that should be installed. This is copied from the prelude package
-and emacs-from-scratch
+use package.el to install packages I like to use. Stolen from [[http://truongtx.me/2013/01/07/emacs-package-manager/][here]]
 #+begin_src emacs-lisp
-  ;; (defvar required-packages
-  ;;   '(magit
-  ;;     yasnippet
-  ;;     monokai
-  ;;     evil
-  ;;     evil-leader
-  ;;     auctex
-  ;;     fill-column-indicator
-  ;;     ) "a list of packages I want to have installed at the start" )
-  ;;
-  ;; (defun max/packages-installed-p ()
-  ;;   "Check if all packages in 'required-packages' are installed"
-  ;;   (every #'package-installed-p required-packages))
-  ;;
-  ;; ; if not all packages are installed, check one by one and install the missing ones.
-  ;; (unless (packages-installed-p)
-  ;;   ; check for new packages (package versions)
-  ;;   (message "%s" "Emacs is now refreshing its package database...")
-  ;;   (package-refresh-contents)
-  ;;   (message "%s" " done.")
-  ;;   ; install the missing packages
-  ;;   (dolist (p required-packages)
-  ;;     (when (not (package-installed-p p))
-  ;;       (package-install p))))
+  (when (not package-archive-contents)
+    (package-refresh-contents))
+  (defvar max/packages
+    '(evil evil-leader whitespace magit))
+  (dolist (p max/packages)
+    (when (not (package-installed-p p))
+      (package-install p)))
 #+end_src
 
 ** Evil config
