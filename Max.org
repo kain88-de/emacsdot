@@ -1,0 +1,286 @@
+#+TITLE: Max Linke's Emacs configuration
+#+OPTIONS: toc:4 h:4
+
+* Configuration
+** Personal Information
+#+begin_src emacs-lisp
+  (setq user-full-name "Max Linke"
+        user-mail-address "max_linke@gmx.de")
+#+end_src
+** Installing packages
+*** Add package sources
+Melpa has way more packages then the normal elpa repo
+#+begin_src emacs-lisp
+(add-to-list 'package-archives
+  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+#+end_src
+*** Install missing packages
+List of packages that should be installed. This is copied from the prelude package
+and emacs-from-scratch
+#+begin_src emacs-lisp
+  ;; (defvar required-packages
+  ;;   '(magit
+  ;;     yasnippet
+  ;;     monokai
+  ;;     evil
+  ;;     evil-leader
+  ;;     auctex
+  ;;     fill-column-indicator
+  ;;     ) "a list of packages I want to have installed at the start" )
+  ;;
+  ;; (defun max/packages-installed-p ()
+  ;;   "Check if all packages in 'required-packages' are installed"
+  ;;   (every #'package-installed-p required-packages))
+  ;;
+  ;; ; if not all packages are installed, check one by one and install the missing ones.
+  ;; (unless (packages-installed-p)
+  ;;   ; check for new packages (package versions)
+  ;;   (message "%s" "Emacs is now refreshing its package database...")
+  ;;   (package-refresh-contents)
+  ;;   (message "%s" " done.")
+  ;;   ; install the missing packages
+  ;;   (dolist (p required-packages)
+  ;;     (when (not (package-installed-p p))
+  ;;       (package-install p))))
+#+end_src
+
+** Evil config
+After years of using vim I just can't live without modal editing anymore.
+*** Set before loading evil
+This let's evil overwrite some emacs settings to make it more like vim
+- use evil-search instead of isearch
+- use C-w as windows keybindings
+
+#+begin_src emacs-lisp
+(setq evil-search-module 'evil-search
+      evil-want-C-u-scroll t
+      evil-want-C-w-in-emacs-state t)
+#+end_src
+
+*** Load and start evil mode
+
+#+begin_src emacs-lisp
+(require 'evil)
+(evil-mode 1)
+#+end_src
+
+*** evil keymappings
+#+begin_src emacs-lisp
+  (define-key evil-normal-state-map "L" 'evil-end-of-line)
+  (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+  (define-key evil-normal-state-map (kbd "C-l")'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+#+end_src
+*** Set mode indicator colors
+#+begin_src emacs-lisp
+(setq evil-normal-state-tag   (propertize "N" 'face '((:background "green" :foreground "black")))
+      evil-emacs-state-tag    (propertize "E" 'face '((:background "orange" :foreground "black")))
+      evil-insert-state-tag   (propertize "I" 'face '((:background "red")))
+      evil-motion-state-tag   (propertize "M" 'face '((:background "blue")))
+      evil-visual-state-tag   (propertize "V" 'face '((:background "grey80" :foreground "black")))
+      evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
+#+end_src
+*** Evil-leader
+A really nice plugin to enable a vim leader key. This allows me to set my own
+command layer that is guaranteed not to interfere with any standard key bindings
+#+begin_src emacs-lisp
+(require 'evil-leader)
+(global-evil-leader-mode)
+(evil-leader/set-key "l" 'evil-ex-nohighlight)
+(evil-leader/set-key "dw" 'whitespace-cleanup)
+(evil-leader/set-key "m" 'magit-status)
+#+end_src
+** User Interface
+*** general settings
+Show line numbers by default
+
+#+begin_src emacs-lisp
+(global-linum-mode t)
+#+end_src
+
+Change "yes or no" to "y or n"
+
+#+begin_src emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+Use a more save scrolling behavior
+
+#+begin_src emacs-lisp
+(setq scroll-conservatively 10000)
+(setq scroll-step 1)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+    (setq mouse-wheel-progressive-speed nil)
+#+end_src
+
+I like the [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
+
+#+begin_src emacs-lisp
+(set-default-font "Inconsolata-13")
+#+end_src
+
+Jump to the last cursor position after opening a file
+
+#+begin_src emacs-lisp
+(require 'saveplace)
+;; use standard emacs folder
+(setq save-place-file (concat user-emacs-directory "saveplace.el") )
+(setq-default save-place t)
+#+end_src
+
+Use a visual bell
+
+#+begin_src emacs-lisp
+  (setq-default visible-bell t)
+#+end_src
+
+I prefer the ibuffer mode to swtich between open buffers
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+#+end_src
+
+wrap lines by default
+#+begin_src emacs-lisp
+(global-visual-line-mode)
+#+end_src
+
+Place a line after 80 charaters and set fill-column to 80 as well.
+#+begin_src emacs-lisp
+(require 'fill-column-indicator)
+(setq fci-rulw-width 2)
+(setq fci-rule-column 80)
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode t)
+(setq-default fill-column 80)
+#+end_src
+*** Colors
+I like the Monokai color theme when I'm using the UI, fallback to solarized
+in the terminal. I use the solarized colorthemes in the terminal and the 16
+solarized colors don't support the monokai theme.
+
+#+begin_src emacs-lisp
+  (require 'solarized-light-theme)
+  (if window-system
+      (load-theme 'monokai t)
+    (load-theme 'solarized-dark))
+#+end_src
+*** Window decorations
+Set the window size to 100 charatars. Disable tooltips and the menu-bar.
+The menubar can contain useful tips and help discover new features in modes so
+bind it to <F12> to show it again if I need it
+#+begin_src emacs-lisp
+(when window-system
+    (tooltip-mode -1)
+    (menu-bar-mode -1)
+    (set-frame-size (selected-frame) 100 40))
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
+#+end_src
+** Coding
+*** make coding in all languages better
+- enable colorful highlighting of matching parentheses.
+  #+begin_src emacs-lisp
+  (require 'highlight-parentheses)
+  (define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
+    (lambda nil (highlight-parentheses-mode t)))
+  (global-highlight-parentheses-mode t)
+  #+end_src
+  
+- Enable company-mode for code completion everywhere.
+  #+begin_src emacs-lisp
+    (add-hook 'after-init-hook 'global-company-mode)
+  #+end_src
+  
+- auto close brackets and ident new lines
+  #+begin_src emacs-lisp
+  (electric-pair-mode 1)
+  (electric-indent-mode 1)
+  #+end_src
+  
+- Clean up whitespaces after save
+  #+begin_src emacs-lisp
+    (add-hook 'before-save-hook 'whitespace-cleanup)
+  #+end_src
+*** compiling things
+compile when I hit F5, save all open buffers and scroll the output
+#+begin_src emacs-lisp
+(global-set-key (kbd "<f5>") 'compile)
+(setq compilation-ask-about-save nil)
+(setq compilation-scroll-output 1)
+#+end_src
+
+close compilation buffer if there was no error
+#+begin_src emacs-lisp
+  (defun max/bury-compile-buffer-if-successful (buffer string)
+    "Bury a compilation buffer if succeede without warnings "
+    (if (and
+         (string-match "compilation" (buffer-name buffer))
+         (string-match "finished" string)
+         (not
+          (with-current-buffer buffer
+            (search-forward "warning" nil t))))
+        (run-with-timer .2 nil
+                        (lambda (buf)
+                          (bury-buffer buf)
+                          (delete-window (get-buffer-window buf)))
+                        buffer)))
+  (add-hook 'compilation-finish-functions 'max/bury-compile-buffer-if-successful)
+#+end_src
+
+run compilation window in it's own window
+
+#+begin_src emacs-lisp
+  (defun max/close-compilation-buffer ()
+    (when (not (get-buffer-window "*compilation*"))
+      (save-selected-window
+        (save-excursion
+      (let* ((w (split-window-vertically))
+             (h (window-height w)))
+        (select-window w)
+        (switch-to-buffer "*compilation*")
+        (shrink-window (- h 20)))))))
+  (add-hook 'compilation-mode-hook 'max/close-compilation-buffer)
+#+end_src
+*** language modes
+- emacs-lisp
+  use eldoc for emacs lisp files
+  #+begin_src emacs-lisp
+  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+  #+end_src
+   
+- C++
+  #+begin_src emacs-lisp
+    (setq-default c-basic-offset 4 c-default-style "linux")
+    (setq-default tab-width 4 indent-tabs-mode t)
+  #+end_src
+
+- Python
+   
+** snippets
+#+begin_src emacs-lisp
+(require 'yasnippet)
+(yas-global-mode 1)
+#+end_src
+** Writing
+*** general settings
+#+begin_src emacs-lisp
+(setq sentence-end-double-space nil)
+#+end_src
+*** Latex
+#+begin_src emacs-lisp
+(setq TeX-auto-save t)
+(setq-default TeX-master nil)
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
+;; open all tex files in LaTeX-mode
+(add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
+#+end_src
+** Org Mode
+Orgmode can be really slow with activated linnum mode
+#+begin_src emacs-lisp
+(defun nolinum ()
+  (global-linum-mode 0))
+(add-hook 'org-mode-hook 'nolinum)
+#+end_src

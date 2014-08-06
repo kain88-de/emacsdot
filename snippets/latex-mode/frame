@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: frame env
+# key: frame
+# --
+\begin{frame}
+$0
+\end{frame}
