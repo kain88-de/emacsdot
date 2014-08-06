@@ -188,21 +188,33 @@ bind it to <F12> to show it again if I need it
     (lambda nil (highlight-parentheses-mode t)))
   (global-highlight-parentheses-mode t)
   #+end_src
-  
+
 - Enable company-mode for code completion everywhere.
   #+begin_src emacs-lisp
     (add-hook 'after-init-hook 'global-company-mode)
   #+end_src
-  
+
 - auto close brackets and ident new lines
   #+begin_src emacs-lisp
   (electric-pair-mode 1)
   (electric-indent-mode 1)
   #+end_src
-  
+
 - Clean up whitespaces after save
   #+begin_src emacs-lisp
     (add-hook 'before-save-hook 'whitespace-cleanup)
+  #+end_src
+
+- show whitespaces by default
+  #+begin_src emacs-lisp
+    (global-wh-mode)
+    (setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
+  #+end_src
+
+- set indentation
+  #+begin_src emacs-lisp
+    (setq-default indent-tabs-mode nil)
+    (setq-default tab-width 4)
   #+end_src
 *** compiling things
 compile when I hit F5, save all open buffers and scroll the output
@@ -250,7 +262,7 @@ run compilation window in it's own window
   #+begin_src emacs-lisp
   (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
   #+end_src
-   
+
 - C++
   #+begin_src emacs-lisp
     (setq-default c-basic-offset 4 c-default-style "linux")
@@ -258,7 +270,7 @@ run compilation window in it's own window
   #+end_src
 
 - Python
-   
+
 ** snippets
 #+begin_src emacs-lisp
 (require 'yasnippet)
