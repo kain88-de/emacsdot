@@ -94,69 +94,62 @@ command layer that is guaranteed not to interfere with any standard key bindings
 #+end_src
 ** User Interface
 *** general settings
-Show line numbers by default
+-  Show line numbers by default
+  #+begin_src emacs-lisp
+  (global-linum-mode t)
+  #+end_src
 
-#+begin_src emacs-lisp
-(global-linum-mode t)
-#+end_src
+- Change "yes or no" to "y or n"
+  #+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+  #+end_src
 
-Change "yes or no" to "y or n"
+- Use a more save scrolling behavior
+  #+begin_src emacs-lisp
+  (setq scroll-conservatively 10000)
+  (setq scroll-step 1)
+  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+      (setq mouse-wheel-progressive-speed nil)
+  #+end_src
 
-#+begin_src emacs-lisp
-(defalias 'yes-or-no-p 'y-or-n-p)
-#+end_src
+- I like the [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
+  #+begin_src emacs-lisp
+  (set-default-font "Inconsolata-13")
+  #+end_src
 
-Use a more save scrolling behavior
+- Jump to the last cursor position after opening a file
+  #+begin_src emacs-lisp
+  (require 'saveplace)
+  ;; use standard emacs folder
+  (setq save-place-file (concat user-emacs-directory "saveplace.el") )
+  (setq-default save-place t)
+  #+end_src
 
-#+begin_src emacs-lisp
-(setq scroll-conservatively 10000)
-(setq scroll-step 1)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-    (setq mouse-wheel-progressive-speed nil)
-#+end_src
+- Use a visual bell
+  #+begin_src emacs-lisp
+    (setq-default visible-bell t)
+  #+end_src
 
-I like the [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
+- I prefer the ibuffer mode to swtich between open buffers
+  #+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+  #+end_src
 
-#+begin_src emacs-lisp
-(set-default-font "Inconsolata-13")
-#+end_src
+- wrap lines by default
+  #+begin_src emacs-lisp
+  (global-visual-line-mode)
+  #+end_src
 
-Jump to the last cursor position after opening a file
-
-#+begin_src emacs-lisp
-(require 'saveplace)
-;; use standard emacs folder
-(setq save-place-file (concat user-emacs-directory "saveplace.el") )
-(setq-default save-place t)
-#+end_src
-
-Use a visual bell
-
-#+begin_src emacs-lisp
-  (setq-default visible-bell t)
-#+end_src
-
-I prefer the ibuffer mode to swtich between open buffers
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-#+end_src
-
-wrap lines by default
-#+begin_src emacs-lisp
-(global-visual-line-mode)
-#+end_src
-
-Place a line after 80 charaters and set fill-column to 80 as well.
-#+begin_src emacs-lisp
-(require 'fill-column-indicator)
-(setq fci-rulw-width 2)
-(setq fci-rule-column 80)
-(define-globalized-minor-mode
-  global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode t)
-(setq-default fill-column 80)
-#+end_src
+- Place a line after 80 charaters and set fill-column to 80 as well.
+  #+begin_src emacs-lisp
+  (require 'fill-column-indicator)
+  (setq fci-rulw-width 2)
+  (setq fci-rule-column 80)
+  (define-globalized-minor-mode
+    global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode t)
+  (setq-default fill-column 80)
+  #+end_src
 *** Colors
 I like the Monokai color theme when I'm using the UI, fallback to solarized
 in the terminal. I use the solarized colorthemes in the terminal and the 16
