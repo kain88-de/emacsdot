@@ -1,0 +1,7 @@
+# Compiled
+*.elc
+*.*~
+Max.el
+saveplace.el
+session.*
+elpa
