@@ -76,7 +76,7 @@ command layer that is guaranteed not to interfere with any standard key bindings
 #+end_src
 ** User Interface
 *** general settings
--  Show line numbers by default
+- Show line numbers by default
   #+begin_src emacs-lisp
   (global-linum-mode t)
   #+end_src
@@ -239,9 +239,12 @@ run compilation window in it's own window
   #+end_src
 
 - C++
+  use the [[https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml][google c++ style]] with 4 spaces instead of 2
   #+begin_src emacs-lisp
-    (setq-default c-basic-offset 4 c-default-style "linux")
-    (setq-default tab-width 4 indent-tabs-mode t)
+    (require 'google-c-style)
+    (add-hook 'c-mode-common-hook 'google-set-c-style)
+    (add-hook 'c-mode-common-hook 'google-make-newline-indent)
+    (setq-default c-basic-offset 4)
   #+end_src
 
 - Python
