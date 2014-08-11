@@ -242,9 +242,11 @@ run compilation window in it's own window
   use the [[https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml][google c++ style]] with 4 spaces instead of 2
   #+begin_src emacs-lisp
     (require 'google-c-style)
-    (add-hook 'c-mode-common-hook 'google-set-c-style)
-    (add-hook 'c-mode-common-hook 'google-make-newline-indent)
-    (setq-default c-basic-offset 4)
+    (defun max/cc-mode-hook ()
+      (google-set-c-style)
+      (google-make-newline-indent)
+      (setq c-basic-offset 4))
+    (add-hook 'c-mode-common-hook 'max/cc-mode-hook)
   #+end_src
 
 - Python
