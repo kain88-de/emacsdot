@@ -20,7 +20,7 @@ use package.el to install packages I like to use. Stolen from [[http://truongtx.
   (when (not package-archive-contents)
     (package-refresh-contents))
   (defvar max/packages
-    '(evil evil-leader whitespace magit))
+    '(evil evil-leader whitespace magit company yasnippet))
   (dolist (p max/packages)
     (when (not (package-installed-p p))
       (package-install p)))
@@ -68,11 +68,12 @@ This let's evil overwrite some emacs settings to make it more like vim
 A really nice plugin to enable a vim leader key. This allows me to set my own
 command layer that is guaranteed not to interfere with any standard key bindings
 #+begin_src emacs-lisp
-(require 'evil-leader)
-(global-evil-leader-mode)
-(evil-leader/set-key "l" 'evil-ex-nohighlight)
-(evil-leader/set-key "dw" 'whitespace-cleanup)
-(evil-leader/set-key "m" 'magit-status)
+  (require 'evil-leader)
+  (global-evil-leader-mode)
+  (evil-leader/set-key "l" 'evil-ex-nohighlight)
+  (evil-leader/set-key "dw" 'whitespace-cleanup)
+  (evil-leader/set-key "m" 'magit-status)
+  (evil-leader/set-key "h" 'help)
 #+end_src
 ** User Interface
 *** general settings
