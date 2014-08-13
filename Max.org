@@ -11,16 +11,19 @@
 *** Add package sources
 Melpa has way more packages then the normal elpa repo
 #+begin_src emacs-lisp
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives
+               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  (add-to-list 'package-archives
+               '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 #+end_src
 *** Install missing packages
 use package.el to install packages I like to use. Stolen from [[http://truongtx.me/2013/01/07/emacs-package-manager/][here]]
 #+begin_src emacs-lisp
   (when (not package-archive-contents)
     (package-refresh-contents))
-  (defvar max/packages
-    '(evil evil-leader whitespace magit company yasnippet highlight-parentheses google-c-style fill-column-indicator monokai-theme color-theme-solarized))
+  (defvar max/packages '(evil evil-leader whitespace magit company
+    yasnippet highlight-parentheses google-c-style
+    fill-column-indicator monokai-theme color-theme-solarized elpy))
   (dolist (p max/packages)
     (when (not (package-installed-p p))
       (package-install p)))
@@ -251,6 +254,10 @@ run compilation window in it's own window
   #+end_src
 
 - Python
+  #+begin_src emacs-lisp
+    (package-initialize)
+    (elpy-enable)
+  #+end_src
 
 ** snippets
 #+begin_src emacs-lisp
