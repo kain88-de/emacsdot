@@ -76,6 +76,7 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (evil-leader/set-key "dw" 'whitespace-cleanup)
   (evil-leader/set-key "m" 'magit-status)
   (evil-leader/set-key "h" 'help)
+  (evil-leader/set-key "ft" 'projectile-find-tag)
 #+end_src
 ** User Interface
 *** general settings
@@ -158,6 +159,10 @@ bind it to <F12> to show it again if I need it
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 #+end_src
 ** Coding
+*** projectile
+#+begin_src emacs-lisp
+(projectile-global-mode)
+#+end_src
 *** make coding in all languages better
 - enable colorful highlighting of matching parentheses.
   #+begin_src emacs-lisp
