@@ -291,6 +291,14 @@ Electric indent mode also behaves weirdly for org
   (defun max/org-mode-hook ()
     (global-linum-mode 0)
     (setq save-place nil)
+    (flyspell-mode)
     (electric-indent-mode -1))
   (add-hook 'org-mode-hook 'max/org-mode-hook)
+#+end_src
+** Convenience functions
+   interactive function to open my config
+#+begin_src emacs-lisp
+  (defun max-edit-init ()
+    (interactive)
+    (find-file (expand-file-name "~/.emacs.d/Max.org")))
 #+end_src
