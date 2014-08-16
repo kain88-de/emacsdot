@@ -167,11 +167,6 @@ bind it to <F12> to show it again if I need it
   (global-highlight-parentheses-mode t)
   #+end_src
 
-- Enable company-mode for code completion everywhere.
-  #+begin_src emacs-lisp
-    (add-hook 'after-init-hook 'global-company-mode)
-  #+end_src
-
 - auto close brackets and ident new lines
   #+begin_src emacs-lisp
   (electric-pair-mode 1)
@@ -238,11 +233,13 @@ run compilation window in it's own window
 - emacs-lisp
   use eldoc for emacs lisp files
   #+begin_src emacs-lisp
-  (add-hook 'emacs-lisp-mode-hook 'turn-on-eldoc-mode)
+    (add-hook 'emacs-lisp-mode-hook '(lambda () (turn-on-eldoc-mode)
+                                       (company-mode)))
   #+end_src
 
 - C++
   use the [[https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml][google c++ style]] with 4 spaces instead of 2
+  I perfer auto-complete for c-code it seems to work better
   #+begin_src emacs-lisp
     (require 'google-c-style)
     (defun max/cc-mode-hook ()
@@ -250,6 +247,15 @@ run compilation window in it's own window
       (google-make-newline-indent)
       (setq c-basic-offset 4))
     (add-hook 'c-mode-common-hook 'max/cc-mode-hook)
+    (add-hook 'c++-mode-hook 'auto-complete-mode)
+
+    ;;Autocomplete
+    (require 'auto-complete-config)
+    (add-to-list 'ac-dictionary-directories (expand-file-name
+                 "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+    (setq ac-comphist-file (expand-file-name
+                 "~/.emacs.d/ac-comphist.dat"))
+    (ac-config-default)
   #+end_src
 
 - Python
