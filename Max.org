@@ -38,7 +38,6 @@ This let's evil overwrite some emacs settings to make it more like vim
 
 #+begin_src emacs-lisp
 (setq evil-search-module 'evil-search
-      evil-want-C-u-scroll t
       evil-want-C-w-in-emacs-state t)
 #+end_src
 
