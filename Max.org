@@ -302,6 +302,15 @@ Electric indent mode also behaves weirdly for org
     (flyspell-mode)
     (electric-indent-mode -1))
   (add-hook 'org-mode-hook 'max/org-mode-hook)
+
+  (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cb" 'org-iswitchb)
+
+   (setq org-todo-keyword-faces
+         '(("TODO" . org-warning) ("STARTED" . "yellow")
+           ("CANCELED" . (:foreground "blue" :weight bold))))
 #+end_src
 ** Convenience functions
    interactive function to open my config
