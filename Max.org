@@ -1,5 +1,6 @@
 #+TITLE: Max Linke's Emacs configuration
 #+OPTIONS: toc:4 h:4
+#+STARTUP: content
 
 * Configuration
 ** Personal Information
