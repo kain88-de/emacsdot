@@ -76,7 +76,9 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (evil-leader/set-key "dw" 'whitespace-cleanup)
   (evil-leader/set-key "m" 'magit-status)
   (evil-leader/set-key "h" 'help)
-  (evil-leader/set-key "ft" 'projectile-find-tag)
+  (evil-leader/set-key "ft" '(lambda ()
+                               (interactive)
+                               (find-tag (find-tag-default))))
 #+end_src
 ** User Interface
 *** general settings
