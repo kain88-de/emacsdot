@@ -30,7 +30,10 @@ use package.el to install packages I like to use. Stolen from [[http://truongtx.
     (when (not (package-installed-p p))
       (package-install p)))
 #+end_src
-
+** Backups
+#+begin_src emacs-lisp
+  (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+#+end_src
 ** Evil config
 After years of using vim I just can't live without modal editing anymore.
 *** Set before loading evil
