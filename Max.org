@@ -23,7 +23,8 @@ use package.el to install packages I like to use. Stolen from [[http://truongtx.
     (package-refresh-contents))
   (defvar max/packages '(evil evil-leader whitespace magit company
     yasnippet highlight-parentheses google-c-style
-    fill-column-indicator monokai-theme color-theme-solarized elpy))
+    fill-column-indicator monokai-theme color-theme-solarized elpy projectile
+    auto-complete))
   (dolist (p max/packages)
     (when (not (package-installed-p p))
       (package-install p)))
