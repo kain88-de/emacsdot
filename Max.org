@@ -316,6 +316,11 @@ Electric indent mode also behaves weirdly for org
          '(("TODO" . org-warning) ("STARTED" . "yellow")
            ("CANCELED" . (:foreground "blue" :weight bold))))
 #+end_src
+*** Evil-org-mode
+#+begin_src emacs-lisp
+  (add-to-list 'load-path "~/.emacs.d/plugins/evil-org-mode")
+  (require 'evil-org)
+#+end_src
 ** Convenience functions
    interactive function to open my config
 #+begin_src emacs-lisp
