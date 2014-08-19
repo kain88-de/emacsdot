@@ -328,3 +328,9 @@ Electric indent mode also behaves weirdly for org
     (interactive)
     (find-file (expand-file-name "~/.emacs.d/Max.org")))
 #+end_src
+   reload my config
+#+begin_src emacs-lisp
+  (defun max-reload-init ()
+    (interactive)
+    (load-file (expand-file-name "~/.emacs.d/init.el")))
+#+end_src
