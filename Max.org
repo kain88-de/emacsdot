@@ -1,24 +1,28 @@
 #+TITLE: Max Linke's Emacs configuration
 #+OPTIONS: toc:4 h:4
-#+STARTUP: content
 
-* Configuration
-** Personal Information
+* Personal Information
 #+begin_src emacs-lisp
   (setq user-full-name "Max Linke"
         user-mail-address "max_linke@gmx.de")
 #+end_src
-** Installing packages
-*** Add package sources
-Melpa has way more packages then the normal elpa repo
+* Installing packages
+** Add package sources
+Melpa is an alternative repository to the standard elpa repository. Melpa
+contains a lot more packages then elpa and usually follows the development
+status.
 #+begin_src emacs-lisp
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
   (add-to-list 'package-archives
                '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 #+end_src
-*** Install missing packages
-use package.el to install packages I like to use. Stolen from [[http://truongtx.me/2013/01/07/emacs-package-manager/][here]]
+** TODO Install missing packages
+I use package.el to install a list of packages I like to have. The code for this
+is borrowed from [[http://truongtx.me/2013/01/07/emacs-package-manager/][here]].
+
+TODO write a function that updates out-of-date packages
+TODO automate this list by writing it to a separate file every time I install a new plugin
 #+begin_src emacs-lisp
   (when (not package-archive-contents)
     (package-refresh-contents))
@@ -30,30 +34,31 @@ use package.el to install packages I like to use. Stolen from [[http://truongtx.
     (when (not (package-installed-p p))
       (package-install p)))
 #+end_src
-** Backups
+* Backups
+Emacs keeps a lot of backup files around. To keep them from polluting my normal
+directories lets just collect them all in one place in case I really need them.
 #+begin_src emacs-lisp
   (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 #+end_src
-** Evil config
-After years of using vim I just can't live without modal editing anymore.
-*** Set before loading evil
-This let's evil overwrite some emacs settings to make it more like vim
-- use evil-search instead of isearch
-- use C-w as windows keybindings
+* Evil config
+I've used vim for quite some time before changing to Emacs. During this time
+I've grown quite fond of modal editing. Evil-mode is a near perfect vim
+emulation in emacs and helps a lot in the transition.
+** Set before loading evil
+This let's evil overwrite some emacs settings
+- use evil-search (vim-like search) instead of isearch
+- use C-w for windows key bindings
 
 #+begin_src emacs-lisp
 (setq evil-search-module 'evil-search
       evil-want-C-w-in-emacs-state t)
 #+end_src
-
-*** Load and start evil mode
-
+** Load and start evil mode
 #+begin_src emacs-lisp
 (require 'evil)
 (evil-mode 1)
 #+end_src
-
-*** evil keymappings
+** evil keymappings
 #+begin_src emacs-lisp
   (define-key evil-normal-state-map "L" 'evil-end-of-line)
   (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
@@ -62,7 +67,10 @@ This let's evil overwrite some emacs settings to make it more like vim
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
 #+end_src
-*** Set mode indicator colors
+** Set mode indicator colors
+Use some more colorful information about what mode I'm in. This changes only the
+color of the small icon showing the mode. For the future it would be nice to
+change the color of the whole mode-line depending on the mode.
 #+begin_src emacs-lisp
 (setq evil-normal-state-tag   (propertize "N" 'face '((:background "green" :foreground "black")))
       evil-emacs-state-tag    (propertize "E" 'face '((:background "orange" :foreground "black")))
@@ -71,8 +79,8 @@ This let's evil overwrite some emacs settings to make it more like vim
       evil-visual-state-tag   (propertize "V" 'face '((:background "grey80" :foreground "black")))
       evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
 #+end_src
-*** Evil-leader
-A really nice plugin to enable a vim leader key. This allows me to set my own
+** Evil-leader
+A really nice plugin to emulate the vim leader key. This allows me to set my own
 command layer that is guaranteed not to interfere with any standard key bindings
 #+begin_src emacs-lisp
   (require 'evil-leader)
@@ -85,18 +93,16 @@ command layer that is guaranteed not to interfere with any standard key bindings
                                (interactive)
                                (find-tag (find-tag-default))))
 #+end_src
-** User Interface
-*** general settings
+* User Interface
+** general settings
 - Show line numbers by default
   #+begin_src emacs-lisp
   (global-linum-mode t)
   #+end_src
-
 - Change "yes or no" to "y or n"
   #+begin_src emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
   #+end_src
-
 - Use a more save scrolling behavior
   #+begin_src emacs-lisp
   (setq scroll-conservatively 10000)
@@ -104,12 +110,10 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
       (setq mouse-wheel-progressive-speed nil)
   #+end_src
-
-- I like the [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
+- I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
   #+begin_src emacs-lisp
   (set-default-font "Inconsolata-13")
   #+end_src
-
 - Jump to the last cursor position after opening a file
   #+begin_src emacs-lisp
   (require 'saveplace)
@@ -117,23 +121,19 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (setq save-place-file (concat user-emacs-directory "saveplace.el") )
   (setq-default save-place t)
   #+end_src
-
 - Use a visual bell
   #+begin_src emacs-lisp
     (setq-default visible-bell t)
   #+end_src
-
-- I prefer the ibuffer mode to swtich between open buffers
+- use ibuffer to swtich between open buffers
   #+begin_src emacs-lisp
   (global-set-key (kbd "C-x C-b") 'ibuffer)
   #+end_src
-
 - wrap lines by default
   #+begin_src emacs-lisp
   (global-visual-line-mode)
   #+end_src
-
-- Place a line after 80 charaters and set fill-column to 80 as well.
+- wrap lines after 80 charaters and set fill-column to 80 as well.
   #+begin_src emacs-lisp
   (require 'fill-column-indicator)
   (setq fci-rulw-width 2)
@@ -143,34 +143,40 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (global-fci-mode t)
   (setq-default fill-column 80)
   #+end_src
-*** Colors
-I like the Monokai color theme when I'm using the UI, fallback to solarized
-in the terminal. I use the solarized colorthemes in the terminal and the 16
-solarized colors don't support the monokai theme.
+** TODO Colors
+I like the Monokai color theme when I'm using the UI and fallback to solarized
+in the terminal. Most of my terminals are set to solarized dark and it's 16
+colors don't support the monokai theme.
 
+TODO write a function to switch between monokai and solarized-light. The light
+solarized theme is much better visible in bright light situations.
 #+begin_src emacs-lisp
   (require 'solarized-light-theme)
   (if window-system
       (load-theme 'monokai t)
     (load-theme 'solarized-dark))
 #+end_src
-*** Window decorations
+** Window decorations
 Set the window size to 100 charatars. Disable tooltips and the menu-bar.
 The menubar can contain useful tips and help discover new features in modes so
-bind it to <F12> to show it again if I need it
+bind it to <F12> to show it again if I need it.
 #+begin_src emacs-lisp
-(when window-system
-    (tooltip-mode -1)
-    (menu-bar-mode -1)
-    (set-frame-size (selected-frame) 100 40))
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
+  (when window-system
+      (tooltip-mode -1)
+      (menu-bar-mode -1)
+      (tool-bar-mode -1)
+      (set-frame-size (selected-frame) 100 40))
+  (defun max-menu ()
+    (interactive)
+    (menu-bar-mode))
+  (global-set-key (kbd "<f12>") 'menu-bar-mode)
 #+end_src
-** Coding
-*** projectile
+* Coding
+** projectile
 #+begin_src emacs-lisp
 (projectile-global-mode)
 #+end_src
-*** make coding in all languages better
+** make coding in all languages better
 - enable colorful highlighting of matching parentheses.
   #+begin_src emacs-lisp
   (require 'highlight-parentheses)
@@ -201,7 +207,7 @@ bind it to <F12> to show it again if I need it
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
   #+end_src
-*** compiling things
+** compiling things
 compile when I hit F5, save all open buffers and scroll the output
 #+begin_src emacs-lisp
 (global-set-key (kbd "<f5>") 'compile)
@@ -241,7 +247,7 @@ run compilation window in it's own window
             (shrink-window (- h 20)))))))
   (add-hook 'compilation-mode-hook 'max/close-compilation-buffer)
 #+end_src
-*** language modes
+** language modes
 - emacs-lisp
   use eldoc for emacs lisp files
   #+begin_src emacs-lisp
@@ -276,17 +282,17 @@ run compilation window in it's own window
     (elpy-enable)
   #+end_src
 
-** snippets
+* snippets
 #+begin_src emacs-lisp
 (require 'yasnippet)
 (yas-global-mode 1)
 #+end_src
-** Writing
-*** general settings
+* Writing
+** general settings
 #+begin_src emacs-lisp
 (setq sentence-end-double-space nil)
 #+end_src
-*** Latex
+** Latex
 #+begin_src emacs-lisp
 (setq TeX-auto-save t)
 (setq-default TeX-master nil)
@@ -294,7 +300,7 @@ run compilation window in it's own window
 ;; open all tex files in LaTeX-mode
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 #+end_src
-** Org Mode
+* Org Mode
 Org-mode can be really slow with activated linnum mode.
 Org-mode also does not show all headings with save-place
 Electric indent mode also behaves weirdly for org
@@ -315,13 +321,31 @@ Electric indent mode also behaves weirdly for org
    (setq org-todo-keyword-faces
          '(("TODO" . org-warning) ("STARTED" . "yellow")
            ("CANCELED" . (:foreground "blue" :weight bold))))
+
+  (defun org ()
+    (interactive)
+    (find-file "~/org/organizer.org"))
 #+end_src
-*** Evil-org-mode
+** remember config
+   Remember is a small tool to collect TODO notes during the day. Instead of the
+   default "~/.notes" I want to keep my notes files in a folder with my agenda
+   files
+   #+begin_src emacs-lisp
+     (set 'remember-data-file "~/org/notes")
+     (defun notes ()
+       (interactive)
+       (find-file "~/org/notes"))
+   #+end_src
+** keyboard shortcuts
+#+begin_src emacs-lisp
+  (evil-leader/set-key "r" 'remember)
+#+end_src
+** Evil-org-# -*- mode: mode -*-
 #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/plugins/evil-org-mode")
   (require 'evil-org)
 #+end_src
-** Convenience functions
+* Convenience functions
    interactive function to open my config
 #+begin_src emacs-lisp
   (defun max-edit-init ()
