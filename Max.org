@@ -95,10 +95,6 @@ command layer that is guaranteed not to interfere with any standard key bindings
 #+end_src
 * User Interface
 ** general settings
-- Show line numbers by default
-  #+begin_src emacs-lisp
-  (global-linum-mode t)
-  #+end_src
 - Change "yes or no" to "y or n"
   #+begin_src emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
