@@ -325,8 +325,14 @@ Electric indent mode also behaves weirdly for org
         '(("TODO" . org-warning) ("STARTED" . "yellow")
           ("CANCELED" . (:foreground "blue" :weight bold))))
 
-  (setq org-agenda-ndays 7)
-  (setq org-agenda-start-on-weekday nil)
+  (custom-set-variables
+   '(org-agenda-ndays 7)
+   '(org-deadline-warning-days 14)
+   '(org-agenda-show-all-dates t)
+   '(org-agenda-skip-deadline-if-done t)
+   '(org-agenda-skip-scheduled-if-done t)
+   '(org-agenda-start-on-weekday nil)
+   '(org-reverse-note-order t))
 
   (defun org ()
     (interactive)
@@ -343,7 +349,7 @@ Electric indent mode also behaves weirdly for org
      (setq org-default-notes-file (concat org-directory "/notes.org"))
      (setq org-capture-templates
            '(("t" "Todo" entry (file+headline "" "Tasks")
-              "* TODO %? %^G\n %t\n %a")
+              "* TODO %? \n %t\n %a")
              ("j" "Journal" entry (file+headline "" "Journal")
               "* %?\nEntered on %U\n %i\n %a")))
    #+end_src
