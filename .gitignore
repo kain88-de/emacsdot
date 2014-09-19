@@ -6,3 +6,7 @@ saveplace.el
 session.*
 elpa
 backups
+ac-comphist.dat
+bookmarks
+projectile-bookmarks.eld
+semanticdb/
