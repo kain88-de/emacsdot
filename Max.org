@@ -17,15 +17,14 @@ status.
   (add-to-list 'package-archives
                '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 #+end_src
-** TODO Install missing packages
+** Install missing packages
 I use package.el to install a list of packages I like to have. The code for this
 is borrowed from [[http://truongtx.me/2013/01/07/emacs-package-manager/][here]].
 
 TODO write a function that updates out-of-date packages
 TODO automate this list by writing it to a separate file every time I install a new plugin
 #+begin_src emacs-lisp
-  (when (not package-archive-contents)
-    (package-refresh-contents))
+  (package-refresh-contents)
   (defvar max/packages '(evil evil-leader whitespace magit company
     yasnippet highlight-parentheses google-c-style
     fill-column-indicator monokai-theme color-theme-solarized elpy projectile
