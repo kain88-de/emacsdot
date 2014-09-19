@@ -211,13 +211,15 @@ bind it to <F12> to show it again if I need it.
   #+end_src
 ** compiling things
 compile when I hit F5, save all open buffers and scroll the output
+
 #+begin_src emacs-lisp
-(global-set-key (kbd "<f5>") 'compile)
-(setq compilation-ask-about-save nil)
-(setq compilation-scroll-output 1)
+  (global-set-key (kbd "<f5>") 'projectile-compile-project)
+  (setq compilation-ask-about-save nil)
+  (setq compilation-scroll-output 1)
 #+end_src
 
 close compilation buffer if there was no error
+
 #+begin_src emacs-lisp
   (defun max/bury-compile-buffer-if-successful (buffer string)
     "Bury a compilation buffer if succeede without warnings "
