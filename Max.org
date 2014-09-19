@@ -140,6 +140,11 @@ command layer that is guaranteed not to interfere with any standard key bindings
   (global-fci-mode t)
   (setq-default fill-column 80)
   #+end_src
+- no splash screen
+#+begin_src emacs-lisp
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-message t)
+#+end_src
 ** TODO Colors
 I like the Monokai color theme when I'm using the UI and fallback to solarized
 in the terminal. Most of my terminals are set to solarized dark and it's 16
