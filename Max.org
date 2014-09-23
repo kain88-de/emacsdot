@@ -28,7 +28,7 @@ TODO automate this list by writing it to a separate file every time I install a 
   (defvar max/packages '(evil evil-leader whitespace magit company
     yasnippet highlight-parentheses google-c-style
     fill-column-indicator monokai-theme color-theme-solarized elpy projectile
-    auto-complete))
+    auto-complete base16-theme))
   (dolist (p max/packages)
     (when (not (package-installed-p p))
       (package-install p)))
@@ -153,9 +153,15 @@ TODO write a function to switch between monokai and solarized-light. The light
 solarized theme is much better visible in bright light situations.
 #+begin_src emacs-lisp
   (require 'solarized-light-theme)
+
+  (defun terminal-color ()
+    (setq base16-theme (getenv "BASE16_SCHEME"))
+    (setq theme (concat "base16-" base16-theme))
+    (load-theme theme t))
+
   (if window-system
       (load-theme 'monokai t)
-    (load-theme 'solarized-dark))
+    (terminal-color))
 #+end_src
 ** Window decorations
 Set the window size to 100 charatars. Disable tooltips and the menu-bar.
@@ -373,4 +379,8 @@ Electric indent mode also behaves weirdly for org
   (defun max-reload-init ()
     (interactive)
     (load-file (expand-file-name "~/.emacs.d/init.el")))
+#+end_src
+* mail
+#+begin_src emacs-lisp
+  (require 'notmuch)
 #+end_src
