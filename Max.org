@@ -152,12 +152,12 @@ colors don't support the monokai theme.
 TODO write a function to switch between monokai and solarized-light. The light
 solarized theme is much better visible in bright light situations.
 #+begin_src emacs-lisp
-  (require 'solarized-light-theme)
+  ;(require 'base16)
 
   (defun terminal-color ()
     (setq base16-theme (getenv "BASE16_SCHEME"))
-    (setq theme (concat "base16-" base16-theme))
-    (load-theme theme t))
+    (setq theme (concat "load-theme 'base16-" base16-theme))
+    (eval theme ))
 
   (if window-system
       (load-theme 'monokai t)
