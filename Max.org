@@ -26,22 +26,23 @@ package-content every time.
 - TODO automate this list by writing it to a separate file every time I install
   a new plugin
 #+begin_src emacs-lisp
-  (package-initialize)
+    (package-initialize)
 
-  (defun max/require-package (package)
-    (setq-default highlight-tabs t)
-    "Install given PACKAGE."
-    (unless (package-installed-p package)
-      (unless (assoc package package-archive-contents)
-        (package-refresh-contents))
-      (package-install package)))
+    (defun max/require-package (package)
+      (setq-default highlight-tabs t)
+      "Install given PACKAGE."
+      (unless (package-installed-p package)
+        (unless (assoc package package-archive-contents)
+          (package-refresh-contents))
+        (package-install package)))
 
-  (defvar max/packages '(whitespace magit company
-    yasnippet highlight-parentheses google-c-style
-    fill-column-indicator monokai-theme color-theme-solarized elpy projectile
-    auto-complete base16-theme))
-  (dolist (package max/packages)
-    (max/require-package(package)))
+    (defvar max/packages '(whitespace magit company diminish
+      yasnippet highlight-parentheses google-c-style
+      fill-column-indicator monokai-theme color-theme-solarized elpy projectile
+      auto-complete base16-theme))
+
+    (dolist (p max/packages)
+      (max/require-package p))
 #+end_src
 * Backups
 Emacs keeps a lot of backup files around. To keep them from polluting my normal
@@ -55,8 +56,8 @@ I've grown quite fond of modal editing. Evil-mode is a near perfect vim
 emulation in emacs and helps a lot in the transition.
 #+begin_src emacs-lisp
   ;; install all evil packages that I use
-  max/require-package(evil)
-  max/require-package(evil-leader)
+  (max/require-package 'evil)
+  (max/require-package 'evil-leader)
 #+end_src
 ** Set before loading evil
 This let's evil overwrite some emacs settings
