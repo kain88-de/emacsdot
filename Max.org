@@ -147,10 +147,11 @@ bindings.
   #+end_src
 - Use a more save scrolling behavior
   #+begin_src emacs-lisp
-  (setq scroll-conservatively 10000)
-  (setq scroll-step 1)
-  (setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
-      (setq mouse-wheel-progressive-speed nil)
+    (max/require-package 'smooth-scrolling)
+    (require 'smooth-scrolling)
+    (setq smooth-scroll-margin 5)
+    (setq scroll-conservatively 9999
+          scroll-preserve-screen-position t)
   #+end_src
 - I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
   #+begin_src emacs-lisp
