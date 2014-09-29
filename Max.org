@@ -64,8 +64,6 @@ This let's evil overwrite some emacs settings
 - use evil-search (vim-like search) instead of isearch
 - use C-w for windows key bindings
 #+begin_src emacs-lisp
-(require 'evil-leader)
-(global-evil-leader-mode)
 (setq evil-search-module 'evil-search
       evil-want-C-w-in-emacs-state t)
 #+end_src
@@ -74,30 +72,61 @@ This let's evil overwrite some emacs settings
 (require 'evil)
 (evil-mode 1)
 #+end_src
+** general settings
+#+begin_src emacs-lisp
+  ;;dont move back one position after exiting insert mode
+  (setq evil-move-cursor-back nil)
+#+end_src
 ** evil keymappings
 #+begin_src emacs-lisp
-  (define-key evil-normal-state-map "L" 'evil-end-of-line)
-  (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
-  (define-key evil-normal-state-map (kbd "C-l")'evil-window-right)
-  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+    (define-key evil-normal-state-map "L" 'evil-end-of-line)
+    (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+    (define-key evil-normal-state-map (kbd "C-l")'evil-window-right)
+    (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+    (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+    (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+    ;; c-j / c-k page down/up
+    (define-key evil-normal-state-map (kbd "C-k") (lambda ()
+                                                    (interactive)
+                                                    (evil-scroll-up nil)))
+    (define-key evil-normal-state-map (kbd "C-j") (lambda ()
+                                                    (interactive)
+                                                    (evil-scroll-down nil)))
+    (define-key evil-normal-state-map "gc" 'evilnc-comment-or-uncomment-lines)
 #+end_src
 ** Set mode indicator colors
-Use some more colorful information about what mode I'm in. This changes only the
-color of the small icon showing the mode. For the future it would be nice to
-change the color of the whole mode-line depending on the mode.
+Use some more colorful information about what mode I'm in. This changes the
+color of the small icon showing the mode in the modeline buffer and the color of
+the cursor itself. For the future it would be nice to change the color of the
+whole mode-line depending on the mode, I have to test the powerline package for
+emacs.
 #+begin_src emacs-lisp
 (setq evil-normal-state-tag   (propertize "N" 'face '((:background "green" :foreground "black")))
       evil-emacs-state-tag    (propertize "E" 'face '((:background "orange" :foreground "black")))
       evil-insert-state-tag   (propertize "I" 'face '((:background "red")))
       evil-motion-state-tag   (propertize "M" 'face '((:background "blue")))
       evil-visual-state-tag   (propertize "V" 'face '((:background "grey80" :foreground "black")))
-      evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
+      evil-operator-state-tag (propertize "O" 'face '((:background "purple")))
+      ;; color cursor according to mode
+      evil-emacs-state-cursor '("red" box)
+      evil-normal-state-cursor '("green" box)
+      evil-visual-state-cursor '("orange" box)
+      evil-insert-state-cursor '("red" bar)
+      evil-replace-state-cursor '("red" bar)
+      evil-operator-state-cursor '("red" hollow))
 #+end_src
 ** Evil-leader
 A really nice plugin to emulate the vim leader key. This allows me to set my own
-command layer that is guaranteed not to interfere with any standard key bindings
+command layer that is guaranteed not to interfere with any standard key
+bindings.
+
+*** leader-config
+#+begin_src emacs-lisp
+  (require 'evil-leader)
+  (setq evil-leader/in-all-states 1)
+  (global-evil-leader-mode)
+#+end_src
+*** leader key bindings
 #+begin_src emacs-lisp
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key "l" 'evil-ex-nohighlight)
