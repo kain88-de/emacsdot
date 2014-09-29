@@ -79,20 +79,16 @@ This let's evil overwrite some emacs settings
 #+end_src
 ** evil keymappings
 #+begin_src emacs-lisp
-    (define-key evil-normal-state-map "L" 'evil-end-of-line)
-    (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
-    (define-key evil-normal-state-map (kbd "C-l")'evil-window-right)
-    (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
-    (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
-    (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-    ;; c-j / c-k page down/up
-    (define-key evil-normal-state-map (kbd "C-k") (lambda ()
-                                                    (interactive)
-                                                    (evil-scroll-up nil)))
-    (define-key evil-normal-state-map (kbd "C-j") (lambda ()
-                                                    (interactive)
-                                                    (evil-scroll-down nil)))
-    (define-key evil-normal-state-map "gc" 'evilnc-comment-or-uncomment-lines)
+  (define-key evil-normal-state-map "L" 'evil-end-of-line)
+  (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+  (define-key evil-normal-state-map (kbd "C-l")'evil-window-right)
+  (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
+  (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
+  (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
+  ;; this uses evil-nerd-commenter
+  ;;(define-key evil-normal-state-map "gc" 'evilnc-comment-or-uncomment-lines)
+  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 #+end_src
 ** Set mode indicator colors
 Use some more colorful information about what mode I'm in. This changes the
