@@ -58,6 +58,7 @@ emulation in emacs and helps a lot in the transition.
   ;; install all evil packages that I use
   (max/require-package 'evil)
   (max/require-package 'evil-leader)
+  (max/require-package 'evil-surround)
 #+end_src
 ** Set before loading evil
 This let's evil overwrite some emacs settings
@@ -132,6 +133,11 @@ bindings.
   (evil-leader/set-key "ft" '(lambda ()
                                (interactive)
                                (find-tag (find-tag-default))))
+#+end_src
+** Evil-surround
+#+begin_src emacs-lisp
+  (require 'evil-surround)
+  (global-evil-surround-mode 1)
 #+end_src
 * User Interface
 ** general settings
