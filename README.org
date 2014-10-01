@@ -2,3 +2,9 @@
 
   This is my personal emacs config which is mainly inspired the [[http://pages.sachachua.com/.emacs.d/Sacha.html][config]] of [[http://sachachua.com/blog/][Sacha
   Chua.]]
+
+  If you are switching from vim to emacs like me. Here is a list of documents
+  that you might find useful:
+
+  - http://juanjoalvarez.net/es/detail/2014/sep/19/vim-emacsevil-chaotic-migration-guide/
+  - https://gitorious.org/evil/pages/Home
