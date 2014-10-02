@@ -14,8 +14,6 @@ status.
 #+begin_src emacs-lisp
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  (add-to-list 'package-archives
-               '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 #+end_src
 ** Install missing packages
 I use package.el to install a list of packages I like to have. The
