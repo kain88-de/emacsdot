@@ -34,13 +34,18 @@ package-content every time.
           (package-refresh-contents))
         (package-install package)))
 
-    (defvar max/packages '(whitespace magit company diminish
+    (defvar max/packages '(whitespace magit company
       yasnippet highlight-parentheses google-c-style
       fill-column-indicator monokai-theme color-theme-solarized elpy projectile
       auto-complete base16-theme))
 
     (dolist (p max/packages)
       (max/require-package p))
+#+end_src
+** diminish
+#+begin_src emacs-lisp
+  (max/require-package 'diminish)
+  (require 'diminish)
 #+end_src
 * Backups
 Emacs keeps a lot of backup files around. To keep them from polluting my normal
@@ -75,6 +80,7 @@ This let's evil overwrite some emacs settings
 #+begin_src emacs-lisp
   ;;dont move back one position after exiting insert mode
   (setq evil-move-cursor-back nil)
+  (diminish 'undo-tree-mode)
 #+end_src
 ** evil keymappings
 #+begin_src emacs-lisp
@@ -247,6 +253,7 @@ bind it to <F12> to show it again if I need it.
 ** projectile
 #+begin_src emacs-lisp
 (projectile-global-mode)
+(diminish 'projectile-mode)
 #+end_src
 ** make coding in all languages better
 - enable colorful highlighting of matching parentheses.
@@ -348,6 +355,7 @@ run compilation window in it's own window
     (setq ac-comphist-file (expand-file-name
                  "~/.emacs.d/ac-comphist.dat"))
     (ac-config-default)
+  (diminish 'auto-complete-mode)
   #+end_src
 
 - Python
@@ -357,10 +365,13 @@ run compilation window in it's own window
   #+end_src
 
 * snippets
+
 #+begin_src emacs-lisp
 (require 'yasnippet)
 (yas-global-mode 1)
+(diminish 'yas-minor-mode)
 #+end_src
+
 * Writing
 ** general settings
 #+begin_src emacs-lisp
@@ -428,9 +439,11 @@ Electric indent mode also behaves weirdly for org
   (evil-leader/set-key "r" 'org-capture)
 #+end_src
 ** Evil-org
+
 #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/plugins/evil-org-mode")
   (require 'evil-org)
+  (diminish 'evil-org-mode)
 #+end_src
 * Convenience functions
    interactive function to open my config
