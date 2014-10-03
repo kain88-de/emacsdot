@@ -440,6 +440,9 @@ Electric indent mode also behaves weirdly for org
 #+end_src
 ** Evil-org
 
+I included [[https://github.com/edwtjo/evil-org-mode][evil-org-mode]] with `git subtree` in the repository because it is not
+contained in melpa.
+
 #+begin_src emacs-lisp
   (add-to-list 'load-path "~/.emacs.d/plugins/evil-org-mode")
   (require 'evil-org)
