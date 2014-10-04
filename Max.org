@@ -27,7 +27,6 @@ package-content every time.
     (package-initialize)
 
     (defun max/require-package (package)
-      (setq-default highlight-tabs t)
       "Install given PACKAGE."
       (unless (package-installed-p package)
         (unless (assoc package package-archive-contents)
@@ -43,6 +42,9 @@ package-content every time.
       (max/require-package p))
 #+end_src
 ** diminish
+Diminish is a plugin that can hide minor modes from the mode line. It is a good
+tool to declutter your modeline.
+
 #+begin_src emacs-lisp
   (max/require-package 'diminish)
   (require 'diminish)
@@ -460,8 +462,4 @@ contained in melpa.
   (defun max-reload-init ()
     (interactive)
     (load-file (expand-file-name "~/.emacs.d/init.el")))
-#+end_src
-* mail
-#+begin_src emacs-lisp
-  (require 'notmuch)
 #+end_src
