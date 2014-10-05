@@ -1,5 +1,5 @@
 #+TITLE: Max Linke's Emacs configuration
-#+OPTIONS: toc:4 h:4
+#+OPTIONS: toc:2 h:4
 
 * Personal Information
 #+begin_src emacs-lisp
@@ -146,76 +146,87 @@ bindings.
   (global-evil-surround-mode 1)
 #+end_src
 * User Interface
+** Window decorations
+Set the window size to 100 charatars. Disable tooltips and the menu-bar.
+The menubar can contain useful tips and help discover new features in modes so
+bind it to <F12> to show it again if I need it.
+#+begin_src emacs-lisp
+  (when window-system
+      (tooltip-mode -1)
+      (menu-bar-mode -1)
+      (tool-bar-mode -1)
+      (set-frame-size (selected-frame) 100 40))
+  (defun max-menu ()
+    (interactive)
+    (menu-bar-mode))
+  (global-set-key (kbd "<f12>") 'menu-bar-mode)
+#+end_src
 ** general settings
-- Change "yes or no" to "y or n"
+
   #+begin_src emacs-lisp
-  (defalias 'yes-or-no-p 'y-or-n-p)
-  #+end_src
-- Use a more save scrolling behavior
-  #+begin_src emacs-lisp
+    ;; Change "yes or no" to "y or n"
+    (defalias 'yes-or-no-p 'y-or-n-p)
+
+    ;; Use a more save scrolling behavior
     (max/require-package 'smooth-scrolling)
     (require 'smooth-scrolling)
     (setq smooth-scroll-margin 5)
     (setq scroll-conservatively 9999
           scroll-preserve-screen-position t)
-  #+end_src
-- I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
-  #+begin_src emacs-lisp
-  (set-default-font "Inconsolata-13")
-  #+end_src
-- Jump to the last cursor position after opening a file
-  #+begin_src emacs-lisp
-  (require 'saveplace)
-  ;; use standard emacs folder
-  (setq save-place-file (concat user-emacs-directory "saveplace.el") )
-  (setq-default save-place t)
-  #+end_src
-- Use a visual bell
-  #+begin_src emacs-lisp
+
+
+    ;; Jump to the last cursor position after opening a file
+    (require 'saveplace)
+
+    ;; use standard emacs folder
+    (setq save-place-file (concat user-emacs-directory "saveplace.el") )
+    (setq-default save-place t)
+
+    ;; Use a visual bell
     (setq-default visible-bell t)
-  #+end_src
-- use ibuffer to swtich between open buffers
-  #+begin_src emacs-lisp
-  (global-set-key (kbd "C-x C-b") 'ibuffer)
-  #+end_src
-- wrap lines by default
-  #+begin_src emacs-lisp
-  (global-visual-line-mode)
-  #+end_src
-- wrap lines after 80 charaters and set fill-column to 80 as well.
-  #+begin_src emacs-lisp
-  (require 'fill-column-indicator)
-  (setq fci-rulw-width 2)
-  (setq fci-rule-column 80)
-  (define-globalized-minor-mode
-    global-fci-mode fci-mode (lambda () (fci-mode 1)))
-  (global-fci-mode t)
-  (setq-default fill-column 80)
-  #+end_src
-- no splash screen
-#+begin_src emacs-lisp
-  (setq inhibit-splash-screen t)
-  (setq inhibit-startup-message t)
+
+    ;; use ibuffer to swtich between open buffers
+    (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+    ;; wrap lines by default
+    (global-visual-line-mode)
+
+    ;; wrap lines after 80 charaters and set fill-column to 80 as well.
+    (require 'fill-column-indicator)
+    (setq fci-rulw-width 2)
+    (setq fci-rule-column 80)
+    (define-globalized-minor-mode
+      global-fci-mode fci-mode (lambda () (fci-mode 1)))
+    (global-fci-mode t)
+    (setq-default fill-column 80)
+
+    ;; no splash screen
+    (setq inhibit-splash-screen t)
+    (setq inhibit-startup-message t)
+
+    ;; use <ESC> to quit command
+    (defun minibuffer-keyboard-quit ()
+      "Abort recursive edit.
+    In Delete Selection mode, if the mark is active, just deactivate it;
+    then it takes a second \\[keyboard-quit] to abort the minibuffer."
+      (interactive)
+      (if (and delete-selection-mode transient-mark-mode mark-active)
+          (setq deactivate-mark  t)
+        (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+        (abort-recursive-edit)))
+    (define-key evil-normal-state-map [escape] 'keyboard-quit)
+    (define-key evil-visual-state-map [escape] 'keyboard-quit)
+    (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+    (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+    (global-set-key [escape] 'evil-exit-emacs-state)
 #+end_src
-- use <ESC> to quit command
+** Font
+   I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
 #+begin_src emacs-lisp
-(defun minibuffer-keyboard-quit ()
-  "Abort recursive edit.
-In Delete Selection mode, if the mark is active, just deactivate it;
-then it takes a second \\[keyboard-quit] to abort the minibuffer."
-  (interactive)
-  (if (and delete-selection-mode transient-mark-mode mark-active)
-      (setq deactivate-mark  t)
-    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-    (abort-recursive-edit)))
-(define-key evil-normal-state-map [escape] 'keyboard-quit)
-(define-key evil-visual-state-map [escape] 'keyboard-quit)
-(define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-(define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-(global-set-key [escape] 'evil-exit-emacs-state)
+    (set-default-font "Inconsolata-13")
 #+end_src
 ** TODO Colors
 I like the Monokai color theme when I'm using the UI and fallback to solarized
@@ -236,26 +247,11 @@ solarized theme is much better visible in bright light situations.
       (load-theme 'monokai t)
     (terminal-color))
 #+end_src
-** Window decorations
-Set the window size to 100 charatars. Disable tooltips and the menu-bar.
-The menubar can contain useful tips and help discover new features in modes so
-bind it to <F12> to show it again if I need it.
-#+begin_src emacs-lisp
-  (when window-system
-      (tooltip-mode -1)
-      (menu-bar-mode -1)
-      (tool-bar-mode -1)
-      (set-frame-size (selected-frame) 100 40))
-  (defun max-menu ()
-    (interactive)
-    (menu-bar-mode))
-  (global-set-key (kbd "<f12>") 'menu-bar-mode)
-#+end_src
 * Coding
 ** projectile
 #+begin_src emacs-lisp
-(projectile-global-mode)
-(diminish 'projectile-mode)
+  (projectile-global-mode)
+  (diminish 'projectile-mode)
 #+end_src
 ** make coding in all languages better
 - enable colorful highlighting of matching parentheses.
