@@ -24,31 +24,34 @@ package-content every time.
 - TODO automate this list by writing it to a separate file every time I install
   a new plugin
 #+begin_src emacs-lisp
-    (package-initialize)
+  (package-initialize)
 
-    (defun max/require-package (package)
-      "Install given PACKAGE."
-      (unless (package-installed-p package)
-        (unless (assoc package package-archive-contents)
-          (package-refresh-contents))
-        (package-install package)))
+  (defun max/require-package (package)
+    "Install given PACKAGE."
+    (unless (package-installed-p package)
+      (unless (assoc package package-archive-contents)
+        (package-refresh-contents))
+      (package-install package)))
 
-    (defvar max/packages '(whitespace magit company
-      yasnippet highlight-parentheses google-c-style
-      fill-column-indicator monokai-theme color-theme-solarized elpy projectile
-      auto-complete base16-theme))
+  (defvar max/packages '(whitespace magit company google-c-style
+                                    fill-column-indicator
+                                    monokai-theme
+                                    color-theme-solarized elpy
+                                    projectile auto-complete
+                                    base16-theme))
 
-    (dolist (p max/packages)
-      (max/require-package p))
+  (dolist (p max/packages)
+    (max/require-package p))
 #+end_src
 ** diminish
 Diminish is a plugin that can hide minor modes from the mode line. It is a good
-tool to declutter your modeline.
+tool to declutter your mode-line.
 
 #+begin_src emacs-lisp
   (max/require-package 'diminish)
   (require 'diminish)
 #+end_src
+
 * Backups
 Emacs keeps a lot of backup files around. To keep them from polluting my normal
 directories lets just collect them all in one place in case I really need them.
@@ -65,6 +68,7 @@ emulation in emacs and helps a lot in the transition.
   (max/require-package 'evil-leader)
   (max/require-package 'evil-surround)
 #+end_src
+
 ** Set before loading evil
 This let's evil overwrite some emacs settings
 - use evil-search (vim-like search) instead of isearch
@@ -73,18 +77,22 @@ This let's evil overwrite some emacs settings
 (setq evil-search-module 'evil-search
       evil-want-C-w-in-emacs-state t)
 #+end_src
+
 ** Load and start evil mode
 #+begin_src emacs-lisp
-(require 'evil)
-(evil-mode 1)
+  (require 'evil)
+  (evil-mode 1)
 #+end_src
+
 ** general settings
+don't move back one position after exiting insert mode
 #+begin_src emacs-lisp
-  ;;dont move back one position after exiting insert mode
   (setq evil-move-cursor-back nil)
   (diminish 'undo-tree-mode)
 #+end_src
+
 ** evil keymappings
+
 #+begin_src emacs-lisp
   (define-key evil-normal-state-map "L" 'evil-end-of-line)
   (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
@@ -92,11 +100,10 @@ This let's evil overwrite some emacs settings
   (define-key evil-normal-state-map (kbd "C-h") 'evil-window-left)
   (define-key evil-normal-state-map (kbd "C-j") 'evil-window-down)
   (define-key evil-normal-state-map (kbd "C-k") 'evil-window-up)
-  ;; this uses evil-nerd-commenter
-  ;;(define-key evil-normal-state-map "gc" 'evilnc-comment-or-uncomment-lines)
   (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
   (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 #+end_src
+
 ** Set mode indicator colors
 Use some more colorful information about what mode I'm in. This changes the
 color of the small icon showing the mode in the modeline buffer and the color of
@@ -118,18 +125,22 @@ emacs.
       evil-replace-state-cursor '("red" bar)
       evil-operator-state-cursor '("red" hollow))
 #+end_src
+
 ** Evil-leader
 A really nice plugin to emulate the vim leader key. This allows me to set my own
 command layer that is guaranteed not to interfere with any standard key
 bindings.
 
 *** leader-config
+
 #+begin_src emacs-lisp
   (require 'evil-leader)
   (setq evil-leader/in-all-states 1)
   (global-evil-leader-mode)
 #+end_src
+
 *** leader key bindings
+
 #+begin_src emacs-lisp
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key "l" 'evil-ex-nohighlight)
@@ -140,11 +151,14 @@ bindings.
                                (interactive)
                                (find-tag (find-tag-default))))
 #+end_src
+
 ** Evil-surround
+
 #+begin_src emacs-lisp
   (require 'evil-surround)
   (global-evil-surround-mode 1)
 #+end_src
+
 * User Interface
 ** Window decorations
 Set the window size to 100 charatars. Disable tooltips and the menu-bar.
@@ -161,6 +175,7 @@ bind it to <F12> to show it again if I need it.
     (menu-bar-mode))
   (global-set-key (kbd "<f12>") 'menu-bar-mode)
 #+end_src
+
 ** general settings
 
   #+begin_src emacs-lisp
@@ -223,11 +238,13 @@ bind it to <F12> to show it again if I need it.
     (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
     (global-set-key [escape] 'evil-exit-emacs-state)
 #+end_src
+
 ** Font
-   I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
+I like to use [[http://levien.com/type/myfonts/inconsolata.html][Inconsolata]] font
 #+begin_src emacs-lisp
     (set-default-font "Inconsolata-13")
 #+end_src
+
 ** TODO Colors
 I like the Monokai color theme when I'm using the UI and fallback to solarized
 in the terminal. Most of my terminals are set to solarized dark and it's 16
@@ -247,57 +264,61 @@ solarized theme is much better visible in bright light situations.
       (load-theme 'monokai t)
     (terminal-color))
 #+end_src
+
 * Coding
 ** projectile
+
 #+begin_src emacs-lisp
   (projectile-global-mode)
-  (diminish 'projectile-mode)
+  (eval-after-load 'projectile '(diminish 'projectile-mode))
 #+end_src
+
 ** make coding in all languages better
-- enable colorful highlighting of matching parentheses.
-  #+begin_src emacs-lisp
-  (require 'highlight-parentheses)
-  (define-globalized-minor-mode global-highlight-parentheses-mode highlight-parentheses-mode
-    (lambda nil (highlight-parentheses-mode t)))
-  (global-highlight-parentheses-mode t)
-  #+end_src
-
-- auto close brackets and ident new lines
-  #+begin_src emacs-lisp
-  (electric-pair-mode 1)
-  (electric-indent-mode 1)
-  #+end_src
-
-- Clean up whitespaces after save
-  #+begin_src emacs-lisp
-    (add-hook 'before-save-hook 'whitespace-cleanup)
-  #+end_src
-
-- show whitespaces by default
-  #+begin_src emacs-lisp
-    (global-whitespace-mode)
-    (setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
-  #+end_src
-
-- set indentation
-  #+begin_src emacs-lisp
-    (setq-default indent-tabs-mode nil)
-    (setq-default tab-width 4)
-  #+end_src
-** compiling things
-compile when I hit F5, save all open buffers and scroll the output
 
 #+begin_src emacs-lisp
-  (global-set-key (kbd "<f5>") 'projectile-compile-project)
-  (setq compilation-ask-about-save nil)
+  ;; enable colorful highlighting of matching parentheses.
+  (max/require-package 'rainbow-delimiters)
+  (require 'rainbow-delimiters)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+  ;; auto close brackets and ident new lines
+  (electric-pair-mode 1)
+  (electric-indent-mode 1)
+
+  ;; Clean up whitespaces after save
+  (add-hook 'before-save-hook 'whitespace-cleanup)
+
+  ;; show whitespaces by default
+  (global-whitespace-mode)
+  (setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
+
+  ;; set indentation
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+#+end_src
+
+** compiling
+
+Compile when I hit F5, save all open buffers and scroll the output. It is
+convenient to use projectile for this because it only saves files related to
+the project and selects the right build command for me.
+
+#+begin_src emacs-lisp
+  (defun max-save-and-build ()
+    "Save and build projects with projectile"
+    (interactive)
+    (projectile-save-project-buffers)
+    (projectile-compile-project t))
+
+  (global-set-key (kbd "<f5>") 'max-save-and-build)
   (setq compilation-scroll-output 1)
 #+end_src
 
-close compilation buffer if there was no error
+Close the compilation buffer if no error occurred.
 
 #+begin_src emacs-lisp
   (defun max/bury-compile-buffer-if-successful (buffer string)
-    "Bury a compilation buffer if succeede without warnings "
+    "Bury a compilation buffer if succeeds without warnings "
     (if (and
          (string-match "compilation" (buffer-name buffer))
          (string-match "finished" string)
@@ -312,7 +333,7 @@ close compilation buffer if there was no error
   (add-hook 'compilation-finish-functions 'max/bury-compile-buffer-if-successful)
 #+end_src
 
-run compilation window in it's own window
+Always open a new window to run the compilation.
 
 #+begin_src emacs-lisp
   (defun max/close-compilation-buffer ()
@@ -326,15 +347,17 @@ run compilation window in it's own window
             (shrink-window (- h 20)))))))
   (add-hook 'compilation-mode-hook 'max/close-compilation-buffer)
 #+end_src
+
 ** language modes
-- emacs-lisp
+
+*** emacs-lisp
   use eldoc for emacs lisp files
   #+begin_src emacs-lisp
     (add-hook 'emacs-lisp-mode-hook '(lambda () (turn-on-eldoc-mode)
                                        (company-mode)))
   #+end_src
 
-- C++
+*** C++
   use the [[https://google-styleguide.googlecode.com/svn/trunk/cppguide.xml][google c++ style]] with 4 spaces instead of 2
   I perfer auto-complete for c-code it seems to work better
   #+begin_src emacs-lisp
@@ -356,26 +379,31 @@ run compilation window in it's own window
   (diminish 'auto-complete-mode)
   #+end_src
 
-- Python
+*** Python
   #+begin_src emacs-lisp
-    (package-initialize)
     (elpy-enable)
   #+end_src
 
-* snippets
+** snippets
+
+[[https://github.com/capitaomorte/yasnippe][YASnippet]] is a good package to use templates/snippets
 
 #+begin_src emacs-lisp
+(max/require-package 'yasnippet)
 (require 'yasnippet)
 (yas-global-mode 1)
-(diminish 'yas-minor-mode)
+(eval-after-load 'diminish '(diminish 'yas-minor-mode))
 #+end_src
 
 * Writing
 ** general settings
+
 #+begin_src emacs-lisp
 (setq sentence-end-double-space nil)
 #+end_src
+
 ** Latex
+
 #+begin_src emacs-lisp
 (setq TeX-auto-save t)
 (setq-default TeX-master nil)
@@ -383,6 +411,7 @@ run compilation window in it's own window
 ;; open all tex files in LaTeX-mode
 (add-to-list 'auto-mode-alist '("\\.tex$" . LaTeX-mode))
 #+end_src
+
 * Org Mode
 Org-mode can be really slow with activated linnum mode.
 Org-mode also does not show all headings with save-place
