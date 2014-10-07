@@ -12,6 +12,7 @@ Melpa is an alternative repository to the standard elpa repository. Melpa
 contains a lot more packages then elpa and usually follows the development
 status.
 #+begin_src emacs-lisp
+  (require 'package)
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
 #+end_src
