@@ -16,6 +16,7 @@ status.
   (add-to-list 'package-archives
                '("melpa" . "http://melpa.milkbox.net/packages/") t)
 #+end_src
+
 ** Install missing packages
 I use package.el to install a list of packages I like to have. The
 implementation for this is currently not optimal because it will update the
@@ -24,6 +25,7 @@ package-content every time.
 - TODO write a function that updates out-of-date packages
 - TODO automate this list by writing it to a separate file every time I install
   a new plugin
+
 #+begin_src emacs-lisp
   (package-initialize)
 
@@ -63,8 +65,8 @@ directories lets just collect them all in one place in case I really need them.
 I've used vim for quite some time before changing to Emacs. During this time
 I've grown quite fond of modal editing. Evil-mode is a near perfect vim
 emulation in emacs and helps a lot in the transition.
+
 #+begin_src emacs-lisp
-  ;; install all evil packages that I use
   (max/require-package 'evil)
   (max/require-package 'evil-leader)
   (max/require-package 'evil-surround)
@@ -74,20 +76,17 @@ emulation in emacs and helps a lot in the transition.
 This let's evil overwrite some emacs settings
 - use evil-search (vim-like search) instead of isearch
 - use C-w for windows key bindings
+
 #+begin_src emacs-lisp
 (setq evil-search-module 'evil-search
       evil-want-C-w-in-emacs-state t)
 #+end_src
 
-** Load and start evil mode
-#+begin_src emacs-lisp
-  (require 'evil)
-  (evil-mode 1)
-#+end_src
-
 ** general settings
 don't move back one position after exiting insert mode
 #+begin_src emacs-lisp
+  (require 'evil)
+  (evil-mode 1)
   (setq evil-move-cursor-back nil)
   (diminish 'undo-tree-mode)
 #+end_src
@@ -130,7 +129,7 @@ emacs.
 ** Evil-leader
 A really nice plugin to emulate the vim leader key. This allows me to set my own
 command layer that is guaranteed not to interfere with any standard key
-bindings.
+bindings. I have found that <SPC> is the most comfortable leader key for me.
 
 *** leader-config
 
@@ -138,22 +137,23 @@ bindings.
   (require 'evil-leader)
   (setq evil-leader/in-all-states 1)
   (global-evil-leader-mode)
+  (evil-leader/set-leader "<SPC>")
 #+end_src
 
 *** leader key bindings
 
 #+begin_src emacs-lisp
-  (evil-leader/set-leader "<SPC>")
-  (evil-leader/set-key "l" 'evil-ex-nohighlight)
+  (evil-leader/set-key "l"  'evil-ex-nohighlight)
   (evil-leader/set-key "dw" 'whitespace-cleanup)
-  (evil-leader/set-key "m" 'magit-status)
-  (evil-leader/set-key "h" 'help)
+  (evil-leader/set-key "m"  'magit-status)
+  (evil-leader/set-key "h"  'help)
   (evil-leader/set-key "ft" '(lambda ()
                                (interactive)
                                (find-tag (find-tag-default))))
 #+end_src
 
 ** Evil-surround
+Evil version of Tim-pope's surround plugin for vim
 
 #+begin_src emacs-lisp
   (require 'evil-surround)
@@ -171,73 +171,71 @@ bind it to <F12> to show it again if I need it.
       (menu-bar-mode -1)
       (tool-bar-mode -1)
       (set-frame-size (selected-frame) 100 40))
-  (defun max-menu ()
-    (interactive)
-    (menu-bar-mode))
+
   (global-set-key (kbd "<f12>") 'menu-bar-mode)
 #+end_src
 
 ** general settings
 
-  #+begin_src emacs-lisp
-    ;; Change "yes or no" to "y or n"
-    (defalias 'yes-or-no-p 'y-or-n-p)
+#+begin_src emacs-lisp
+  ;; Change "yes or no" to "y or n"
+  (defalias 'yes-or-no-p 'y-or-n-p)
 
-    ;; Use a more save scrolling behavior
-    (max/require-package 'smooth-scrolling)
-    (require 'smooth-scrolling)
-    (setq smooth-scroll-margin 5)
-    (setq scroll-conservatively 9999
-          scroll-preserve-screen-position t)
+  ;; Use a more save scrolling behavior
+  (max/require-package 'smooth-scrolling)
+  (require 'smooth-scrolling)
+  (setq smooth-scroll-margin 5)
+  (setq scroll-conservatively 9999
+        scroll-preserve-screen-position t)
 
 
-    ;; Jump to the last cursor position after opening a file
-    (require 'saveplace)
+  ;; Jump to the last cursor position after opening a file
+  (require 'saveplace)
 
-    ;; use standard emacs folder
-    (setq save-place-file (concat user-emacs-directory "saveplace.el") )
-    (setq-default save-place t)
+  ;; use standard emacs folder
+  (setq save-place-file (concat user-emacs-directory "saveplace.el") )
+  (setq-default save-place t)
 
-    ;; Use a visual bell
-    (setq-default visible-bell t)
+  ;; Use a visual bell
+  (setq-default visible-bell t)
 
-    ;; use ibuffer to swtich between open buffers
-    (global-set-key (kbd "C-x C-b") 'ibuffer)
+  ;; use ibuffer to swtich between open buffers
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-    ;; wrap lines by default
-    (global-visual-line-mode)
+  ;; wrap lines by default
+  (global-visual-line-mode)
 
-    ;; wrap lines after 80 charaters and set fill-column to 80 as well.
-    (require 'fill-column-indicator)
-    (setq fci-rulw-width 2)
-    (setq fci-rule-column 80)
-    (define-globalized-minor-mode
-      global-fci-mode fci-mode (lambda () (fci-mode 1)))
-    (global-fci-mode t)
-    (setq-default fill-column 80)
+  ;; wrap lines after 80 charaters and set fill-column to 80 as well.
+  (require 'fill-column-indicator)
+  (setq fci-rulw-width 2)
+  (setq fci-rule-column 80)
+  (define-globalized-minor-mode
+    global-fci-mode fci-mode (lambda () (fci-mode 1)))
+  (global-fci-mode t)
+  (setq-default fill-column 80)
 
-    ;; no splash screen
-    (setq inhibit-splash-screen t)
-    (setq inhibit-startup-message t)
+  ;; no splash screen
+  (setq inhibit-splash-screen t)
+  (setq inhibit-startup-message t)
 
-    ;; use <ESC> to quit command
-    (defun minibuffer-keyboard-quit ()
-      "Abort recursive edit.
-    In Delete Selection mode, if the mark is active, just deactivate it;
-    then it takes a second \\[keyboard-quit] to abort the minibuffer."
-      (interactive)
-      (if (and delete-selection-mode transient-mark-mode mark-active)
-          (setq deactivate-mark  t)
-        (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-        (abort-recursive-edit)))
-    (define-key evil-normal-state-map [escape] 'keyboard-quit)
-    (define-key evil-visual-state-map [escape] 'keyboard-quit)
-    (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
-    (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
-    (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
-    (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
-    (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
-    (global-set-key [escape] 'evil-exit-emacs-state)
+  ;; use <ESC> to quit command
+  (defun minibuffer-keyboard-quit ()
+    "Abort recursive edit.
+  In Delete Selection mode, if the mark is active, just deactivate it;
+  then it takes a second \\[keyboard-quit] to abort the minibuffer."
+    (interactive)
+    (if (and delete-selection-mode transient-mark-mode mark-active)
+        (setq deactivate-mark  t)
+      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+      (abort-recursive-edit)))
+  (define-key evil-normal-state-map [escape] 'keyboard-quit)
+  (define-key evil-visual-state-map [escape] 'keyboard-quit)
+  (define-key minibuffer-local-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-ns-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-completion-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-must-match-map [escape] 'minibuffer-keyboard-quit)
+  (define-key minibuffer-local-isearch-map [escape] 'minibuffer-keyboard-quit)
+  (global-set-key [escape] 'evil-exit-emacs-state)
 #+end_src
 
 ** Font
@@ -253,13 +251,12 @@ colors don't support the monokai theme.
 
 TODO write a function to switch between monokai and solarized-light. The light
 solarized theme is much better visible in bright light situations.
-#+begin_src emacs-lisp
-  ;(require 'base16)
 
+#+begin_src emacs-lisp
   (defun terminal-color ()
     (setq base16-theme (getenv "BASE16_SCHEME"))
-    (setq theme (concat "load-theme 'base16-" base16-theme))
-    (eval theme ))
+    (setq theme (concat "load-theme 'base16-" base16-theme " t"))
+    (eval theme))
 
   (if window-system
       (load-theme 'monokai t)
@@ -421,8 +418,7 @@ Electric indent mode also behaves weirdly for org
 #+begin_src emacs-lisp
   (defun max/org-mode-hook ()
     (setq save-place nil)
-    (flyspell-mode)
-    (electric-indent-mode -1))
+    (flyspell-mode))
   (add-hook 'org-mode-hook 'max/org-mode-hook)
 
   (add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
