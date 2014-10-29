@@ -14,7 +14,7 @@ status.
 #+begin_src emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
-               '("melpa" . "http://melpa.milkbox.net/packages/") t)
+               '("melpa" . "http://melpa.org/packages/") t)
 #+end_src
 
 ** Install missing packages
