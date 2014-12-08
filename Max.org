@@ -312,6 +312,7 @@ the project and selects the right build command for me.
     (projectile-compile-project t))
 
   (global-set-key (kbd "<f5>") 'max-save-and-build)
+  (global-set-key (kbd "<f6>") 'compile)
   (setq compilation-scroll-output 1)
 #+end_src
 
