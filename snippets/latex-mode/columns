@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: columns env
+# key: col
+# --
+\begin{columns}
+    \column{0.5\textwidth}
+    $0
+    \column{0.5\textwidth}
+\end{columns}
