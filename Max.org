@@ -41,7 +41,7 @@ package-content every time.
                                     monokai-theme
                                     color-theme-solarized elpy
                                     projectile auto-complete
-                                    base16-theme))
+                                    base16-theme pkgbuild-mode))
 
   (dolist (p max/packages)
     (max/require-package p))
