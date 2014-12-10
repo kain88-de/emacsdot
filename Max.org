@@ -41,7 +41,8 @@ package-content every time.
                                     monokai-theme
                                     color-theme-solarized elpy
                                     projectile auto-complete
-                                    base16-theme pkgbuild-mode))
+                                    base16-theme pkgbuild-mode helm
+                                    helm-make))
 
   (dolist (p max/packages)
     (max/require-package p))
@@ -265,7 +266,11 @@ solarized theme is much better visible in bright light situations.
       (load-theme 'monokai t)
     (terminal-color))
 #+end_src
-
+* Helm
+** helm-make
+#+begin_src emacs-lisp
+  (setq helm-make-do-save t)
+#+end_src
 * Coding
 ** projectile
 
@@ -312,7 +317,7 @@ the project and selects the right build command for me.
     (projectile-compile-project t))
 
   (global-set-key (kbd "<f5>") 'max-save-and-build)
-  (global-set-key (kbd "<f6>") 'compile)
+  (global-set-key (kbd "<f6>") 'helm-make)
   (setq compilation-scroll-output 1)
 #+end_src
 
