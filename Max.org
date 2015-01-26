@@ -219,8 +219,6 @@ bind it to <F12> to show it again if I need it.
   (setq inhibit-splash-screen t)
   (setq inhibit-startup-message t)
 
-  ;; start with agenda
-  (org-agenda-list)
 
   ;; use <ESC> to quit command
   (defun minibuffer-keyboard-quit ()
@@ -440,6 +438,7 @@ Electric indent mode also behaves weirdly for org
           ("CANCELED" . (:foreground "blue" :weight bold))))
 
   (custom-set-variables
+   '(org-agenda-files (quote ("~/org/organizer.org")))
    '(org-agenda-ndays 7)
    '(org-deadline-warning-days 14)
    '(org-agenda-show-all-dates t)
@@ -451,6 +450,9 @@ Electric indent mode also behaves weirdly for org
   (defun org ()
     (interactive)
     (find-file "~/org/organizer.org"))
+
+  ;; start with agenda
+  (org-agenda-list)
 #+end_src
 ** org-capture config
    Remember is a small tool to collect TODO notes during the day. Instead of the
