@@ -3,6 +3,7 @@
 *.*~
 Max.el
 saveplace.el
+custom.el
 session.*
 elpa
 backups
