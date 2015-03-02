@@ -10,13 +10,7 @@
       (package-refresh-contents))
     (package-install package)))
 
-(defvar max/packages '(whitespace magit company google-c-style
-                                  fill-column-indicator
-                                  monokai-theme
-                                  color-theme-solarized elpy
-                                  projectile auto-complete
-                                  base16-theme pkgbuild-mode helm
-                                  helm-make diminish))
+(defvar max/packages '(magit company auto-complete diminish))
 
 (dolist (p max/packages)
   (max/install-package p))

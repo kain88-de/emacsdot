@@ -1,4 +1,9 @@
 (max/install-package 'smooth-scrolling)
+(max/install-package 'monokai-theme)
+(max/install-package 'color-theme-solarized)
+(max/install-package 'base16-theme)
+(max/install-package 'fill-column-indicator)
+
 (require 'fill-column-indicator)
 (require 'smooth-scrolling)
 (require 'saveplace)
