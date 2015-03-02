@@ -8,7 +8,7 @@
 (require 'init-evil)
 (require 'init-ui)
 
-;; programming related packages
+;;; programming related packages
 (require 'init-programming)
 (require 'init-helm)
 (require 'init-projectile)

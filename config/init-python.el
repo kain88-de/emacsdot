@@ -1,4 +1,5 @@
-(max/install-package 'elpy)
+(use-package elpy
+             :ensure t)
 (elpy-enable)
 
 (provide 'init-python)

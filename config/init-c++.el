@@ -1,3 +1,10 @@
+(use-package google-c-style
+  :ensure t)
+
+(use-package auto-complete
+             :ensure t
+             :defer t)
+
 (require 'google-c-style)
 (defun max/cc-mode-hook ()
   (google-set-c-style)

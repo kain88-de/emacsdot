@@ -1,25 +1,37 @@
 (require 'package)
+(setq package-enable-at-startup nil)
 (add-to-list 'package-archives
              '("melpa" . "http://melpa.org/packages/") t)
 (package-initialize)
 
-(defun max/install-package (package)
-  "Install given PACKAGE.if it isn't installed already"
-  (unless (package-installed-p package)
-    (unless (assoc package package-archive-contents)
-      (package-refresh-contents))
-    (package-install package)))
+;; bootstrap use-package
 
-(defvar max/packages '(magit company auto-complete diminish))
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-(dolist (p max/packages)
-  (max/install-package p))
+(require 'use-package)
+
+(use-package magit
+             :ensure t
+             :defer t)
+
+(use-package company
+             :ensure t
+             :defer t)
+
+
+(use-package diminish
+             :ensure t
+             :defer t)
 
 ;; save backup centrally in my emacs config.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 ;; I need to make sure that this file is created when it doesn't exists
 (setq custom-file "~/.emacs.d/custom.el")
+(unless (file-exists-p custom-file)
+  (write-region "" "" custom-file))
 (load custom-file)
 
 (provide 'init-core)

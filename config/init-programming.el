@@ -1,6 +1,8 @@
-(max/install-package 'rainbow-delimiters)
-(max/install-package 'google-c-style)
-(max/install-package 'whitespace)
+(use-package rainbow-delimiters
+             :ensure t)
+
+(use-package whitespace
+             :ensure t)
 
 (defun max-save-and-build ()
   "Save and build projects with projectile"

@@ -1,6 +1,9 @@
-(max/install-package 'evil)
-(max/install-package 'evil-leader)
-(max/install-package 'evil-surround)
+(use-package evil
+             :ensure t)
+(use-package evil-leader
+             :ensure t)
+(use-package evil-surround
+             :ensure t)
 
 ;; Set before loading evil
 ;; This let's evil overwrite some emacs settings
