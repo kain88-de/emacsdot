@@ -2,8 +2,8 @@
   :ensure t)
 
 (use-package auto-complete
-             :ensure t
-             :defer t)
+  :ensure t
+  :defer t)
 
 (require 'google-c-style)
 (defun max/cc-mode-hook ()
@@ -15,10 +15,10 @@
 
 ;;Autocomplete
 (require 'auto-complete-config)
-(add-to-list 'ac-dictionary-directories (expand-file-name
-                                         "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
-(setq ac-comphist-file (expand-file-name
-                        "~/.emacs.d/ac-comphist.dat"))
+(add-to-list 'ac-dictionary-directories
+             (expand-file-name "~/.emacs.d/elpa/auto-complete-1.4.20110207/dict"))
+(setq ac-comphist-file
+      (expand-file-name "~/.emacs.d/ac-comphist.dat"))
 (ac-config-default)
 (diminish 'auto-complete-mode)
 (push '("\\.h\\'" . c++-mode) auto-mode-alist)

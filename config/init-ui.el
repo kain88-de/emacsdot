@@ -1,48 +1,47 @@
 (use-package smooth-scrolling
-             :ensure t)
+  :ensure t
+  :init
+  (progn
+    (setq smooth-scroll-margin 5)
+    (setq scroll-conservatively 9999
+          scroll-preserve-screen-position t)))
+
 (use-package monokai-theme
-             :ensure t)
+  :ensure t
+  :init (load-theme 'monokai t))
+
+;; I have to set this before fill-column-indicator
+(global-visual-line-mode)
 (use-package fill-column-indicator
-             :ensure t)
+  :ensure t
+  :init
+  (progn
+    (setq fci-rulw-width 2)
+    (setq fci-rule-column 80)
+    (define-globalized-minor-mode
+      global-fci-mode fci-mode (lambda () (fci-mode 1)))
+    (global-fci-mode t)))
 
-(require 'fill-column-indicator)
-(require 'smooth-scrolling)
-(require 'saveplace)
+(use-package saveplace
+  :init
+  (progn
+    (setq-default save-place t)
+    (setq save-place-file (concat user-emacs-directory "saveplace.el"))))
 
-(when window-system
-  (tooltip-mode -1)
-  (menu-bar-mode -1)
-  (tool-bar-mode -1))
+(tooltip-mode -1)
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(global-set-key (kbd "<f12>") 'menu-bar-mode)
+(set-frame-size (selected-frame) 100 40)
+
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
-
 (set-default-font "Inconsolata-13")
-(load-theme 'monokai t)
-
-;; Change "yes or no" to "y or n"
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-;; Use a more save scrolling behavior
-(setq smooth-scroll-margin 5)
-(setq scroll-conservatively 9999
-      scroll-preserve-screen-position t)
-
-;; Jump to the last cursor position after opening a file
-(setq-default save-place t)
-(setq save-place-file (concat user-emacs-directory "saveplace.el") )
 
 (setq-default visible-bell t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-(global-visual-line-mode)
-(setq fci-rulw-width 2)
-(setq fci-rule-column 80)
-(define-globalized-minor-mode
-  global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode t)
-(setq-default fill-column 80)
-
 
 ;; use <ESC> to quit command
 (defun minibuffer-keyboard-quit ()

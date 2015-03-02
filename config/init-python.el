@@ -1,5 +1,5 @@
 (use-package elpy
-             :ensure t)
-(elpy-enable)
+  :ensure t
+  :idle (elpy-enable))
 
 (provide 'init-python)

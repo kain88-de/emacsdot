@@ -1,8 +1,25 @@
 (use-package rainbow-delimiters
-             :ensure t)
+  :ensure t
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package whitespace
-             :ensure t)
+  :ensure t
+  :init
+  (progn
+    (setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
+    (add-hook 'before-save-hook 'whitespace-cleanup)
+    (global-whitespace-mode)))
+
+(use-package company
+  :ensure t
+  :defer t)
+
+(electric-pair-mode 1)
+
+;; set indentation
+(setq-default indent-tabs-mode nil)
+(setq-default tab-width 4)
 
 (defun max-save-and-build ()
   "Save and build projects with projectile"
@@ -35,16 +52,6 @@
           (switch-to-buffer "*compilation*")
           (shrink-window (- h 20)))))))
 
-(require 'rainbow-delimiters)
-(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-(electric-pair-mode 1)
-(add-hook 'before-save-hook 'whitespace-cleanup)
-(global-whitespace-mode)
-(setq-default whitespace-style '(face tabs empty trailing lines-tail tab-mark))
-
-;; set indentation
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
 
 
 (global-set-key (kbd "<f5>") 'max-save-and-build)

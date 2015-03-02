@@ -1,21 +1,17 @@
 (use-package evil
-             :ensure t)
+  :ensure t)
 (use-package evil-leader
-             :ensure t)
+  :ensure t)
 (use-package evil-surround
-             :ensure t)
+  :ensure t)
 
-;; Set before loading evil
+;; Set before activating evil
 ;; This let's evil overwrite some emacs settings
 ;; 1. use evil-search (vim-like search) instead of isearch
 ;; 2. use C-w for windows key bindings
 
 (setq evil-search-module 'evil-search
       evil-want-C-w-in-emacs-state t)
-
-(require 'evil)
-(require 'evil-surround)
-(require 'evil-leader)
 
 (evil-mode 1)
 (setq evil-move-cursor-back nil)
@@ -48,8 +44,8 @@
 ;; evil keymappings
 (define-key evil-normal-state-map "L" 'evil-end-of-line)
 (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+(define-key evil-normal-state-map "j" 'evil-next-visual-line)
+(define-key evil-normal-state-map "k" 'evil-previous-visual-line)
 
 ;; leader keymappings
 (evil-leader/set-key "l"  'evil-ex-nohighlight)
@@ -59,5 +55,6 @@
 (evil-leader/set-key "ft" '(lambda ()
                              (interactive)
                              (find-tag (find-tag-default))))
+
 
 (provide 'init-evil)

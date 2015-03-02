@@ -6,7 +6,6 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
-(require 'init-ui)
 
 ;;; programming related packages
 (require 'init-programming)
@@ -19,8 +18,14 @@
 
 ;; organization and writing
 (setq sentence-end-double-space nil)
+(setq-default fill-column 80) ;; wrap at 80 chars
 (require 'init-org)
 (require 'init-latex)
+
+;; invoke this as the last package. This is important because it changes the
+;; window size and to keep other things from overriding it again just call it
+;; last.
+(require 'init-ui)
 
 (defun max-reload-init ()
   (interactive)
