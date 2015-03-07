@@ -9,6 +9,7 @@
 
 ;;; programming related packages
 (require 'init-programming)
+(require 'init-cmake)
 (require 'init-helm)
 (require 'init-projectile)
 (require 'init-yassnippet)
