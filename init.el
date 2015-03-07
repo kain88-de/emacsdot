@@ -9,6 +9,7 @@
 
 ;;; programming related packages
 (require 'init-programming)
+(require 'init-compile)
 (require 'init-cmake)
 (require 'init-helm)
 (require 'init-projectile)
@@ -18,8 +19,7 @@
 (require 'init-elisp)
 
 ;; organization and writing
-(setq sentence-end-double-space nil)
-(setq-default fill-column 80) ;; wrap at 80 chars
+(require 'init-writing)
 (require 'init-org)
 (require 'init-latex)
 
