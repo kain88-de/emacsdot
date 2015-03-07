@@ -24,8 +24,7 @@
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 
 (setq custom-file "~/.emacs.d/custom.el")
-(unless (file-exists-p custom-file)
-  (write-region "" "" custom-file)) ; touching the file
-(load custom-file)
+(when (file-exists-p custom-file)
+  (load custom-file))
 
 (provide 'init-core)
