@@ -4,6 +4,8 @@
 (use-package helm-make
   :ensure t
   :init
-  (setq helm-make-do-save t))
+  (progn
+  (setq helm-make-do-save t)
+  (global-set-key (kbd "C-x C-f") 'helm-find-files)))
 
 (provide 'init-helm)
