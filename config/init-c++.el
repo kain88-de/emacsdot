@@ -5,6 +5,12 @@
   :ensure t
   :defer t)
 
+(use-package clang-format
+  :ensure t
+  :init
+  (progn
+    (setq clang-format-executable "clang-format-3.5")))
+
 (require 'google-c-style)
 (defun max/cc-mode-hook ()
   (google-set-c-style)
