@@ -6,9 +6,9 @@
     (setq scroll-conservatively 9999
           scroll-preserve-screen-position t)))
 
-(use-package monokai-theme
+(use-package ample-theme
   :ensure t
-  :init (load-theme 'monokai t))
+  :init (load-theme 'ample t))
 
 ;; I have to set this before fill-column-indicator
 (global-visual-line-mode)
