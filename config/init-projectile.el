@@ -1,5 +1,8 @@
 (use-package projectile
   :ensure t
+  :config
+  (progn
+    (add-to-list 'projectile-globally-ignored-directories "build"))
   :idle (projectile-global-mode)
   :idle-priority 1)
 
