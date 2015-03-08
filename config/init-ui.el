@@ -8,7 +8,7 @@
 
 (use-package ample-theme
   :ensure t
-  :init (load-theme 'ample t))
+  :init (load-theme 'zenburn t))
 
 ;; I have to set this before fill-column-indicator
 (global-visual-line-mode)
