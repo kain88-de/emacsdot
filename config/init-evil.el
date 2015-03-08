@@ -34,7 +34,7 @@
       evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
 
 ;; color cursor according to mode
-(setq evil-emacs-state-cursor '("red" box)
+(setq evil-emacs-state-cursor '("gray" box)
       evil-normal-state-cursor '("green" box)
       evil-visual-state-cursor '("orange" box)
       evil-insert-state-cursor '("red" bar)

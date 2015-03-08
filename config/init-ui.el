@@ -1,20 +1,10 @@
-(use-package smooth-scrolling
-  :ensure t
-  :init
-  (progn
-    (setq smooth-scroll-margin 5)
-    (setq scroll-conservatively 9999
-          scroll-preserve-screen-position t)))
-
 (use-package ample-theme
   :ensure t
   :init (load-theme 'zenburn t))
 
-;; I have to set this before fill-column-indicator
-(global-visual-line-mode)
 (use-package fill-column-indicator
   :ensure t
-  :init
+  :config
   (progn
     (setq fci-rulw-width 2)
     (setq fci-rule-column 80)))
@@ -25,9 +15,15 @@
     (setq-default save-place t)
     (setq save-place-file (concat user-emacs-directory "saveplace.el"))))
 
+;; nice scrolling
+(setq smooth-scroll-margin 0)
+(setq scroll-conservatively 100000
+      scroll-preserve-screen-position 1)
+
 (tooltip-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
+(blink-cursor-mode -1) ;; disable annoying blinking
 (global-set-key (kbd "<f12>") 'menu-bar-mode)
 (set-frame-size (selected-frame) 100 40)
 
@@ -39,6 +35,8 @@
 
 (setq-default visible-bell t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(global-visual-line-mode)
 
 ;; use <ESC> to quit command
 (defun minibuffer-keyboard-quit ()

@@ -17,6 +17,7 @@
 (require 'init-c++)
 (require 'init-python)
 (require 'init-elisp)
+(require 'init-yaml)
 
 ;; organization and writing
 (require 'init-writing)
@@ -29,5 +30,5 @@
 (require 'init-ui)
 
 (defun max-reload-init ()
-  (interactive)
+pfpf
   (load-file (expand-file-name "~/.emacs.d/init.el")))
