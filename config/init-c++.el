@@ -29,4 +29,10 @@
 (diminish 'auto-complete-mode)
 (push '("\\.h\\'" . c++-mode) auto-mode-alist)
 
+;; add new cpp11 features to the keyword list
+(font-lock-add-keywords 'c++-mode
+                        '(("constexpr" . 'font-lock-keyword-face)))
+(font-lock-add-keywords 'c++-mode
+                        '(("noexcept" . 'font-lock-keyword-face)))
+
 (provide 'init-c++)
