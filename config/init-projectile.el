@@ -1,10 +1,10 @@
 (use-package projectile
   :ensure t
-  :config
+  :defer t
+  :init
   (progn
-    (add-to-list 'projectile-globally-ignored-directories "build"))
-  :idle (projectile-global-mode)
-  :idle-priority 1)
+    (add-to-list 'projectile-globally-ignored-directories "build")
+    (projectile-global-mode)))
 
 ;; this only works outside of use-package investigate
 (eval-after-load 'projectile '(diminish 'projectile-mode))
