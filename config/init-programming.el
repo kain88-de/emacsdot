@@ -16,6 +16,13 @@
   :ensure t
   :defer t)
 
+;; highlight specific keywords
+
+(add-hook 'prog-mode-hook (lambda ()
+                            (font-lock-add-keywords
+                             nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):\\)"
+                                    1 font-lock-warning-face t)))))
+
 (electric-pair-mode 1)
 (setq-default fill-column 80) ;; wrap at 80 chars
 
