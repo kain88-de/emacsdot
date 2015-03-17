@@ -12,3 +12,5 @@ bookmarks
 projectile-bookmarks.eld
 semanticdb/
 recentf
+eshell
+*.cache
