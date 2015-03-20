@@ -16,6 +16,9 @@
           helm-buffers-fuzzy-matching t
           helm-recentf-fuzzy-match t)))
 
+(evil-leader/set-key "ff" 'helm-find-files)
+(evil-leader/set-key "x" 'helm-M-x)
+
 (use-package helm-projectile
   :ensure t
   :init
