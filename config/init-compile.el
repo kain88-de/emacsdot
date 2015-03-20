@@ -44,6 +44,7 @@
   (when (eq major-mode 'compilation-mode)
     (let ((inhibit-read-only t))
       (ansi-color-apply-on-region (point-min) (point-max)))))
+
 (setq compilation-ask-about-save nil
       compilation-always-kill t
       compilation-scroll-output 'first-error)
@@ -53,6 +54,10 @@
 (setq compilation-scroll-output 1)
 
 (add-hook 'compilation-finish-functions 'max/bury-compile-buffer-if-successful)
-(add-hook 'compilation-mode-hook 'max/new-window-compilation-buffer)
+;;(add-hook 'compilation-mode-hook 'max/new-window-compilation-buffer)
+
+(evil-leader/set-key "cn" 'next-error)
+(evil-leader/set-key "cp" 'previous-error)
+(evil-leader/set-key "cc" 'max-save-and-build)
 
 (provide 'init-compile)

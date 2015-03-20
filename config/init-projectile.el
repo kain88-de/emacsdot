@@ -16,5 +16,6 @@
 (evil-leader/set-key "pS" 'projectile-save-project-buffers)
 (evil-leader/set-key "pP" 'projectile-test-project)
 (evil-leader/set-key "pc" 'max-save-and-build)
+(evil-leader/set-key "pa" 'helm-projectile-find-other-file)
 
 (provide 'init-projectile)
