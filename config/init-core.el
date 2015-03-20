@@ -12,10 +12,6 @@
 
 (require 'use-package)
 
-(use-package magit
-  :ensure t
-  :defer t)
-
 (use-package diminish
   :ensure t
   :defer t)

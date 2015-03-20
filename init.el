@@ -9,6 +9,7 @@
 (require 'init-acejump)
 
 ;;; programming related packages
+(require 'init-magit)
 (require 'init-programming)
 (require 'init-compile)
 (require 'init-cmake)

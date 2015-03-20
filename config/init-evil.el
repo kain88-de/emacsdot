@@ -46,15 +46,13 @@
 (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
 (define-key evil-normal-state-map "j" 'evil-next-visual-line)
 (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
+(define-key evil-visual-state-map "L" 'evil-end-of-line)
+(define-key evil-visual-state-map "H" 'evil-beginning-of-line)
 
 ;; leader keymappings
 (evil-leader/set-key "l"  'evil-ex-nohighlight)
 (evil-leader/set-key "dw" 'whitespace-cleanup)
-(evil-leader/set-key "m"  'magit-status)
 (evil-leader/set-key "h"  'help)
-(evil-leader/set-key "ft" '(lambda ()
-                             (interactive)
-                             (find-tag (find-tag-default))))
 
 
 (provide 'init-evil)
