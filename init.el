@@ -6,6 +6,7 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
+(require 'init-acejump)
 
 ;;; programming related packages
 (require 'init-programming)
