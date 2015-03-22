@@ -52,7 +52,8 @@
 ;; leader keymappings
 (evil-leader/set-key "l"  'evil-ex-nohighlight)
 (evil-leader/set-key "dw" 'whitespace-cleanup)
-(evil-leader/set-key "h"  'help)
+(evil-leader/set-key "hh" 'help)
+(evil-leader/set-key "bs" 'save-buffer)
 
 
 (provide 'init-evil)

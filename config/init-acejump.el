@@ -1,8 +1,11 @@
 (use-package ace-window
-  :init
-  (progn
-    (global-set-key (kbd "M-p") 'ace-window)))
-(global-set-key (kbd "M-p") 'ace-window)
+  :ensure t
+  :bind ("M-p" . ace-window))
+
+(use-package ace-jump-mode
+  :config (evil-leader/set-key "aa" 'ace-jump-mode))
+
+;; TODO: bind this with use-package
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode)
-(evil-leader/set-key "aa" 'ace-jump-mode)
+
 (provide 'init-acejump)

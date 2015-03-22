@@ -9,15 +9,14 @@
   (progn
     (setq-default whitespace-style '(face tabs empty
                                           trailing lines-tail tab-mark))
-    (add-hook 'before-save-hook 'whitespace-cleanup)
-    (global-whitespace-mode)))
+    (add-hook 'before-save-hook 'whitespace-cleanup))
+  :config (global-whitespace-mode))
 
 (use-package company
   :ensure t
   :defer t)
 
 ;; highlight specific keywords
-
 (add-hook 'prog-mode-hook (lambda ()
                             (font-lock-add-keywords
                              nil '(("\\<\\(\\(FIX\\(ME\\)?\\|TODO\\|OPTIMIZE\\|HACK\\|REFACTOR\\):\\)"

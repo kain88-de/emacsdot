@@ -4,8 +4,8 @@
   (setq save-place nil)
   (flyspell-mode))
 (add-hook 'org-mode-hook 'max/org-mode-hook)
-
-(add-hook 'org-mode-hook 'turn-on-font-lock) ; not needed when global-font-lock-mode is on
+; not needed when global-font-lock-mode is on
+(add-hook 'org-mode-hook 'turn-on-font-lock)
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 
@@ -27,8 +27,6 @@
   (interactive)
   (find-file "~/org/organizer.org"))
 
-;; start with agenda
-(org-agenda-list)
 (defun notes ()
   (interactive)
   (find-file "~/org/notes.org"))
@@ -38,5 +36,8 @@
          "* TODO %? \n %t\n %a")
         ("j" "Journal" entry (file+headline "" "Journal")
          "* %?\nEntered on %U\n %i\n %a")))
+
+;; start with agenda
+(org-agenda-list)
 
 (provide 'init-org)

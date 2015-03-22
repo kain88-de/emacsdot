@@ -9,12 +9,10 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
-
 (require 'use-package)
 
 (use-package diminish
-  :ensure t
-  :defer t)
+  :ensure t)
 
 ;; save backup centrally in my emacs config.
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))

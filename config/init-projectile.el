@@ -3,11 +3,10 @@
   :defer t
   :init
   (progn
-    (add-to-list 'projectile-globally-ignored-directories "build")
-    (projectile-global-mode)))
+    (add-to-list 'projectile-globally-ignored-directories "build"))
+  :config (projectile-global-mode)
+  :diminish projectile-mode)
 
-;; this only works outside of use-package investigate
-(eval-after-load 'projectile '(diminish 'projectile-mode))
 ;; evil projectile bindings
 (evil-leader/set-key "pp" 'helm-projectile-switch-project)
 (evil-leader/set-key "pf" 'helm-projectile-find-file)
