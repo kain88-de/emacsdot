@@ -1,14 +1,14 @@
 (use-package helm
   :ensure t
+  :bind (("C-x C-f" . helm-find-files)
+         ("C-x b" . helm-mini)
+         ("M-x" . helm-M-x))
   :config
   (progn
-    (use-package helm-config))
+    (use-package helm-config)
+    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
   :init
   (progn
-    (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-    (global-set-key (kbd "C-x C-f") 'helm-find-files)
-    (global-set-key (kbd "C-x b") 'helm-mini)
-    (global-set-key (kbd "M-x") 'helm-M-x)
     (setq helm-split-window-in-side-p nil
           helm-move-to-line-cycle-in-source t
           helm-ff-file-name-history-use-recentf t

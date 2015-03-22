@@ -1,5 +1,5 @@
 (use-package ace-window
-  init:
+  :init
   (progn
     (global-set-key (kbd "M-p") 'ace-window)))
 (global-set-key (kbd "M-p") 'ace-window)

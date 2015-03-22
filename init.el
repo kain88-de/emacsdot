@@ -32,5 +32,4 @@
 (require 'init-ui)
 
 (defun max-reload-init ()
-pfpf
   (load-file (expand-file-name "~/.emacs.d/init.el")))
