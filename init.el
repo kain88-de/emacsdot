@@ -6,7 +6,9 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
+(require 'init-guide-key)
 (require 'init-acejump)
+(require 'init-help)
 
 ;;; programming related packages
 (require 'init-magit)
@@ -25,6 +27,7 @@
 (require 'init-writing)
 (require 'init-org)
 (require 'init-latex)
+
 
 ;; invoke this as the last package. This is important because it changes the
 ;; window size and to keep other things from overriding it again just call it

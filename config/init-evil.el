@@ -49,11 +49,32 @@
 (define-key evil-visual-state-map "L" 'evil-end-of-line)
 (define-key evil-visual-state-map "H" 'evil-beginning-of-line)
 
-;; leader keymappings
-(evil-leader/set-key "l"  'evil-ex-nohighlight)
-(evil-leader/set-key "dw" 'whitespace-cleanup)
-(evil-leader/set-key "hh" 'help)
-(evil-leader/set-key "bs" 'save-buffer)
+;; from spaceemacs
+;; this NEEDS to run before I set any evil-leader keybinding
+(defun max/declare-prefix (prefix name)
+  "Declare a prefix PREFIX. PREFIX is a string describing
+a key sequence. NAME is a symbol name used as the prefix command."
+  (let ((command (intern (concat "group:" name))))
+    ;; define the prefix command only if it does not already exist
+    (unless (lookup-key evil-leader--default-map prefix)
+      (define-prefix-command command)
+      (evil-leader/set-key prefix command))))
 
+(setq max/key-binding-prefixes '(("p" . "projects")
+                                 ("f" . "files")
+                                 ("h" . "help")
+                                 ("b" . "buffers")
+                                 ("a" . "ace-jump")
+                                 ("c" . "compiler")
+                                 ("g" . "git")
+                                 ("w" . "window")))
+
+(mapc (lambda (x) (max/declare-prefix (car x) (cdr x)))
+      max/key-binding-prefixes)
+
+;; leader keymappings
+(evil-leader/set-key "bh"  'evil-ex-nohighlight)
+(evil-leader/set-key "dw" 'whitespace-cleanup)
+(evil-leader/set-key "bs" 'save-buffer)
 
 (provide 'init-evil)
