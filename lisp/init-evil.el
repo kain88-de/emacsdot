@@ -73,8 +73,8 @@ a key sequence. NAME is a symbol name used as the prefix command."
       max/key-binding-prefixes)
 
 ;; leader keymappings
-(evil-leader/set-key "bh"  'evil-ex-nohighlight)
-(evil-leader/set-key "dw" 'whitespace-cleanup)
+(evil-leader/set-key "bh" 'evil-ex-nohighlight)
+(evil-leader/set-key "bw" 'whitespace-cleanup)
 (evil-leader/set-key "bs" 'save-buffer)
 
 (provide 'init-evil)
