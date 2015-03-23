@@ -18,9 +18,9 @@
 (use-package rotate
   :init
   (progn
-    (evil-leader/set-key "rl" 'rotate-layout)
-    (evil-leader/set-key "rh" 'rotate:even-horizontal)
-    (evil-leader/set-key "rv" 'rotate:even-vertical)))
+    (evil-leader/set-key "wl" 'rotate-layout)
+    (evil-leader/set-key "wh" 'rotate:even-horizontal)
+    (evil-leader/set-key "wv" 'rotate:even-vertical)))
 
 ;; nice scrolling
 (setq smooth-scroll-margin 0)
