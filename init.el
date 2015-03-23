@@ -1,7 +1,7 @@
 (setq user-full-name "Max Linke"
       user-mail-address "max_linke@gmx.de")
 
-(add-to-list 'load-path (concat user-emacs-directory "config"))
+(add-to-list 'load-path (concat user-emacs-directory "lisp"))
 
 ;; core elements and ui
 (require 'init-core)
