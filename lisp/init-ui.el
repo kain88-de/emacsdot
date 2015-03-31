@@ -31,8 +31,8 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (blink-cursor-mode -1) ;; disable annoying blinking
-(global-set-key (kbd "<f12>") 'menu-bar-mode)
-(set-frame-size (selected-frame) 100 40)
+(custom-set-variables
+ '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
