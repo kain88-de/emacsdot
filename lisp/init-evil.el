@@ -4,6 +4,11 @@
   :ensure t)
 (use-package evil-surround
   :ensure t)
+(use-package evil-escape
+  :ensure t
+  :config
+  (progn
+    (evil-escape-mode)))
 
 ;; Set before activating evil
 ;; This let's evil overwrite some emacs settings
