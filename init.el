@@ -1,3 +1,5 @@
+(defconst emacs-start-time (current-time))
+
 (setq user-full-name "Max Linke"
       user-mail-address "max_linke@gmx.de")
 
@@ -22,12 +24,12 @@
 (require 'init-python)
 (require 'init-elisp)
 (require 'init-yaml)
+(require 'init-markdown)
 
 ;; organization and writing
 (require 'init-writing)
 (require 'init-org)
 (require 'init-latex)
-
 
 ;; invoke this as the last package. This is important because it changes the
 ;; window size and to keep other things from overriding it again just call it
@@ -36,3 +38,16 @@
 
 (defun max-reload-init ()
   (load-file (expand-file-name "~/.emacs.d/init.el")))
+
+(when window-system
+  (let ((elapsed (float-time (time-subtract (current-time)
+                                            emacs-start-time))))
+    (message "Loading %s...done (%.3fs)" load-file-name elapsed))
+
+  (add-hook 'after-init-hook
+            `(lambda ()
+               (let ((elapsed (float-time (time-subtract (current-time)
+                                                         emacs-start-time))))
+                 (message "Loading %s...done (%.3fs) [after-init]"
+                          ,load-file-name elapsed)))
+            t))
