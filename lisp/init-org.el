@@ -23,6 +23,9 @@
  '(org-agenda-start-on-weekday nil)
  '(org-reverse-note-order t))
 
+(setq org-src-fontify-natively t)
+(setq org-export-backends (quote (ascii beamer html icalendar latex md)))
+
 (defun org ()
   (interactive)
   (find-file "~/org/organizer.org"))
