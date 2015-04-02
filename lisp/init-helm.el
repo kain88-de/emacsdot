@@ -1,11 +1,13 @@
 (use-package helm
   :ensure t
+  :defer t
   :bind (("C-x C-f" . helm-find-files)
          ("C-x b" . helm-mini)
          ("M-x" . helm-M-x))
   :config
   (progn
-    (use-package helm-config)
+    (use-package helm-config
+      :defer t)
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
   :init
   (progn
@@ -21,13 +23,14 @@
 
 (use-package helm-projectile
   :ensure t
+  :defer 1
   :init
   (progn
-    (setq projectile-completion-system 'helm)
-    (helm-projectile-on)))
+    (setq projectile-completion-system 'helm)))
 
 (use-package helm-make
   :ensure t
+  :defer t
   :init
   (progn
   (setq helm-make-do-save t)))

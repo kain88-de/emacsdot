@@ -1,8 +1,10 @@
-(use-package compile)
+(use-package compile
+  :defer t)
 ;; Colorize output of Compilation Mode, see
 ;; http://stackoverflow.com/a/3072831/355252
 (use-package ansi-color
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (defun max-save-and-build ()
   "Save and build projects with projectile"

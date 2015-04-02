@@ -1,8 +1,10 @@
-(require 'org)
+(use-package org
+  :defer t)
 
 (defun max/org-mode-hook ()
   (setq save-place nil)
   (flyspell-mode))
+
 (add-hook 'org-mode-hook 'max/org-mode-hook)
 ; not needed when global-font-lock-mode is on
 (add-hook 'org-mode-hook 'turn-on-font-lock)
@@ -33,14 +35,11 @@
 (defun notes ()
   (interactive)
   (find-file "~/org/notes.org"))
-(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-default-notes-file "~/org/notes.org")
 (setq org-capture-templates
       '(("t" "Todo" entry (file+headline "" "Tasks")
          "* TODO %? \n %t\n %a")
         ("j" "Journal" entry (file+headline "" "Journal")
          "* %?\nEntered on %U\n %i\n %a")))
-
-;; start with agenda
-(org-agenda-list)
 
 (provide 'init-org)

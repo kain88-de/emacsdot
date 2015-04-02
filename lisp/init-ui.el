@@ -1,21 +1,27 @@
 (use-package ample-theme
   :ensure t
+  :defer t
   :init (load-theme 'zenburn t))
 
 (use-package fill-column-indicator
   :ensure t
-  :config
+  :defer t
+  :init
   (progn
     (setq fci-rulw-width 2)
     (setq fci-rule-column 80)))
 
 (use-package saveplace
+  :ensure t
+  :defer t
   :init
   (progn
     (setq-default save-place t)
     (setq save-place-file (concat user-emacs-directory "saveplace.el"))))
 
 (use-package rotate
+  :ensure t
+  :defer t
   :init
   (progn
     (evil-leader/set-key "wl" 'rotate-layout)

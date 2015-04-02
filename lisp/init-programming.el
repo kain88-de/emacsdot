@@ -1,10 +1,12 @@
 (use-package rainbow-delimiters
   :ensure t
+  :defer t
   :init
   (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 (use-package whitespace
   :ensure t
+  :defer t
   :init
   (progn
     (setq-default whitespace-style '(face tabs empty
@@ -14,6 +16,10 @@
 
 (use-package company
   :ensure t
+  :defer t
+  :init
+  (progn
+    (add-hook 'after-init-hook 'global-company-mode))
   :defer t)
 
 ;; highlight specific keywords

@@ -8,17 +8,18 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
+(require 'init-ui)
+(require 'init-helm)
+(require 'init-projectile)
 (require 'init-guide-key)
 (require 'init-acejump)
 (require 'init-help)
 
-;;; programming related packages
+;;programming related packages
 (require 'init-magit)
 (require 'init-programming)
 (require 'init-compile)
 (require 'init-cmake)
-(require 'init-helm)
-(require 'init-projectile)
 (require 'init-yassnippet)
 (require 'init-c++)
 (require 'init-python)
@@ -31,10 +32,6 @@
 (require 'init-org)
 (require 'init-latex)
 
-;; invoke this as the last package. This is important because it changes the
-;; window size and to keep other things from overriding it again just call it
-;; last.
-(require 'init-ui)
 
 (defun max-reload-init ()
   (load-file (expand-file-name "~/.emacs.d/init.el")))

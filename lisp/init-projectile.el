@@ -12,9 +12,10 @@
     (evil-leader/set-key "pP" 'projectile-test-project)
     (evil-leader/set-key "pc" 'max-save-and-build)
     (evil-leader/set-key "pa" 'helm-projectile-find-other-file)
-    (evil-leader/set-key "psa" 'helm-projectile-ack)
-    (add-to-list 'projectile-globally-ignored-directories "build"))
-  :config (projectile-global-mode)
+    (evil-leader/set-key "psa" 'helm-projectile-ack))
+  :config (progn
+	    (add-to-list 'projectile-globally-ignored-directories "build")
+	    (projectile-global-mode))
   :diminish projectile-mode)
 
 ;; http://emacs.stackexchange.com/questions/10183/close-other-buffers-with-projectile
