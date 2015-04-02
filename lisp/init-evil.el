@@ -31,7 +31,8 @@
     (define-key evil-normal-state-map "j" 'evil-next-visual-line)
     (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
     (define-key evil-visual-state-map "L" 'evil-end-of-line)
-    (define-key evil-visual-state-map "H" 'evil-beginning-of-line))))
+    (define-key evil-visual-state-map "H" 'evil-beginning-of-line)))
+  :diminish undo-tree-mode)
 
 (use-package evil-leader
   :ensure t
@@ -74,6 +75,7 @@ a key sequence. NAME is a symbol name used as the prefix command."
 
 (use-package evil-escape
   :ensure t
+  :diminish evil-escape-mode
   :config
   (progn
     (evil-escape-mode)))

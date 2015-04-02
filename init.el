@@ -9,6 +9,8 @@
 (require 'init-core)
 (require 'init-evil)
 (require 'init-ui)
+
+;; make emcas a lot more user friendly for me
 (require 'init-helm)
 (require 'init-projectile)
 (require 'init-guide-key)
@@ -21,6 +23,8 @@
 (require 'init-compile)
 (require 'init-cmake)
 (require 'init-yassnippet)
+
+;; language packages
 (require 'init-c++)
 (require 'init-python)
 (require 'init-elisp)
@@ -37,10 +41,6 @@
   (load-file (expand-file-name "~/.emacs.d/init.el")))
 
 (when window-system
-  (let ((elapsed (float-time (time-subtract (current-time)
-                                            emacs-start-time))))
-    (message "Loading %s...done (%.3fs)" load-file-name elapsed))
-
   (add-hook 'after-init-hook
             `(lambda ()
                (let ((elapsed (float-time (time-subtract (current-time)

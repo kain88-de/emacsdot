@@ -12,7 +12,10 @@
     (setq-default whitespace-style '(face tabs empty
                                           trailing lines-tail tab-mark))
     (add-hook 'before-save-hook 'whitespace-cleanup))
-  :config (global-whitespace-mode))
+  :config (global-whitespace-mode)
+  :diminish (global-whitespace-mode
+             whitespace-mode
+             whitespace-newline-mode))
 
 (use-package company
   :ensure t

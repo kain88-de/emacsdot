@@ -43,13 +43,15 @@
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
-(set-default-font "Inconsolata-13")
+;; TODO: set this to Source Code Pro
+;;(set-default-font "Inconsolata-13")
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 (setq-default visible-bell t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
 (global-visual-line-mode)
+(diminish 'visual-line-mode)
 
 ;; use <ESC> to quit command
 (defun minibuffer-keyboard-quit ()
