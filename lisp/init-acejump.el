@@ -5,9 +5,7 @@
 
 (use-package ace-jump-mode
   :defer t
-  :init (evil-leader/set-key "SPC" 'ace-jump-mode))
-
-;; TODO: bind this with use-package
-(define-key global-map (kbd "C-x SPC") 'ace-jump-mode)
+  :init (evil-leader/set-key "SPC" 'ace-jump-mode)
+  :bind ("C-x SPC" . ace-jump-mode))
 
 (provide 'init-acejump)
