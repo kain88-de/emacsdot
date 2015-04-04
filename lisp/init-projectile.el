@@ -1,21 +1,26 @@
 (use-package projectile
   :ensure t
-  :defer t
+  :defer 1
+  :commands projectile-global-mode
+  :commands projectile-command-map
   :init
-  (progn
-    ;; evil projectile bindings
-    (evil-leader/set-key "pp" 'helm-projectile-switch-project)
-    (evil-leader/set-key "pf" 'helm-projectile-find-file)
-    (evil-leader/set-key "pT" 'helm-projectile-find-test-file)
-    (evil-leader/set-key "pb" 'helm-projectile-find-other-file)
-    (evil-leader/set-key "pS" 'projectile-save-project-buffers)
-    (evil-leader/set-key "pP" 'projectile-test-project)
-    (evil-leader/set-key "pc" 'max-save-and-build)
-    (evil-leader/set-key "pa" 'helm-projectile-find-other-file)
-    (evil-leader/set-key "psa" 'helm-projectile-ack))
-  :config (progn
-	    (add-to-list 'projectile-globally-ignored-directories "build")
-	    (projectile-global-mode))
+  ;; evil projectile bindings
+  (evil-leader/set-key "pp" 'helm-projectile-switch-project)
+  (evil-leader/set-key "pf" 'helm-projectile-find-file)
+  (evil-leader/set-key "pT" 'helm-projectile-find-test-file)
+  (evil-leader/set-key "pb" 'helm-projectile-find-other-file)
+  (evil-leader/set-key "pS" 'projectile-save-project-buffers)
+  (evil-leader/set-key "pP" 'projectile-test-project)
+  (evil-leader/set-key "pc" 'max-save-and-build)
+  (evil-leader/set-key "pa" 'helm-projectile-find-other-file)
+  (evil-leader/set-key "psa" 'helm-projectile-ack)
+  :config
+  (add-to-list 'projectile-globally-ignored-directories "build")
+  (use-package helm-projectile
+    :config
+    (setq projectile-completion-system 'helm)
+    (helm-projectile-on))
+  (projectile-global-mode)
   :diminish projectile-mode)
 
 ;; http://emacs.stackexchange.com/questions/10183/close-other-buffers-with-projectile
