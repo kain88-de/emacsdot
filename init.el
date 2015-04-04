@@ -18,18 +18,18 @@
 (require 'init-help)
 
 ;;programming related packages
+(require 'init-compile)
 (require 'init-magit)
 (require 'init-programming)
-(require 'init-compile)
-(require 'init-cmake)
 (require 'init-yassnippet)
 
 ;; language packages
 (require 'init-c++)
-(require 'init-python)
+(require 'init-cmake)
 (require 'init-elisp)
-(require 'init-yaml)
 (require 'init-markdown)
+(require 'init-python)
+(require 'init-yaml)
 
 ;; organization and writing
 (require 'init-writing)

@@ -1,29 +1,20 @@
+(use-package cc-mode
+  :defer t)
+
 (use-package google-c-style
   :ensure t
   :defer t
   :init
-  (progn
-    (defun max/cc-mode-hook ()
-      (google-set-c-style)
-      (google-make-newline-indent)
-      (setq c-basic-offset 4))
-    (add-hook 'c-mode-common-hook 'max/cc-mode-hook)
-    (add-hook 'c++-mode-hook 'auto-complete-mode)))
+  (defun max/cc-mode-hook ()
+    (google-set-c-style)
+    (setq c-basic-offset 4))
+  (add-hook 'c-mode-common-hook 'max/cc-mode-hook))
 
 (use-package clang-format
   :ensure t
   :defer t
   :init
-  (progn
-    (setq clang-format-executable "clang-format-3.5")))
-
-;; add new cpp11 features to the keyword list
-(font-lock-add-keywords 'c++-mode
-                        '(("constexpr" . 'font-lock-keyword-face)))
-(font-lock-add-keywords 'c++-mode
-                        '(("noexcept" . 'font-lock-keyword-face)))
-
-(require 'cc-mode)
+  (setq clang-format-executable "clang-format-3.5"))
 
 (use-package semantic
   :defer t
@@ -36,13 +27,17 @@
 (use-package function-args
   :ensure t
   :defer t
+  :init
+  (evil-leader/set-key "cm" 'moo-complete)
+  (evil-leader/set-key "cf" 'fa-show)
   :config
-  (progn
-    fa-config-default))
-
-(evil-leader/set-key "cm" 'moo-complete)
-(evil-leader/set-key "cf" 'fa-show)
+  (fa-config-default))
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+;; add new cpp11 features to the keyword list
+(font-lock-add-keywords 'c++-mode
+                        '(("constexpr" . 'font-lock-keyword-face)))
+(font-lock-add-keywords 'c++-mode
+                        '(("noexcept" . 'font-lock-keyword-face)))
 
 (provide 'init-c++)
