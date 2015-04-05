@@ -2,7 +2,7 @@
   :ensure t
   :defer 1
   :commands projectile-global-mode
-  :commands projectile-command-map
+  :commands helm-projectile-switch-project
   :init
   ;; evil projectile bindings
   (evil-leader/set-key "pp" 'helm-projectile-switch-project)
@@ -22,8 +22,9 @@
   (add-to-list 'projectile-globally-ignored-directories "build")
   (add-to-list 'projectile-globally-ignored-directories "lin64_build")
   (use-package helm-projectile
-    :config
+    :init
     (setq projectile-completion-system 'helm)
+    :config
     (helm-projectile-on))
   (projectile-global-mode)
   :diminish projectile-mode)
