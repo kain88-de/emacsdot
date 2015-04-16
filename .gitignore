@@ -1,6 +1,7 @@
 # Compiled
 *.elc
 *.*~
+.org-id-locations
 Max.el
 saveplace.el
 custom.el
