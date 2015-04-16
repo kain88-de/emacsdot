@@ -1,6 +1,7 @@
 (use-package magit
   :ensure t
   :defer t
+  :diminish magit-auto-revert-mode
   :init
   (progn
     (evil-leader/set-key "gs" 'magit-status)
