@@ -18,6 +18,11 @@
   (evil-leader/set-key "pr" 'projectile-replace)
   (evil-leader/set-key "pI" 'projectile-ibuffer)
   (evil-leader/set-key "pg" 'helm-projectile-find-file-dwim)
+  (defun max-save-and-build ()
+    "Save and build projects with projectile"
+    (interactive)
+    (projectile-save-project-buffers)
+    (projectile-compile-project t))
   :config
   (add-to-list 'projectile-globally-ignored-directories "build")
   (add-to-list 'projectile-globally-ignored-directories "lin64_build")
