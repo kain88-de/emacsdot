@@ -30,6 +30,7 @@
 (require 'init-markdown)
 (require 'init-python)
 (require 'init-yaml)
+(require 'init-ledger)
 
 ;; organization and writing
 (require 'init-writing)
