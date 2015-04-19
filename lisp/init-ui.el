@@ -1,4 +1,4 @@
-(use-package ample-theme
+(use-package zenburn-theme
   :ensure t
   :defer t
   :init (load-theme 'zenburn t))
@@ -6,7 +6,7 @@
 (use-package fill-column-indicator
   :ensure t
   :defer t
-  :init
+  :config
   (progn
     (setq fci-rulw-width 2)
     (setq fci-rule-column 80)))
@@ -14,7 +14,7 @@
 (use-package saveplace
   :ensure t
   :defer t
-  :init
+  :config
   (progn
     (setq-default save-place t)
     (setq save-place-file (concat user-emacs-directory "saveplace.el"))))
@@ -22,11 +22,16 @@
 (use-package rotate
   :ensure t
   :defer t
-  :init
+  :config
   (progn
     (evil-leader/set-key "wl" 'rotate-layout)
     (evil-leader/set-key "wh" 'rotate:even-horizontal)
     (evil-leader/set-key "wv" 'rotate:even-vertical)))
+
+(evil-leader/set-key "w=" 'text-scale-increase)
+(evil-leader/set-key "w-" 'text-scale-decrease)
+
+(set-frame-font "Source Code Pro-12")
 
 ;; nice scrolling
 (setq smooth-scroll-margin 0)
