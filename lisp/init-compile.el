@@ -3,6 +3,8 @@
   :config
   (setq compilation-ask-about-save nil
         compilation-always-kill t
+        compilation-environment (list (format
+                                       "LIBRARY_PATH=%s/.local/lib" (getenv "HOME")))
         compilation-scroll-output 'first-error)
   (evil-leader/set-key "cn" 'next-error)
   (evil-leader/set-key "cp" 'previous-error))
