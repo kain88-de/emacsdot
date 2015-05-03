@@ -32,6 +32,28 @@
 (setq org-src-fontify-natively t)
 (setq org-export-backends (quote (ascii beamer html icalendar latex md)))
 
+(setq org-latex-listings 't)
+(require 'ox-latex)
+(add-to-list 'org-latex-packages-alist '("" "listings"))
+(add-to-list 'org-latex-packages-alist '("" "color"))
+
+(add-to-list 'org-latex-classes
+             '("complexes-style"
+               "\\documentclass{book}
+                 [DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
+               ("\\chapter{%s}" . "\\chapter{%s}")
+               ("\\section{%s}" . "\\section{%s}")
+               ("\\subsection{%s}" . "\\subsection{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+               ("\\paragraph{%s}" . "\\paragraph{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
+
+(setq org-latex-pdf-process '("pdflatex --escape-shell -interaction nonstopmode
+-output-directory %o %f" "pdflatex --escape-shell -interaction nonstopmode -output-directory %o
+%f" "pdflatex --escape-shell -interaction nonstopmode -output-directory %o %f"))
+
 (defun org ()
   (interactive)
   (find-file "~/org/organizer.org"))
