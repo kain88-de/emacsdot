@@ -27,6 +27,7 @@
   (add-to-list 'projectile-globally-ignored-directories "build")
   (add-to-list 'projectile-globally-ignored-directories "lin64_build")
   (use-package helm-projectile
+    :ensure t
     :init
     (setq projectile-completion-system 'helm)
     :config
