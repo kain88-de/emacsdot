@@ -75,9 +75,8 @@ a key sequence. NAME is a symbol name used as the prefix command."
 
 (use-package evil-escape
   :ensure t
-  :diminish evil-escape-mode
-  :config
-  (progn
-    (evil-escape-mode)))
+  :diminish evil-escape-mode)
+;;  :config
+;;  (evil-escape-mode))
 
 (provide 'init-evil)
