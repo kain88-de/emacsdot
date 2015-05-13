@@ -22,11 +22,10 @@
 (use-package rotate
   :ensure t
   :defer t
-  :config
-  (progn
-    (evil-leader/set-key "wl" 'rotate-layout)
-    (evil-leader/set-key "wh" 'rotate:even-horizontal)
-    (evil-leader/set-key "wv" 'rotate:even-vertical)))
+  :init
+  (evil-leader/set-key "wl" 'rotate-layout)
+  (evil-leader/set-key "wh" 'rotate:even-horizontal)
+  (evil-leader/set-key "wv" 'rotate:even-vertical))
 
 (evil-leader/set-key "w=" 'text-scale-increase)
 (evil-leader/set-key "w-" 'text-scale-decrease)
