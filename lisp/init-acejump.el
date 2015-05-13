@@ -3,9 +3,9 @@
   :defer t
   :bind ("M-p" . ace-window))
 
-(use-package ace-jump-mode
+(use-package avy
   :defer t
-  :init (evil-leader/set-key "SPC" 'ace-jump-mode)
-  :bind ("C-x SPC" . ace-jump-mode))
+  :init (evil-leader/set-key "SPC" 'avy-goto-char)
+  :bind ("C-x SPC" . avy-goto-char))
 
 (provide 'init-acejump)
