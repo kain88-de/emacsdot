@@ -10,6 +10,10 @@
     (setq c-basic-offset 4))
   (add-hook 'c-mode-common-hook 'max/cc-mode-hook))
 
+;; In some projects I like to have the buffer automatically formatted when I
+;; save it. For this use the following line in your '.dir-locals.el'
+;;  (c++-mode
+;;   (eval add-hook 'before-save-hook #'clang-format-buffer nil t))
 (use-package clang-format
   :ensure t
   :defer t
