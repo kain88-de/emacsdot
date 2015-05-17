@@ -31,6 +31,7 @@
 (require 'init-python)
 (require 'init-yaml)
 (require 'init-ledger)
+(require 'init-shell)
 
 ;; organization and writing
 (require 'init-writing)
