@@ -21,9 +21,8 @@
   :ensure t
   :defer t
   :init
-  (progn
-    (add-hook 'after-init-hook 'global-company-mode))
-  :defer t)
+  (add-hook 'after-init-hook 'global-company-mode)
+  (setq company-clang-arguments '("-std=c++11" "-I/home/max/.local/include")))
 
 ;; highlight specific keywords
 (add-hook 'prog-mode-hook (lambda ()
