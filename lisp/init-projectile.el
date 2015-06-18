@@ -24,8 +24,6 @@
     (projectile-save-project-buffers)
     (projectile-compile-project t))
   :config
-  (add-to-list 'projectile-globally-ignored-directories "build")
-  (add-to-list 'projectile-globally-ignored-directories "lin64_build")
   (use-package helm-projectile
     :ensure t
     :init
