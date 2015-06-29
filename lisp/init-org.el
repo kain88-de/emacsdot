@@ -50,9 +50,8 @@
                ("\\paragraph{%s}" . "\\paragraph{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
 
-(setq org-latex-pdf-process '("pdflatex --escape-shell -interaction nonstopmode
--output-directory %o %f" "pdflatex --escape-shell -interaction nonstopmode -output-directory %o
-%f" "pdflatex --escape-shell -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-pdf-process
+      '("latexmk -shell-escape -interaction=nonstopmode -pdf -f -output-directory=%o %f"))
 
 (defun org ()
   (interactive)
