@@ -18,7 +18,7 @@
   :ensure t
   :defer t
   :init
-  (setq clang-format-executable "clang-format-3.6"))
+  (setq clang-format-executable "clang-format-3.5"))
 
 (use-package semantic
   :defer t
