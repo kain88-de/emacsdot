@@ -1,8 +1,8 @@
 (use-package magit
   :ensure t
   :defer t
-  :diminish magit-auto-revert-mode
   :init
+  (add-to-list 'evil-emacs-state-modes 'magit-popup-mode)
   (setq magit-last-seen-setup-instructions "1.4.0")
   (evil-leader/set-key "gs" 'magit-status)
   (evil-leader/set-key "gl" 'magit-log)
