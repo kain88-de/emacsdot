@@ -1,5 +1,6 @@
 (use-package hydra
-  :ensure t)
+  :ensure t
+  :init )
 
 (defhydra hydra-zoom (global-map "<f2>")
   "zoom"
