@@ -16,6 +16,7 @@
         helm-M-x-fuzzy-match t
         helm-buffers-fuzzy-matching t
         helm-recentf-fuzzy-match t)
+  (global-set-key (kbd "M-y") 'helm-show-kill-ring)
   (evil-leader/set-key "ff" 'helm-find-files)
   (evil-leader/set-key "pi" 'helm-semantic-or-imenu)
   (evil-leader/set-key "ci" 'helm-imenu)
