@@ -7,8 +7,9 @@
 
 ;; core elements and ui
 (require 'init-core)
-(require 'init-evil)
+;; (require 'init-evil)
 (require 'init-ui)
+(require 'init-hydra)
 
 ;; make emcas a lot more user friendly for me
 (require 'init-helm)
