@@ -1,7 +1,15 @@
 (use-package evil
   :ensure t
-  :init
-  (progn
+  :diminish undo-tree-mode)
+  :config
+    (evil-mode 1)
+    ;; evil keymappings
+    (define-key evil-normal-state-map "L" 'evil-end-of-line)
+    (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+    (define-key evil-normal-state-map "j" 'evil-next-visual-line)
+    (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
+    (define-key evil-visual-state-map "L" 'evil-end-of-line)
+    (define-key evil-visual-state-map "H" 'evil-beginning-of-line)
     (setq evil-search-module 'evil-search
           evil-want-C-w-in-emacs-state t
           evil-move-cursor-back nil
@@ -22,21 +30,10 @@
           evil-visual-state-tag (propertize "V" 'face
                                             '((:background "grey80" :foreground "black")))
           evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
-  :config
-  (progn
-    (evil-mode 1)
-    ;; evil keymappings
-    (define-key evil-normal-state-map "L" 'evil-end-of-line)
-    (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
-    (define-key evil-normal-state-map "j" 'evil-next-visual-line)
-    (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
-    (define-key evil-visual-state-map "L" 'evil-end-of-line)
-    (define-key evil-visual-state-map "H" 'evil-beginning-of-line)))
-  :diminish undo-tree-mode)
 
 (use-package evil-leader
   :ensure t
-  :init
+  :config
   (progn
     ;; Copied from spacemacs
     (defun max/declare-prefix (prefix name)
@@ -56,7 +53,6 @@ a key sequence. NAME is a symbol name used as the prefix command."
                                      ("g" . "git")
                                      ("w" . "window")))
     (setq evil-leader/in-all-states 1))
-  :config
   (progn
     (global-evil-leader-mode)
     (evil-leader/set-leader "<SPC>")

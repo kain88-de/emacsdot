@@ -1,6 +1,6 @@
 (use-package guide-key
   :ensure t
-  :defer t
+  :defer 5
   :config
   (setq guide-key/guide-key-sequence t)
   :init

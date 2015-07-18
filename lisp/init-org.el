@@ -1,58 +1,62 @@
 (use-package org
-  :defer t)
+  :ensure t
+  :defer t
+  :config
+  (defun max/org-mode-hook ()
+    (setq save-place nil)
+    (flyspell-mode))
 
-(defun max/org-mode-hook ()
-  (setq save-place nil)
-  (flyspell-mode))
+  (add-hook 'org-mode-hook 'max/org-mode-hook)
+                                        ; not needed when global-font-lock-mode is on
+  (add-hook 'org-mode-hook 'turn-on-font-lock)
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
 
-(add-hook 'org-mode-hook 'max/org-mode-hook)
-; not needed when global-font-lock-mode is on
-(add-hook 'org-mode-hook 'turn-on-font-lock)
-(global-set-key "\C-cl" 'org-store-link)
-(global-set-key "\C-ca" 'org-agenda)
+  (evil-leader/set-key "oa" 'org-agenda)
+  (evil-leader/set-key "ol" 'org-store-link)
+  (evil-leader/set-key "oe" 'org-export-dispatch)
 
-(evil-leader/set-key "oa" 'org-agenda)
-(evil-leader/set-key "ol" 'org-store-link)
-(evil-leader/set-key "oe" 'org-export-dispatch)
+  (setq org-todo-keyword-faces
+        '(("TODO" . org-warning) ("STARTED" . "yellow")
+          ("CANCELED" . (:foreground "blue" :weight bold))))
 
-(setq org-todo-keyword-faces
-      '(("TODO" . org-warning) ("STARTED" . "yellow")
-        ("CANCELED" . (:foreground "blue" :weight bold))))
+  (custom-set-variables
+   '(org-agenda-files (quote ("~/org/organizer.org")))
+   '(org-agenda-ndays 7)
+   '(org-deadline-warning-days 14)
+   '(org-agenda-show-all-dates t)
+   '(org-agenda-skip-deadline-if-done t)
+   '(org-agenda-skip-scheduled-if-done t)
+   '(org-agenda-start-on-weekday nil)
+   '(org-reverse-note-order t))
 
-(custom-set-variables
- '(org-agenda-files (quote ("~/org/organizer.org")))
- '(org-agenda-ndays 7)
- '(org-deadline-warning-days 14)
- '(org-agenda-show-all-dates t)
- '(org-agenda-skip-deadline-if-done t)
- '(org-agenda-skip-scheduled-if-done t)
- '(org-agenda-start-on-weekday nil)
- '(org-reverse-note-order t))
+  (setq org-src-fontify-natively t)
+  (setq org-export-backends (quote (ascii beamer html icalendar latex md)))
 
-(setq org-src-fontify-natively t)
-(setq org-export-backends (quote (ascii beamer html icalendar latex md)))
+  (setq org-latex-listings 't)
+  (use-package ox-latex
+    :defer t
+    :config
 
-(setq org-latex-listings 't)
-(require 'ox-latex)
-(add-to-list 'org-latex-packages-alist '("" "listings"))
-(add-to-list 'org-latex-packages-alist '("" "color"))
+    (add-to-list 'org-latex-packages-alist '("" "listings"))
+    (add-to-list 'org-latex-packages-alist '("" "color"))
 
-(add-to-list 'org-latex-classes
-             '("complexes-style"
-               "\\documentclass{book}
+    (add-to-list 'org-latex-classes
+                 '("complexes-style"
+                   "\\documentclass{book}
                  [DEFAULT-PACKAGES]
                  [PACKAGES]
                  [EXTRA]"
-               ("\\chapter{%s}" . "\\chapter{%s}")
-               ("\\section{%s}" . "\\section{%s}")
-               ("\\subsection{%s}" . "\\subsection{%s}")
-               ("\\subsubsection{%s}" . "\\subsubsection{%s}")
-               ("\\paragraph{%s}" . "\\paragraph{%s}")
-               ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
+                   ("\\chapter{%s}" . "\\chapter{%s}")
+                   ("\\section{%s}" . "\\section{%s}")
+                   ("\\subsection{%s}" . "\\subsection{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
 
-(setq org-latex-pdf-process
-      '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
-        "latexmk -c"))
+    (setq org-latex-pdf-process
+          '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
+            "latexmk -c"))))
 
 (defun org ()
   (interactive)
