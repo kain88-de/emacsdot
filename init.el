@@ -10,7 +10,7 @@
 ;; (require 'init-evil)
 (require 'init-ui)
 (require 'init-util)
-;; (require 'init-hydra)
+(require 'init-hydra)
 
 ;; make emcas a lot more user friendly for me
 (require 'init-helm)
