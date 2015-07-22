@@ -51,4 +51,41 @@
 
 (global-set-key (kbd "C-x o") 'hydra-occur-dwim/body)
 
+
+(defhydra hydra-window (global-map "C-x w" :color red)
+  "
+ Split: _v_ert _x_:horz
+  Misc: _a_ce  _o_ther"
+  ("h" windmove-left)
+  ("j" windmove-down)
+  ("k" windmove-up)
+  ("l" windmove-right)
+  ("H" hydra-move-splitter-left)
+  ("J" hydra-move-splitter-down)
+  ("K" hydra-move-splitter-up)
+  ("L" hydra-move-splitter-right)
+  ("v" split-window-right)
+  ("x" split-window-below)
+  ("o" delete-other-windows :exit t)
+  ("a" ace-window :exit t)
+  ("q" nil)
+  ("b" helm-mini))
+
+(defhydra hydra-showme (global-map "C-c s")
+  "
+Emacs Variables ---> Tools ---------------> Informational
+_k_: kill ring         _c_: calculator          _C_: World clock
+_b_: buffer list
+_m_: mark ring         _g_: surf using surfraw
+_e_: eshell history                           _d_: Calendar
+"
+  ("k" helm-show-kill-ring)
+  ("b" helm-buffers-list)
+  ("m" helm-all-mark-rings)
+  ("c" helm-calcul-expression)
+  ("e" helm-eshell-history)
+  ("g" helm-surfraw)
+  ("C" helm-world-time)
+  ("d" calendar))
+
 (provide 'init-hydra)
