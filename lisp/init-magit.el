@@ -4,8 +4,10 @@
   :init
   (add-to-list 'evil-emacs-state-modes 'magit-popup-mode)
   (setq magit-last-seen-setup-instructions "1.4.0")
-  (evil-leader/set-key "gs" 'magit-status)
-  (evil-leader/set-key "gl" 'magit-log)
-  (evil-leader/set-key "gb" 'magit-blame-mode))
+  (defhydra magit-hydra (global-map "C-x g" :color teal)
+    ("s" magit-status)
+    ("b" magit-branch-manager)
+    ("l" magit-log)))
+
 
 (provide 'init-magit)
