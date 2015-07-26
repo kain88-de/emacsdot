@@ -30,4 +30,9 @@
                           ,load-file-name elapsed)))
             t))
 
+;; define custom leader that I can bind my hydras to
+(defvar my-leader)
+(define-prefix-command 'my-leader)
+(define-key global-map (kbd "C-<SPC>") 'my-leader)
+
 (provide 'init-core)
