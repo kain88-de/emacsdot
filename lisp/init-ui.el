@@ -44,6 +44,8 @@
 (custom-set-variables
  '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
+(define-key global-map (kbd "<f12>") 'menu-bar-mode)
+
 (setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
