@@ -4,7 +4,7 @@
 (use-package google-c-style
   :ensure t
   :defer t
-  :init
+  :config
   (defun max/cc-mode-hook ()
     (google-set-c-style)
     (setq c-basic-offset 4))
@@ -17,7 +17,7 @@
 (use-package clang-format
   :ensure t
   :defer t
-  :init
+  :config
   (setq clang-format-executable "clang-format-3.5"))
 
 (use-package semantic

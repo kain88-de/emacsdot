@@ -12,9 +12,10 @@
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-ca" 'org-agenda)
 
-  (evil-leader/set-key "oa" 'org-agenda)
-  (evil-leader/set-key "ol" 'org-store-link)
-  (evil-leader/set-key "oe" 'org-export-dispatch)
+  (defhydra org-hydra (global-map "C-c o" :color teal)
+    ("a" org-agenda)
+    ("l" org-store-link)
+    ("e" org-export-dispatch))
 
   (setq org-todo-keyword-faces
         '(("TODO" . org-warning) ("STARTED" . "yellow")
