@@ -1,35 +1,35 @@
 (use-package evil
   :ensure t
-  :diminish undo-tree-mode)
+  :diminish (undo-tree-mode)
   :config
-    (evil-mode 1)
-    ;; evil keymappings
-    (define-key evil-normal-state-map "L" 'evil-end-of-line)
-    (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
-    (define-key evil-normal-state-map "j" 'evil-next-visual-line)
-    (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
-    (define-key evil-visual-state-map "L" 'evil-end-of-line)
-    (define-key evil-visual-state-map "H" 'evil-beginning-of-line)
-    (setq evil-search-module 'evil-search
-          evil-want-C-w-in-emacs-state t
-          evil-move-cursor-back nil
-          ;; color cursor according to mode
-          evil-emacs-state-cursor '("gray" box)
-          evil-normal-state-cursor '("green" box)
-          evil-visual-state-cursor '("orange" box)
-          evil-insert-state-cursor '("red" bar)
-          evil-replace-state-cursor '("red" bar)
-          evil-operator-state-cursor '("red" hollow)
-          ;; Set mode indicator colors
-          evil-normal-state-tag (propertize "N" 'face
-                                            '((:background "green" :foreground "black")))
-          evil-emacs-state-tag (propertize "E" 'face
-                                           '((:background "orange" :foreground "black")))
-          evil-insert-state-tag (propertize "I" 'face '((:background "red")))
-          evil-motion-state-tag (propertize "M" 'face '((:background "blue")))
-          evil-visual-state-tag (propertize "V" 'face
-                                            '((:background "grey80" :foreground "black")))
-          evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
+  (evil-mode 1)
+  ;; evil keymappings
+  (define-key evil-normal-state-map "L" 'evil-end-of-line)
+  (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
+  (define-key evil-normal-state-map "j" 'evil-next-visual-line)
+  (define-key evil-normal-state-map "k" 'evil-previous-visual-line)
+  (define-key evil-visual-state-map "L" 'evil-end-of-line)
+  (define-key evil-visual-state-map "H" 'evil-beginning-of-line)
+  (setq evil-search-module 'evil-search
+        evil-want-C-w-in-emacs-state t
+        evil-move-cursor-back nil
+        ;; color cursor according to mode
+        evil-emacs-state-cursor '("gray" box)
+        evil-normal-state-cursor '("green" box)
+        evil-visual-state-cursor '("orange" box)
+        evil-insert-state-cursor '("red" bar)
+        evil-replace-state-cursor '("red" bar)
+        evil-operator-state-cursor '("red" hollow)
+        ;; Set mode indicator colors
+        evil-normal-state-tag (propertize "N" 'face
+                                          '((:background "green" :foreground "black")))
+        evil-emacs-state-tag (propertize "E" 'face
+                                         '((:background "orange" :foreground "black")))
+        evil-insert-state-tag (propertize "I" 'face '((:background "red")))
+        evil-motion-state-tag (propertize "M" 'face '((:background "blue")))
+        evil-visual-state-tag (propertize "V" 'face
+                                          '((:background "grey80" :foreground "black")))
+        evil-operator-state-tag (propertize "O" 'face '((:background "purple")))))
 
 (use-package evil-leader
   :ensure t
