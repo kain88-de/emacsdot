@@ -4,7 +4,7 @@
   :commands projectile-global-mode
   :commands helm-projectile-switch-project
   :init
-  (defhydra projectile-hydra (global-map "C-c p" color:teal)
+  (defhydra projectile-hydra ()
     ("p" helm-projectile-switch-project)
     ("f" helm-projectile-find-file)
     ("F" helm-projectile-find-file-in-known-projects)
@@ -18,6 +18,7 @@
     ("r" projectile-replace)
     ("I" projectile-ibuffer)
     ("g" helm-projectile-find-file-dwim))
+  (evil-leader/set-key "p" 'projectile-hydra/body)
   (defun max-save-and-build ()
     "Save and build projects with projectile"
     (interactive)
