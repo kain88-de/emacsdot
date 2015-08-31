@@ -33,7 +33,7 @@
 
   (setq org-src-fontify-natively t)
   (setq org-export-backends (quote (ascii beamer html icalendar latex md)))
-  (setq org-babel-confirm-evaluate nil)
+  (setq org-confirm-babel-evaluate nil)
 
   (setq org-latex-listings 't)
   (use-package ox-latex
