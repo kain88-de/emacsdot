@@ -31,6 +31,8 @@
     (setq projectile-completion-system 'helm)
     :config
     (helm-projectile-on))
+  (use-package helm-ag
+    :ensure t)
   (projectile-global-mode)
   :diminish projectile-mode)
 
