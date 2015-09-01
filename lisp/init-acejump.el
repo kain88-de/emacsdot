@@ -3,28 +3,11 @@
   :defer t
   :config
   (setq aw-dispatch-always t)
-  (defhydra hydra-window (global-map "C-c w" :color red)
-    "
- Split: _v_ert _x_:horz
-  Misc: _a_ce  _o_ther"
-    ("h" windmove-left)
-    ("j" windmove-down)
-    ("k" windmove-up)
-    ("l" windmove-right)
-    ("H" hydra-move-splitter-left)
-    ("J" hydra-move-splitter-down)
-    ("K" hydra-move-splitter-up)
-    ("L" hydra-move-splitter-right)
-    ("d" ace-delete-window)
-    ("s" ace-swap-window)
-    ("m" ace-maximize-window)
-    ("v" split-window-right)
-    ("x" split-window-below)
-    ("o" delete-other-windows :exit t)
-    ("a" ace-window :exit t)
-    ("q" nil)
-    ("b" helm-mini))
-  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)))
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
+  :init
+  (global-set-key (kbd "C-c w") 'ace-window))
+
+
 
 (use-package avy
   :defer t
