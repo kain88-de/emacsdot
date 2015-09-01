@@ -7,7 +7,7 @@
 
 ;; core elements and ui
 (require 'init-core)
-(require 'init-evil)
+;; (require 'init-evil)
 (require 'init-ui)
 (require 'init-util)
 (require 'init-hydra)
