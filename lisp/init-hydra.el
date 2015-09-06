@@ -69,4 +69,32 @@ _e_: eshell history                           _d_: Calendar
   ("C" helm-world-time)
   ("d" calendar))
 
+(defhydra leader (:post (hydra-vim/body))
+  "leader key for hydra-vim"
+  ("x" helm-M-x))
+
+(defhydra hydra-vim (:color amaranth)
+  "vim like interface"
+  ("SPC" leader/body :color blue)
+  ("j" next-line)
+  ("k" previous-line)
+  ("h" backward-char)
+  ("l" forward-char)
+  ("H" beginning-of-line)
+  ("L" end-of-line)
+  ("w" forward-word)
+  ("b" backward-word)
+  ("gg" beginning-of-buffer)
+  ("G" end-of-buffer)
+  ("]" forward-page)
+  ("[" backward-page)
+  ("x" delete-forward-char)
+  ("u" undo)
+  ("*" highlight-symbol-at-point)
+  ("q" nil "quit")
+  ("i" nil "quit")
+  ("a" forward-char "append" :color blue))
+
+(global-set-key (kbd "C-v") 'hydra-vim/body)
+
 (provide 'init-hydra)
