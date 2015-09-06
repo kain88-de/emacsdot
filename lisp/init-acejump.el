@@ -8,12 +8,11 @@
   (global-set-key (kbd "C-c w") 'ace-window))
 
 
-
 (use-package avy
   :defer t
   :config
   (setq avy-style 'at-full)
   (setq avy-all-windows nil)
-  :bind ("C-c SPC" . avy-goto-char))
+  :bind ("C-c SPC" . avy-goto-word-or-subword-1))
 
 (provide 'init-acejump)
