@@ -30,4 +30,6 @@
                           ,load-file-name elapsed)))
             t))
 
+(define-key global-map (kbd "C-c x") 'helm-M-x)
+
 (provide 'init-core)
