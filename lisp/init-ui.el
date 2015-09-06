@@ -30,6 +30,11 @@
 (evil-leader/set-key "w=" 'text-scale-increase)
 (evil-leader/set-key "w-" 'text-scale-decrease)
 
+(use-package highlight-symbol
+  :ensure t
+  :config
+  (define-key global-map (kbd "C-*") 'highlight-symbol-at-point))
+
 (set-frame-font "Source Code Pro-12")
 
 ;; nice scrolling
