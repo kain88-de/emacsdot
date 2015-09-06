@@ -29,4 +29,7 @@
   :init
   (setq helm-make-do-save t))
 
+(use-package helm-swoop
+  :ensure t)
+
 (provide 'init-helm)
