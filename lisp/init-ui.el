@@ -47,8 +47,6 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1) ;; disable annoying blinking
-(custom-set-variables
- '(initial-frame-alist (quote ((fullscreen . maximized)))))
 
 (define-key global-map (kbd "<f12>") 'menu-bar-mode)
 
