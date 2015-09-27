@@ -7,9 +7,10 @@
 
 ;; core elements and ui
 (require 'init-core)
-;; (require 'init-evil)
+(require 'init-evil)
+;; (require 'init-modalka)
 (require 'init-ui)
-(require 'init-util)
+;; (require 'init-util)
 (require 'init-hydra)
 
 ;; make emcas a lot more user friendly for me
