@@ -12,13 +12,13 @@
 
 ;; In some projects I like to have the buffer automatically formatted when I
 ;; save it. For this use the following line in your '.dir-locals.el'
-;;  (c++-mode
-;;   (eval add-hook 'before-save-hook #'clang-format-buffer nil t))
+;; (c++-mode
+;;  (eval add-hook 'before-save-hook #'clang-format-buffer nil t))
 (use-package clang-format
   :ensure t
   :defer t
   :config
-  (setq clang-format-executable "clang-format-3.7"))
+  (setq clang-format-executable "clang-format-3.8"))
 
 (use-package semantic
   :defer t
