@@ -56,6 +56,17 @@
                    ("\\paragraph{%s}" . "\\paragraph{%s}")
                    ("\\subparagraph{%s}" . "\\subparagraph{%s}")))
 
+    (add-to-list 'org-latex-classes '("revtex4-1"
+                                      "\\documentclass{revtex4-1}
+                                      [NO-DEFAULT-PACKAGES]
+                                      [PACKAGES]
+                                      [EXTRA]"
+                                      ("\\section{%s}" . "\\section*{%s}")
+                                      ("\\subsection{%s}" . "\\subsection*{%s}")
+                                      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
     (setq org-latex-pdf-process
           '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
             "latexmk -c"))))
