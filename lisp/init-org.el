@@ -2,27 +2,21 @@
   :ensure t
   :defer t
   :config
-  (defun max/org-mode-hook ()
-    (setq save-place nil)
-    (flyspell-mode))
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; Orgmode as a Day planer settings ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-  (add-hook 'org-mode-hook 'max/org-mode-hook)
-                                        ; not needed when global-font-lock-mode is on
-  (add-hook 'org-mode-hook 'turn-on-font-lock)
-  (global-set-key "\C-cl" 'org-store-link)
-  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key (kbd "C-c a") 'org-agenda)
 
-  (defhydra org-hydra (global-map "C-c o" :color teal)
-    ("a" org-agenda)
-    ("l" org-store-link)
-    ("e" org-export-dispatch))
+  ;; file to save todo items
+  (setq org-agenda-files (quote ("~/org/organizer.org")))
+  (setq org-agenda-window-setup (quote current-window))
 
   (setq org-todo-keyword-faces
         '(("TODO" . org-warning) ("STARTED" . "yellow")
           ("CANCELED" . (:foreground "blue" :weight bold))))
 
   (custom-set-variables
-   '(org-agenda-files (quote ("~/org/organizer.org")))
    '(org-agenda-ndays 7)
    '(org-deadline-warning-days 14)
    '(org-agenda-show-all-dates t)
@@ -30,6 +24,24 @@
    '(org-agenda-skip-scheduled-if-done t)
    '(org-agenda-start-on-weekday nil)
    '(org-reverse-note-order t))
+
+  ;; capture todo items using C-c c t
+  (define-key global-map (kbd "C-c c") 'org-capture)
+  (setq org-capture-templates
+        '(("t" "TODO" entry (file+headline "/home/max/org/organizer.org" "Tasks")
+           "* TODO %?")))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; General Org Mode Settings  ;;
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+  (defun max/org-mode-hook ()
+    (setq save-place nil)
+    (flyspell-mode))
+
+  (add-hook 'org-mode-hook 'max/org-mode-hook)
+  ; not needed when global-font-lock-mode is on
+  (add-hook 'org-mode-hook 'turn-on-font-lock)
 
   (setq org-src-fontify-natively t)
   (setq org-export-backends (quote (ascii beamer html icalendar latex md)))
@@ -84,15 +96,5 @@
 (defun org ()
   (interactive)
   (find-file "~/org/organizer.org"))
-
-(defun notes ()
-  (interactive)
-  (find-file "~/org/notes.org"))
-(setq org-default-notes-file "~/org/notes.org")
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "" "Tasks")
-         "* TODO %? \n %t\n %a")
-        ("j" "Journal" entry (file+headline "" "Journal")
-         "* %?\nEntered on %U\n %i\n %a")))
 
 (provide 'init-org)
