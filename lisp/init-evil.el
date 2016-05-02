@@ -2,8 +2,14 @@
   :ensure t
   :diminish (undo-tree-mode)
   :config
-  (evil-mode 1)
+  (defun max/evil-insert-mode-paste ()
+    (interactive)
+    (evil-paste-before 1)
+    (forward-char))
+
   ;; evil keymappings
+  (bind-key "C-y" 'max/evil-insert-mode-paste evil-insert-state-map)
+  ;;(define-key evil-insert-state-map "C-y" 'max/evil-insert-mode-paste)
   (define-key evil-normal-state-map "L" 'evil-end-of-line)
   (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
   (define-key evil-normal-state-map "j" 'evil-next-visual-line)
@@ -29,7 +35,8 @@
         evil-motion-state-tag (propertize "M" 'face '((:background "blue")))
         evil-visual-state-tag (propertize "V" 'face
                                           '((:background "grey80" :foreground "black")))
-        evil-operator-state-tag (propertize "O" 'face '((:background "purple")))))
+        evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
+  (evil-mode 1))
 
 (use-package evil-leader
   :ensure t
