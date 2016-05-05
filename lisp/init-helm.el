@@ -9,6 +9,7 @@
     (use-package helm-config
       :defer t)
     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action))
+  (define-key global-map (kbd "C-c x") 'helm-M-x)
   :init
   (setq helm-split-window-in-side-p nil
         helm-move-to-line-cycle-in-source t

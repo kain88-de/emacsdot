@@ -23,8 +23,11 @@
 (defun max-reload-init ()
   (load-file (expand-file-name "~/.emacs.d/init.el")))
 
-(define-key global-map (kbd "C-c x") 'helm-M-x)
-
 (setq gc-cons-threshold 5000000000)
+
+;; nice package to measure start up time of emacs
+(use-package esup
+  :ensure t
+  :defer t)
 
 (provide 'init-core)
