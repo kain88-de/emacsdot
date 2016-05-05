@@ -26,6 +26,11 @@
   (evil-leader/set-key "wh" 'rotate:even-horizontal)
   (evil-leader/set-key "wv" 'rotate:even-vertical))
 
+(use-package smart-mode-line
+  :ensure t
+  :init
+  (sml/setup))
+
 (evil-leader/set-key "w=" 'text-scale-increase)
 (evil-leader/set-key "w-" 'text-scale-decrease)
 
