@@ -1,6 +1,5 @@
 (use-package zenburn-theme
   :ensure t
-  :defer t
   :init (load-theme 'zenburn t))
 
 (use-package fill-column-indicator
@@ -35,6 +34,7 @@
   :config
   (define-key global-map (kbd "C-*") 'highlight-symbol-at-point))
 
+(set-face-attribute 'default-frame-alist '(font . "Source Code Pro-12"))
 (set-frame-font "Source Code Pro-12")
 
 ;; nice scrolling

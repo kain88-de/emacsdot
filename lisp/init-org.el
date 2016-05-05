@@ -35,6 +35,17 @@
   ;; General Org Mode Settings  ;;
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (calc . t)
+     (ipython . t)
+     (python . t)))
+
+  (use-package ob-ipython
+    :ensure t)
+
+
   (defun max/org-mode-hook ()
     (setq save-place nil)
     (flyspell-mode))
@@ -83,15 +94,6 @@
           '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
             "latexmk -c"))))
 
-(use-package ob-ipython
-  :ensure t)
-
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((emacs-lisp . t)
-   (calc . t)
-   (ipython . t)
-   (python . t)))
 
 (defun org ()
   (interactive)

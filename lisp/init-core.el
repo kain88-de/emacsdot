@@ -34,4 +34,6 @@
 
 (define-key global-map (kbd "C-c x") 'helm-M-x)
 
+(setq gc-cons-threshold 5000000000)
+
 (provide 'init-core)

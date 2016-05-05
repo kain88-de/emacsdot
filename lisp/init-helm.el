@@ -30,6 +30,7 @@
   (setq helm-make-do-save t))
 
 (use-package helm-swoop
-  :ensure t)
+  :ensure t
+  :defer t)
 
 (provide 'init-helm)
