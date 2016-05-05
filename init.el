@@ -1,5 +1,3 @@
-(defconst emacs-start-time (current-time))
-
 (setq user-full-name "Max Linke"
       user-mail-address "max_linke@gmx.de")
 

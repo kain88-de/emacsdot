@@ -23,15 +23,6 @@
 (defun max-reload-init ()
   (load-file (expand-file-name "~/.emacs.d/init.el")))
 
-(when window-system
-  (add-hook 'after-init-hook
-            `(lambda ()
-               (let ((elapsed (float-time (time-subtract (current-time)
-                                                         emacs-start-time))))
-                 (message "Loading %s...done (%.3fs) [after-init]"
-                          ,load-file-name elapsed)))
-            t))
-
 (define-key global-map (kbd "C-c x") 'helm-M-x)
 
 (setq gc-cons-threshold 5000000000)
