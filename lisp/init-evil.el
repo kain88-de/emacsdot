@@ -2,6 +2,7 @@
   :ensure t
   :diminish (undo-tree-mode)
   :config
+  ;; used to enable insert-mode pasting from global clip board
   (defun max/evil-insert-mode-paste ()
     (interactive)
     (evil-paste-before 1)
@@ -17,8 +18,9 @@
   (define-key evil-visual-state-map "L" 'evil-end-of-line)
   (define-key evil-visual-state-map "H" 'evil-beginning-of-line)
   (setq evil-search-module 'evil-search
-        evil-want-C-w-in-emacs-state t
         evil-move-cursor-back nil
+        evil-symbol-word-search t
+        evil-want-Y-yank-to-eol t
         ;; color cursor according to mode
         evil-emacs-state-cursor '("gray" box)
         evil-normal-state-cursor '("green" box)
@@ -53,12 +55,8 @@ a key sequence. NAME is a symbol name used as the prefix command."
           (evil-leader/set-key prefix command))))
     (setq max/key-binding-prefixes '(("p" . "projects")
                                      ("f" . "files")
-                                     ("h" . "help")
-                                     ("b" . "buffers")
                                      ("c" . "compiler")
-                                     ("o" . "org")
-                                     ("g" . "git")
-                                     ("w" . "window")))
+                                     ("o" . "org")))
     (setq evil-leader/in-all-states 1))
   (progn
     (global-evil-leader-mode)
