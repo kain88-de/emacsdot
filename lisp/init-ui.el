@@ -22,8 +22,8 @@
 
 (use-package rotate
   :ensure t
-  :defer t
-  :init
+  :defer t)
+  ;; :init
   ;; (evil-leader/set-key "wl" 'rotate-layout)
   ;; (evil-leader/set-key "wh" 'rotate:even-horizontal)
   ;; (evil-leader/set-key "wv" 'rotate:even-vertical))
