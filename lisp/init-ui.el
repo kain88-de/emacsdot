@@ -23,10 +23,10 @@
 (use-package rotate
   :ensure t
   :defer t
-  :config
-  (evil-leader/set-key "wl" 'rotate-layout)
-  (evil-leader/set-key "wh" 'rotate:even-horizontal)
-  (evil-leader/set-key "wv" 'rotate:even-vertical))
+  :init
+  ;; (evil-leader/set-key "wl" 'rotate-layout)
+  ;; (evil-leader/set-key "wh" 'rotate:even-horizontal)
+  ;; (evil-leader/set-key "wv" 'rotate:even-vertical))
 
 (use-package smart-mode-line
   :ensure t

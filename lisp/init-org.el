@@ -26,7 +26,7 @@
    '(org-reverse-note-order t))
 
   ;; capture todo items using C-c c t
-  (define-key global-map (kbd "C-c c") 'org-capture)
+  (define-key global-map (kbd "C-c o t") 'org-capture)
   (setq org-capture-templates
         '(("t" "TODO" entry (file+headline "/home/max/org/organizer.org" "Tasks")
            "* TODO %?")))

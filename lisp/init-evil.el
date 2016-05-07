@@ -40,34 +40,6 @@
         evil-operator-state-tag (propertize "O" 'face '((:background "purple"))))
   (evil-mode 1))
 
-(use-package evil-leader
-  :ensure t
-  :config
-  (progn
-    ;; Copied from spacemacs
-    (defun max/declare-prefix (prefix name)
-      "Declare a prefix PREFIX. PREFIX is a string describing
-a key sequence. NAME is a symbol name used as the prefix command."
-      (let ((command (intern (concat "group:" name))))
-        ;; define the prefix command only if it does not already exist
-        (unless (lookup-key evil-leader--default-map prefix)
-          (define-prefix-command command)
-          (evil-leader/set-key prefix command))))
-    (setq max/key-binding-prefixes '(("p" . "projects")
-                                     ("f" . "files")
-                                     ("c" . "compiler")
-                                     ("o" . "org")))
-    (setq evil-leader/in-all-states 1))
-  (progn
-    (global-evil-leader-mode)
-    (evil-leader/set-leader "<SPC>")
-    ;; this NEEDS to run before I set any evil-leader keybinding
-    (mapc (lambda (x) (max/declare-prefix (car x) (cdr x)))
-          max/key-binding-prefixes)
-    (evil-leader/set-key "bh" 'evil-ex-nohighlight)
-    (evil-leader/set-key "bw" 'whitespace-cleanup)
-    (evil-leader/set-key "bs" 'save-buffer)))
-
 (use-package evil-surround
   :ensure t
   :config

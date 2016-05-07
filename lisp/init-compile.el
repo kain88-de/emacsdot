@@ -11,9 +11,7 @@
                                        "CPLUS_INCLUDE_PATH=%s/.local/include" (getenv "HOME")))
         compilation-scroll-output 'next-error
         ;; don't stop on info or warning
-        compilation-skip-threshold 2)
-  (evil-leader/set-key "cn" 'next-error)
-  (evil-leader/set-key "cp" 'previous-error))
+        compilation-skip-threshold 2))
 
 ;; extract ENV-VAR to eshell
 ;; (use-package exec-path-from-shell
