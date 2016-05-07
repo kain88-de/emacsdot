@@ -15,4 +15,8 @@
   :mode ("\\.pyx\\'" . cython-mode)
   :defer)
 
+;; python version depdentend shebangs
+(add-to-list 'interpreter-mode-alist '("python2" . elpy-mode))
+(add-to-list 'interpreter-mode-alist '("python3" . elpy-mode))
+
 (provide 'init-python)

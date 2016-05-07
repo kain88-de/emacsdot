@@ -14,7 +14,9 @@
 ;; (setq use-package-verbose t)
 
 ;; save backup centrally in my emacs config.
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq backup-directory-alist '((".*" . "~/.emacs.d/backups")))
+(setq auto-save-list-file-prefix "~/.emacs.d/autosave")
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/autosave" t)))
 
 (setq custom-file "~/.emacs.d/custom.el")
 (when (file-exists-p custom-file)
@@ -29,5 +31,11 @@
 (use-package esup
   :ensure t
   :defer t)
+
+;; Protein Data Bank files are text
+(setq auto-mode-alist (append '(("\\.pdb$" . text-mode)) auto-mode-alist))
+
+;; Store tramp backups locally
+(setq tramp-backup-directory-alist backup-directory-alist)
 
 (provide 'init-core)

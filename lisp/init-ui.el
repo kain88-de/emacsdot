@@ -1,6 +1,8 @@
 (use-package zenburn-theme
   :ensure t
   :init (load-theme 'zenburn t))
+;; disable questions about theme loading
+(setq custom-safe-themes t)
 
 (use-package fill-column-indicator
   :ensure t
@@ -31,9 +33,6 @@
   :init
   (sml/setup))
 
-(evil-leader/set-key "w=" 'text-scale-increase)
-(evil-leader/set-key "w-" 'text-scale-decrease)
-
 (use-package highlight-symbol
   :ensure t
   :config
@@ -43,19 +42,16 @@
 (set-frame-font "Source Code Pro-12")
 
 ;; nice scrolling
-(setq smooth-scroll-margin 0)
-(setq scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
+(setq scroll-conservatively 101
+      scroll-preserve-screen-position t)
 
+;; free up screen space
 (tooltip-mode -1)
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (blink-cursor-mode -1) ;; disable annoying blinking
 
-(define-key global-map (kbd "<f12>") 'menu-bar-mode)
-
-(setq inhibit-splash-screen t)
 (setq inhibit-startup-message t)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -63,7 +59,15 @@
 (setq-default visible-bell t)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+;; enable line wraping
 (global-visual-line-mode)
 (diminish 'visual-line-mode)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+;; display keybind earlier
+(setq echo-keystrokes 0.5)
+
+;; just display filename and don't fuss with brackets
+(setq uniquify-buffer-name-style 'forward)
 
 (provide 'init-ui)

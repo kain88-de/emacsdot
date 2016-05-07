@@ -99,4 +99,7 @@
   (interactive)
   (find-file "~/org/organizer.org"))
 
+;; start with orgmode-notes
+(setq initial-buffer-choice "/home/max/org/organizer.org")
+
 (provide 'init-org)
