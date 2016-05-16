@@ -38,6 +38,13 @@
   :config
   (define-key global-map (kbd "C-*") 'highlight-symbol-at-point))
 
+(use-package git-gutter
+  :ensure t
+  :config
+  (global-git-gutter-mode +1))
+;; TODO:make this work
+;;  (add-hook projectile-mode-hook 'git-gutter-mode))
+
 (set-face-attribute 'default-frame-alist '(font . "Source Code Pro-12"))
 (set-frame-font "Source Code Pro-12")
 
