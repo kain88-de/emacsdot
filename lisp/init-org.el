@@ -25,11 +25,15 @@
    '(org-agenda-start-on-weekday nil)
    '(org-reverse-note-order t))
 
-  ;; capture todo items using C-c c t
-  (define-key global-map (kbd "C-c o t") 'org-capture)
+  ;; bound in a hydra
+  ;; (define-key global-map (kbd "C-c o t") 'org-capture)
   (setq org-capture-templates
-        '(("t" "TODO" entry (file+headline "/home/max/org/organizer.org" "Tasks")
-           "* TODO %?")))
+        '(("p" "PRIVAT-TODO" entry (file+headline "/home/max/org/organizer.org" "Private")
+           "* TODO %? %^g\n %t")
+          ("w" "WORK-TODO" entry (file+headline "/home/max/org/organizer.org" "Work")
+           "* TODO %? %^g\n %t")
+          ("o" "FOSS-TODO" entry (file+headline "/home/max/org/organizer.org" "Foss")
+           "* TODO %? %^g\n %t")))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; General Org Mode Settings  ;;
