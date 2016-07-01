@@ -12,7 +12,7 @@
 
 (defhydra hydra-org ()
   " org functions access"
-  ("a" org-agenda)
+  ("a" org-agenda :color blue)
   ("c" org-capture :color blue)
   ("e" org-export-dispatch :color blue)
   ("j" (lambda ()

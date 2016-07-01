@@ -45,6 +45,8 @@
 ;; TODO:make this work
 ;;  (add-hook projectile-mode-hook 'git-gutter-mode))
 
+;; TODO: maybe set shortcut to autofill mode for textfile editing with others
+
 (set-face-attribute 'default-frame-alist '(font . "Source Code Pro-12"))
 (set-frame-font "Source Code Pro-12")
 

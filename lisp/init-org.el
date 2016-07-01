@@ -13,8 +13,11 @@
   (setq org-agenda-window-setup (quote current-window))
 
   (setq org-todo-keyword-faces
-        '(("TODO" . org-warning) ("STARTED" . "yellow")
+        '(("TODO" . org-warning) ("WAITING" . "yellow")
           ("CANCELED" . (:foreground "blue" :weight bold))))
+
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d!)" "CANCELED(c@)")))
 
   (custom-set-variables
    '(org-agenda-ndays 7)
@@ -29,11 +32,11 @@
   ;; (define-key global-map (kbd "C-c o t") 'org-capture)
   (setq org-capture-templates
         '(("p" "PRIVAT-TODO" entry (file+headline "/home/max/org/organizer.org" "Private")
-           "* TODO %? %^g\n %t")
+           "* TODO %? %^g\n %u")
           ("w" "WORK-TODO" entry (file+headline "/home/max/org/organizer.org" "Work")
-           "* TODO %? %^g\n %t")
+           "* TODO %? %^g\n %u")
           ("o" "FOSS-TODO" entry (file+headline "/home/max/org/organizer.org" "Foss")
-           "* TODO %? %^g\n %t")))
+           "* TODO %? %^g\n %u")))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; General Org Mode Settings  ;;
