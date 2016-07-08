@@ -27,12 +27,6 @@
         company-selection-wrap-around t
         company-show-numbers))
 
-(use-package function-args
-  :ensure t
-  :defer t
-  :init
-  (fa-config-default))
-
 ;; highlight specific keywords
 (add-hook 'prog-mode-hook (lambda ()
                             (font-lock-add-keywords
