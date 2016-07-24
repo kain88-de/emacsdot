@@ -1,3 +1,5 @@
+(setq gc-cons-threshold 5000000000)
+
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
@@ -25,12 +27,14 @@
 (defun max-reload-init ()
   (load-file (expand-file-name "~/.emacs.d/init.el")))
 
-(setq gc-cons-threshold 5000000000)
-
 ;; nice package to measure start up time of emacs
 (use-package esup
   :ensure t
   :defer t)
+
+;; nicer package manager
+(use-package paradox
+  :ensure t)
 
 ;; Protein Data Bank files are text
 (setq auto-mode-alist (append '(("\\.pdb$" . text-mode)) auto-mode-alist))

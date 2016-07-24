@@ -1,3 +1,9 @@
+(use-package auctex
+  :ensure t
+  :defer t
+  :config
+  (setq-default TeX-engine 'pdflatex))
+
 (setq TeX-auto-save t)
 (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'turn-on-flyspell)

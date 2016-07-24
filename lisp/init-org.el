@@ -41,6 +41,8 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; General Org Mode Settings  ;;
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  (use-package ob-ipython
+    :ensure t)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -48,10 +50,6 @@
      (calc . t)
      (ipython . t)
      (python . t)))
-
-  (use-package ob-ipython
-    :ensure t)
-
 
   (defun max/org-mode-hook ()
     (setq save-place nil)
@@ -101,10 +99,12 @@
           '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
             "latexmk -c"))))
 
+;; (use-package org-journal
+;;   :ensure t
+;;   :config
+;;   (setq org-journal-dir "/mnt/science/Journal/")
+;;   (setq org-journal-file-format "%Y-%m-%d.org"))
 
-(defun org ()
-  (interactive)
-  (find-file "~/org/organizer.org"))
 
 ;; start with orgmode-notes
 (setq initial-buffer-choice "/home/max/org/organizer.org")

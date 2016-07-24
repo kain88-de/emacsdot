@@ -31,9 +31,6 @@
 (use-package function-args
   :ensure t
   :defer t
-  :init
-  (evil-leader/set-key "cm" 'moo-complete)
-  (evil-leader/set-key "cf" 'fa-show)
   :config
   (fa-config-default))
 
