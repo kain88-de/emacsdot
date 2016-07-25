@@ -33,6 +33,7 @@
 (require 'init-yaml)
 (require 'init-ledger)
 (require 'init-shell)
+(require 'init-docker)
 
 ;; organization and writing
 (require 'init-writing)
