@@ -63,6 +63,17 @@
   (setq org-export-backends (quote (ascii beamer html icalendar latex md)))
   (setq org-confirm-babel-evaluate nil)
 
+  ; setup org publish
+  (setq org-export-async-debug t)
+  (setq org-publish-project-alist
+        '(("orgfiles"
+           :base-directory "~/foss/blog/org"
+           :base-extension "org"
+           :publishing-directory "~/foss/blog/content/posts"
+           :publishing-function org-md-publish-to-md
+           :section-number nil
+           :with-toc nil)))
+
   (setq org-latex-listings 't)
   (use-package ox-latex
     :defer t
