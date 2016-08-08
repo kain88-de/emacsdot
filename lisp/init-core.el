@@ -1,12 +1,3 @@
-(setq gc-cons-threshold 5000000000)
-
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-(add-to-list 'package-archives
-             '("gnu" . "https://elpa.gnu.org/packages/") t)
-(package-initialize)
-
 ;; bootstrap use-package
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

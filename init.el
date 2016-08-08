@@ -1,3 +1,19 @@
+;; Since package.el now wants me to have package-initialize in the init.el
+;; explicitly to all related setup first no matter what.
+(setq gc-cons-threshold 5000000000)
+
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("gnu" . "https://elpa.gnu.org/packages/") t)
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq user-full-name "Max Linke"
       user-mail-address "max_linke@gmx.de")
 
