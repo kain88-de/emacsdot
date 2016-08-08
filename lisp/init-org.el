@@ -110,11 +110,13 @@
           '("latexmk -shell-escape -interaction=nonstopmode -pdf -f %f"
             "latexmk -c"))))
 
-;; (use-package org-journal
-;;   :ensure t
-;;   :config
-;;   (setq org-journal-dir "/mnt/science/Journal/")
-;;   (setq org-journal-file-format "%Y-%m-%d.org"))
+(use-package org-journal
+  :ensure t
+  :config
+  (setq org-journal-dir "/mnt/science/Journal/")
+  (setq org-journal-file-format "%Y-%m-%d.org")
+  (setq org-journal-file-pattern (org-journal-format-string->regex "%Y-%m-%d.org"))
+  (org-journal-update-auto-mode-alist))
 
 
 ;; start with orgmode-notes

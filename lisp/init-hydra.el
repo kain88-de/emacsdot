@@ -15,7 +15,8 @@
   ("a" org-agenda :color blue)
   ("c" org-capture :color blue)
   ("e" org-export-dispatch :color blue)
-  ("j" (lambda ()
+  ("j" org-journal-new-entry :color blue)
+  ("t" (lambda ()
          (interactive)
          (find-file "~/org/organizer.org"))))
 ;; overwrite the evil C-o binding that I never use
