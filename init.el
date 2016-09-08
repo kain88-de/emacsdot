@@ -55,3 +55,6 @@
 (require 'init-writing)
 (require 'init-org)
 (require 'init-latex)
+
+;; reset gc value to keep emacs from hogging memory
+(setq gc-cons-threshold 800000)
