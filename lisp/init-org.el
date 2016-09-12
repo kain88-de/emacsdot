@@ -112,6 +112,7 @@
 
 (use-package org-journal
   :ensure t
+  :commands (org-journal-new-entry)
   :config
   (setq org-journal-dir "/mnt/science/Journal/")
   (setq org-journal-file-format "%Y-%m-%d.org")

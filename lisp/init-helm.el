@@ -33,4 +33,7 @@
   :ensure t
   :defer t)
 
+(use-package helm-ag
+  :ensure t)
+
 (provide 'init-helm)
