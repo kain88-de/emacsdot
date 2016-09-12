@@ -116,6 +116,7 @@
   (setq org-journal-dir "/mnt/science/Journal/")
   (setq org-journal-file-format "%Y-%m-%d.org")
   (setq org-journal-file-pattern (org-journal-format-string->regex "%Y-%m-%d.org"))
+  (setq org-journal-time-format "")
   (org-journal-update-auto-mode-alist))
 
 
