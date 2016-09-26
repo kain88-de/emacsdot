@@ -1,6 +1,7 @@
 (use-package org
   :ensure t
   :defer t
+  :pin melpa
   :config
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Orgmode as a Day planer settings ;;
