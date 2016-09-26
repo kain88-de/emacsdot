@@ -4,21 +4,10 @@
 ;; disable questions about theme loading
 (setq custom-safe-themes t)
 
-(use-package fill-column-indicator
-  :ensure t
-  :defer t
-  :config
-  (progn
-    (setq fci-rulw-width 2)
-    (setq fci-rule-column 80)))
-
 (use-package saveplace
   :ensure t
-  :defer t
   :config
-  (progn
-    (setq-default save-place t)
-    (setq save-place-file (concat user-emacs-directory "saveplace.el"))))
+  (save-place-mode 1))
 
 (use-package rotate
   :ensure t
@@ -37,13 +26,6 @@
   :ensure t
   :config
   (define-key global-map (kbd "C-*") 'highlight-symbol-at-point))
-
-(use-package git-gutter
-  :ensure t
-  :config
-  (global-git-gutter-mode +1))
-;; TODO:make this work
-;;  (add-hook projectile-mode-hook 'git-gutter-mode))
 
 ;; TODO: maybe set shortcut to autofill mode for textfile editing with others
 
@@ -74,9 +56,6 @@
 (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
 ;; display keybind earlier
-(setq echo-keystrokes 0.5)
-
-;; just display filename and don't fuss with brackets
-(setq uniquify-buffer-name-style 'forward)
+(setq echo-keystrokes 0)
 
 (provide 'init-ui)

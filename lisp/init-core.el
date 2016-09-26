@@ -13,6 +13,7 @@
 ;; nice package to measure start up time of emacs
 (use-package esup
   :ensure t
+  :commands (esup)
   :defer t)
 
 ;; nicer package manager
