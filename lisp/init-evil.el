@@ -7,10 +7,9 @@
     (interactive)
     (evil-paste-before 1)
     (forward-char))
-
   ;; evil keymappings
   (bind-key "C-y" 'max/evil-insert-mode-paste evil-insert-state-map)
-  ;;(define-key evil-insert-state-map "C-y" 'max/evil-insert-mode-paste)
+
   (define-key evil-normal-state-map "L" 'evil-end-of-line)
   (define-key evil-normal-state-map "H" 'evil-beginning-of-line)
   (define-key evil-normal-state-map "j" 'evil-next-visual-line)
