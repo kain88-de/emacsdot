@@ -16,3 +16,5 @@ recentf
 eshell
 *.cache
 tramp
+places
+.#recentf
