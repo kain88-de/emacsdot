@@ -1,0 +1,31 @@
+# -*- mode: snippet -*-
+# contributor: Max Linke
+# name: inline_figure
+# key: inline_figure_
+# --
+
+#+BEGIN_SRC python :tangle yes  :exports none
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+    from cycler import cycler
+    import palettable
+    import numpy as np
+
+    sns.set_context('paper')
+    sns.set_style('whitegrid')
+
+    f, ax = plt.subplots(1, 1)
+
+    $0
+
+    plt.tight_layout()
+    plt.savefig('$1.png')
+#+END_SRC
+
+#+RESULTS:
+: None
+
+#+ATTR_LATEX: :float figure
+#+CAPTION: $2
+#+NAME: fig:$1
+[[file:$1.png]]
