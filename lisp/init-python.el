@@ -15,6 +15,13 @@
   :mode ("\\.pyx\\'" . cython-mode)
   :defer)
 
+(use-package conda
+  :ensure t
+  :defer
+  :config
+  (setq conda-anaconda-home "/home/max/conda")
+  (conda-env-initialize-interactive-shells))
+
 ;; python version depdentend shebangs
 (add-to-list 'interpreter-mode-alist '("python2" . elpy-mode))
 (add-to-list 'interpreter-mode-alist '("python3" . elpy-mode))
