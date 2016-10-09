@@ -31,13 +31,14 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
-;; (require 'init-modalka)
+; (require 'init-modalka)
 (require 'init-ui)
 ;; (require 'init-util)
 (require 'init-hydra)
 
 ;; make emcas a lot more user friendly for me
-(require 'init-helm)
+;; (require 'init-helm)
+(require 'init-counsel)
 (require 'init-projectile)
 (require 'init-guide-key)
 (require 'init-acejump)

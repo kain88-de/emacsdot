@@ -10,12 +10,16 @@
     (projectile-save-project-buffers)
     (projectile-compile-project t))
   :config
-  (use-package helm-projectile
+  ;; (use-package helm-projectile
+  ;;   :ensure t
+  ;;   :init
+  ;;   (setq projectile-completion-system 'helm)
+  ;;   :config
+  ;;   (helm-projectile-on))
+  (use-package counsel-projectile
     :ensure t
-    :init
-    (setq projectile-completion-system 'helm)
     :config
-    (helm-projectile-on))
+    (counsel-projectile-on))
   (projectile-global-mode)
   :diminish projectile-mode)
 
