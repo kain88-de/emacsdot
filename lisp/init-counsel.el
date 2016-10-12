@@ -12,7 +12,8 @@
   )
 
 ;; Needed to search with counsel
-(use-package ag
-  :ensure t)
+;; (use-package ag
+;;   :ensure t
+;;   :)
 
 (provide 'init-counsel)
