@@ -22,11 +22,4 @@
   (projectile-global-mode)
   :diminish projectile-mode)
 
-(use-package git-gutter
-  :ensure t
-  :config
-  ;; (global-git-gutter-mode t))
-;; TODO:make this work
- (add-hook 'projectile-mode-hook 'git-gutter-mode))
-
 (provide 'init-projectile)
