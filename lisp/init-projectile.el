@@ -2,13 +2,7 @@
   :ensure t
   :defer 1
   :commands projectile-global-mode
-  :commands helm-projectile-switch-project
-  :init
-  (defun max-save-and-build ()
-    "Save and build projects with projectile"
-    (interactive)
-    (projectile-save-project-buffers)
-    (projectile-compile-project t))
+  :commands counsel-projectile-switch-project
   :config
   ;; (use-package helm-projectile
   ;;   :ensure t
@@ -22,8 +16,8 @@
     (counsel-projectile-on)
     (defun counsel-projectile-ag (&optional options)
       (interactive "P")
-      (counsel-ag "" (projectile-project-root) ))
-    (define-key projectile-command-map (kbd "ss") #'counsel-projectile-ag)
+      (counsel-ag "" (projectile-project-root)))
+    (define-key projectile-mode-map [remap projectile-ag] #'counsel-projectile-ag)
     )
   (projectile-global-mode)
   :diminish projectile-mode)
