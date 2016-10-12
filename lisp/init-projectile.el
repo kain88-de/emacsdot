@@ -19,7 +19,12 @@
   (use-package counsel-projectile
     :ensure t
     :config
-    (counsel-projectile-on))
+    (counsel-projectile-on)
+    (defun counsel-projectile-ag (&optional options)
+      (interactive "P")
+      (counsel-ag "" (projectile-project-root) ))
+    (define-key projectile-command-map (kbd "ss") #'counsel-projectile-ag)
+    )
   (projectile-global-mode)
   :diminish projectile-mode)
 
