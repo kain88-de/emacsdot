@@ -18,7 +18,8 @@
 
 ;; nicer package manager
 (use-package paradox
-  :ensure t)
+  :ensure t
+  :commands (paradox-list-packages))
 
 ;; Protein Data Bank files are text
 (setq auto-mode-alist (append '(("\\.pdb$" . text-mode)) auto-mode-alist))
