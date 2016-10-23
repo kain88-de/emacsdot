@@ -25,6 +25,8 @@
 (setq auto-mode-alist (append '(("\\.pdb$" . text-mode)) auto-mode-alist))
 
 ;; Store tramp backups locally
-(setq tramp-backup-directory-alist backup-directory-alist)
+(setq tramp-backup-directory-alist backup-directory-alist
+      tramp-default-method "ssh")
+
 
 (provide 'init-core)
