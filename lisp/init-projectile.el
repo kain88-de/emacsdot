@@ -14,10 +14,6 @@
     :ensure t
     :config
     (counsel-projectile-on)
-    (defun counsel-projectile-ag (&optional options)
-      (interactive "P")
-      (counsel-ag "" (projectile-project-root)))
-    (define-key projectile-mode-map [remap projectile-ag] #'counsel-projectile-ag)
     )
   (projectile-global-mode)
   :diminish projectile-mode)
