@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: figure env
+# key: figure
+# --
+\begin{figure}[htb]
+\centering
+\includegraphics[width=.9\linewidth]{${1:filename}}
+\caption{\label{fig:$1} $2}
+\end{figure}
+$0
