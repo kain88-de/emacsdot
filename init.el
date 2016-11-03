@@ -31,7 +31,7 @@
 ;; core elements and ui
 (require 'init-core)
 (require 'init-evil)
-; (require 'init-modalka)
+;; (require 'init-modalka)
 (require 'init-ui)
 ;; (require 'init-util)
 (require 'init-hydra)
@@ -60,6 +60,7 @@
 (require 'init-ledger)
 (require 'init-shell)
 (require 'init-docker)
+(require 'init-rust)
 
 ;; organization and writing
 (require 'init-writing)
