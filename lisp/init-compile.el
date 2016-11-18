@@ -13,6 +13,14 @@
         ;; don't stop on info or warning
         compilation-skip-threshold 2))
 
+(defhydra hydra-compiling (global-map "C-c c")
+  " general compiler programming stuff "
+  ("n" next-error)
+  ("p" previous-error)
+  ("m" moo-complete)
+  ("f" fa-show)
+  ("q" nil               nil :color blue))
+
 ;; extract ENV-VAR to eshell
 ;; (use-package exec-path-from-shell
 ;;   :ensure t

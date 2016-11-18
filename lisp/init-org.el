@@ -30,7 +30,6 @@
    '(org-reverse-note-order t))
 
   ;; bound in a hydra
-  ;; (define-key global-map (kbd "C-c o t") 'org-capture)
   (setq org-capture-templates
         '(("p" "PRIVAT-TODO" entry (file+headline "/home/max/org/organizer.org" "Private")
            "* TODO %? %^g\n %u")
@@ -38,6 +37,16 @@
            "* TODO %? %^g\n %u")
           ("o" "FOSS-TODO" entry (file+headline "/home/max/org/organizer.org" "Foss")
            "* TODO %? %^g\n %u")))
+
+  ;; (defhydra hydra-org ()
+  ;;   " org functions access"
+  ;;   ("a" org-agenda :color blue)
+  ;;   ("c" org-capture :color blue)
+  ;;   ("e" org-export-dispatch :color blue)
+  ;;   ("j" org-journal-new-entry :color blue)
+  ;;   ("t" (lambda ()
+  ;;          (interactive)
+  ;;          (find-file "~/org/organizer.org"))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; General Org Mode Settings  ;;

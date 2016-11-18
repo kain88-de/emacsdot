@@ -9,14 +9,6 @@
   :config
   (save-place-mode 1))
 
-(use-package rotate
-  :ensure t
-  :defer t)
-  ;; :init
-  ;; (evil-leader/set-key "wl" 'rotate-layout)
-  ;; (evil-leader/set-key "wh" 'rotate:even-horizontal)
-  ;; (evil-leader/set-key "wv" 'rotate:even-vertical))
-
 (use-package smart-mode-line
   :ensure t
   :init
@@ -25,9 +17,7 @@
 (use-package highlight-symbol
   :ensure t
   :config
-  (define-key global-map (kbd "C-*") 'highlight-symbol-at-point))
-
-;; TODO: maybe set shortcut to autofill mode for textfile editing with others
+  (general-define-key "C-*" 'highlight-symbol-at-point))
 
 (set-face-attribute 'default-frame-alist '(font . "Source Code Pro-12"))
 (set-frame-font "Source Code Pro-12")
