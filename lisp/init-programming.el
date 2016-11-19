@@ -9,8 +9,8 @@
   :defer t
   :init
   (progn
-    (setq-default whitespace-style '(face tabs empty
-                                          trailing lines-tail tab-mark))
+    (setq-default whitespace-style '(face tabs empty trailing lines-tail
+                                          tab-mark))
     (add-hook 'before-save-hook 'whitespace-cleanup))
   :config (global-whitespace-mode)
   :diminish (global-whitespace-mode
@@ -20,12 +20,16 @@
 (use-package company
   :ensure t
   :defer t
-  :init
+  :config
   (add-hook 'after-init-hook 'global-company-mode)
   (setq company-clang-arguments '("-std=c++11" "-I/home/max/.local/include")
         company-idle-delay 0.1
         company-selection-wrap-around t
         company-show-numbers t))
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
 
 ;; highlight specific keywords
 (add-hook 'prog-mode-hook (lambda ()
@@ -41,3 +45,4 @@
 (setq-default tab-width 4)
 
 (provide 'init-programming)
+;;; init-programming.el ends here

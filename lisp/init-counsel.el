@@ -8,7 +8,8 @@
   :ensure t
   :general
   ("M-x" 'counsel-M-x)
-  ("C-x C-f" 'counsel-find-file))
+  ("C-x C-f" 'counsel-find-file)
+  ("M-y" 'counsel-yank-pop))
 
 (use-package swiper
   :ensure t
@@ -19,7 +20,7 @@
   :ensure t
   :defer t
   :general
-  ("C-c w" 'ace-window)
+  ("C-x o" 'ace-window)
   :config
   (setq aw-dispatch-always t)
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l)))

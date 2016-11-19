@@ -1,6 +1,6 @@
 (use-package zenburn-theme
   :ensure t
-  :init (load-theme 'zenburn t))
+  :config (load-theme 'zenburn t))
 ;; disable questions about theme loading
 (setq custom-safe-themes t)
 
@@ -48,4 +48,11 @@
 ;; display keybind earlier
 (setq echo-keystrokes 0)
 
+(use-package beacon
+  :ensure t
+  :config
+  (beacon-mode 1)
+  (setq beacon-color "#666600"))
+
 (provide 'init-ui)
+;;; init-ui.el ends here
