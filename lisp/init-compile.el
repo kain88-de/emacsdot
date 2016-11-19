@@ -20,6 +20,7 @@
   ("m" moo-complete)
   ("f" fa-show)
   ("q" nil               nil :color blue))
+(general-define-key "C-c c" 'hydra-compiling/body)
 
 ;; extract ENV-VAR to eshell
 ;; (use-package exec-path-from-shell

@@ -7,8 +7,9 @@
 
 (use-package counsel
   :ensure t
-  :bind (("C-x C-f" . counsel-find-file)
-         ("M-x" . counsel-M-x))
+  :init
+  (general-define-key "M-x" 'counsel-M-x)
+  (general-define-key "C-x C-f" 'counsel-find-file)
   )
 
 (use-package swiper
@@ -22,13 +23,14 @@
   (setq aw-dispatch-always t)
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l))
   :init
-  (global-set-key (kbd "C-c w") 'ace-window))
+  (general-define-key "C-c w" 'ace-window))
 
 (use-package avy
   :defer t
   :config
   (setq avy-style 'at-full)
   (setq avy-all-windows nil)
-  :bind ("C-c SPC" . avy-goto-word-or-subword-1))
+  :init
+  (general-define-key "C-c SPC" 'avy-goto-word-or-subword-1))
 
 (provide 'init-counsel)

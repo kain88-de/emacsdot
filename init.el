@@ -37,7 +37,6 @@
 ;; make emcas a lot more user friendly for me
 (require 'init-counsel)
 (require 'init-projectile)
-(require 'init-guide-key)
 (require 'init-help)
 
 ;;programming related packages

@@ -38,15 +38,16 @@
           ("o" "FOSS-TODO" entry (file+headline "/home/max/org/organizer.org" "Foss")
            "* TODO %? %^g\n %u")))
 
-  ;; (defhydra hydra-org ()
-  ;;   " org functions access"
-  ;;   ("a" org-agenda :color blue)
-  ;;   ("c" org-capture :color blue)
-  ;;   ("e" org-export-dispatch :color blue)
-  ;;   ("j" org-journal-new-entry :color blue)
-  ;;   ("t" (lambda ()
-  ;;          (interactive)
-  ;;          (find-file "~/org/organizer.org"))))
+  (defhydra hydra-org ()
+    " org functions access"
+    ("a" org-agenda :color blue)
+    ("c" org-capture :color blue)
+    ("e" org-export-dispatch :color blue)
+    ("j" org-journal-new-entry :color blue)
+    ("t" (lambda ()
+           (interactive)
+           (find-file "~/org/organizer.org"))))
+  (general-define-key "C-o" 'hydra-org/body)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; General Org Mode Settings  ;;
