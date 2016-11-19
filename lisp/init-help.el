@@ -1,7 +1,8 @@
 (use-package discover-my-major
   :ensure t
   :defer t
-  :init (general-define-key "C-h m" 'discover-my-major))
+  :general
+  ("C-h m" 'discover-my-major))
 
 (use-package which-key
   :ensure t

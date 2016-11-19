@@ -16,8 +16,8 @@
 
 (use-package highlight-symbol
   :ensure t
-  :config
-  (general-define-key "C-*" 'highlight-symbol-at-point))
+  :general
+  ("C-*" 'highlight-symbol-at-point))
 
 (set-face-attribute 'default-frame-alist '(font . "Source Code Pro-12"))
 (set-frame-font "Source Code Pro-12")
