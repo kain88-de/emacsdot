@@ -28,5 +28,4 @@
 (setq tramp-backup-directory-alist backup-directory-alist
       tramp-default-method "ssh")
 
-
 (provide 'init-core)
