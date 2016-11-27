@@ -3,7 +3,8 @@
   :defer t
   :general
   ("C-c g" 'magit-status)
-  :init
-  (setq magit-last-seen-setup-instructions "1.4.0"))
+  :config
+  (setq magit-last-seen-setup-instructions "1.4.0"
+        magit-visit-ref-behavior '(checkout-any focus-on-ref)))
 
 (provide 'init-magit)
