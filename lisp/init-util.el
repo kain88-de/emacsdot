@@ -32,6 +32,11 @@ http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-l
       (move-beginning-of-line 1))))
 (general-define-key "C-a" 'max/smarter-move-beginning-of-line)
 
+(use-package whole-line-or-region
+  :ensure t
+  :init
+  (whole-line-or-region-mode 1))
+
 (use-package expand-region
   :ensure t
   :general ("C-=" 'er/expand-region))
