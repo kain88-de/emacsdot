@@ -46,4 +46,7 @@ http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-l
   :init
   (global-undo-tree-mode))
 
+(use-package hippie-expand
+  :general ("M-/" 'hippie-expand))
+
 (provide 'init-util)
