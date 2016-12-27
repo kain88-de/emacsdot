@@ -2,9 +2,9 @@
   :ensure t
   :defer 1
   :config
-  (add-to-list 'exec-path "/home/max/conda/bin")
-  (setq elpy-rpc-python-command "/home/max/conda/bin/python")
-  (setq python-check-command "/home/max/conda/bin/flake8")
+  (add-to-list 'exec-path "/home/max/anaconda2/bin")
+  (setq elpy-rpc-python-command "/home/max/anaconda2/bin/python")
+  (setq python-check-command "/home/max/anaconda2/bin/flake8")
   (elpy-enable))
 
 (use-package py-yapf
@@ -19,7 +19,7 @@
   :ensure t
   :defer
   :config
-  (setq conda-anaconda-home "/home/max/conda")
+  (setq conda-anaconda-home "/home/max/anaconda2")
   (conda-env-initialize-interactive-shells))
 
 ;; python version depdentend shebangs
