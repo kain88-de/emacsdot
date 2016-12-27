@@ -29,6 +29,8 @@
    '(org-agenda-start-on-weekday nil)
    '(org-reverse-note-order t))
 
+  (evil-set-initial-state 'org-agenda-mode 'emacs)
+
   ;; bound in a hydra
   (setq org-capture-templates
         '(("p" "PRIVAT-TODO" entry (file+headline "/home/max/org/organizer.org" "Private")
