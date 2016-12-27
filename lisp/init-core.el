@@ -21,6 +21,12 @@
   :ensure t
   :commands (paradox-list-packages))
 
+(use-package keyfreq
+  :ensure t
+  :config
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1))
+
 ;; Protein Data Bank files are text
 (setq auto-mode-alist (append '(("\\.pdb$" . text-mode)) auto-mode-alist))
 
