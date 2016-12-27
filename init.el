@@ -30,7 +30,7 @@
 
 ;; core elements and ui
 (require 'init-core)
-;; (require 'init-evil)
+(require 'init-evil)
 (require 'init-util)
 (require 'init-ui)
 
