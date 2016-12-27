@@ -8,4 +8,7 @@
         magit-visit-ref-behavior '(checkout-any focus-on-ref))
   (add-hook 'with-editor-mode-hook 'evil-insert-state))
 
+(use-package evil-magit
+  :ensure t)
+
 (provide 'init-magit)
